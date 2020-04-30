@@ -1,0 +1,10 @@
+# Local configuration files
+/.idea/workspace.xml
+/local.properties
+
+#Gradle files
+/.gradle
+/build
+
+
+google-services.json
