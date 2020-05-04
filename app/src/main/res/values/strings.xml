@@ -4,5 +4,10 @@
     <string name="findUsOn"> Or find us on Facebook: </string>
     <string name="support"> Need tenancy advice?  </string>
     <string name="contactTribunalEmail"> Contact www.tenancy.govt.nz</string>
+    <string name="featuredReview"> Featured Reviews </string>
+    <string name="searchflatTextView"> Address Search </string>
+    <string name="searchForReview"> Enter an address... </string>
+    <string name="writeReviewTextView"> Want to write a review? </string>
+    <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
     />
 </resources>

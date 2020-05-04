@@ -53,4 +53,15 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/supportText" />
+
+    <Button
+        android:id="@+id/fbButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="29dp"
+        android:text="Button"
+        app:layout_constraintStart_toEndOf="@+id/findUsOnText"
+        app:layout_constraintTop_toBottomOf="@+id/issuesText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
