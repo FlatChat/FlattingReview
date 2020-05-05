@@ -1,14 +1,31 @@
 <resources>
     <string name="app_name">FlattingReview</string>
 
-    <!-- Flat review screen strings -->
+    <string name="a"></string>
+
+    <!-- Flat strings -->
     <string name="flat_image">Image of the flat</string>
     <string name="flat_address">660 Castle St Dunedin</string>
+    <string name="star">Star</string>
+
+    <!-- Button Strings -->
+    <string name="show_all_reviews">Show All Reviews</string>
+    <string name="add_review">Add a Review</string>
+    <string name="anonymous">Anonymous</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Review Strings -->
     <string name="overall_rating">4.65 (3 reviews)</string>
     <string name="comment">A great location. Nice and peaceful and a short walk from the center of uni. Well insulated but does get to hot.</string>
     <string name="report">report comment</string>
     <string name="date">28th January 2018</string>
     <string name="reviewer">Ryan Cole</string>
-    <string name="show_all_reviews">Show All Reviews</string>
-    <string name="add_review">Add a Review</string>
+    <string name="title_activity_view_reviews">ViewReviews</string>
+    <string name="cleanliness">Cleanliness</string>
+    <string name="landlord">LandLord</string>
+    <string name="value">Value</string>
+    <string name="location">Location</string>
+    <string name="commenthint">Write comment here</string>
+
 </resources>
