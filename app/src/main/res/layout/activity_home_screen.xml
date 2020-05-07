@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".HomeScreen">
 
+
+
     <TextView
         android:id="@+id/featuredReviewText"
         android:layout_width="wrap_content"
