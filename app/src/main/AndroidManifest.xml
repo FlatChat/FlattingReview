@@ -13,6 +13,12 @@
         <activity android:name=".Contact" />
         <activity android:name=".create_new_flat"></activity>
         <activity android:name=".create_account" />
+        <activity android:name=".WriteReview"></activity>
+        <activity
+            android:name=".ViewReviews"
+            android:label="@string/title_activity_view_reviews"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Flat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
