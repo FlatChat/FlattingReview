@@ -3,10 +3,10 @@ package com.example.flattingreview
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class ReadReviews : AppCompatActivity() {
+class HomeScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_read_reviews)
+        setContentView(R.layout.activity_home_screen)
     }
 }
