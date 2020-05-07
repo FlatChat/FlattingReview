@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FlattingReview</string>
+    <string name="contactUs">For feedback or general enquires regarding Flat Review, please contact us on flatreview@gmail.com</string>
+    <string name="findUsOn"> Or find us on Facebook: </string>
+    <string name="support"> Need tenancy advice?  </string>
+    <string name="contactTribunalEmail"> Contact www.tenancy.govt.nz</string>
+    <string name="featuredReview"> Featured Reviews </string>
+    <string name="searchflatTextView"> Address Search </string>
+    <string name="searchForReview"> Enter an address... </string>
+    <string name="writeReviewTextView"> Want to write a review? </string>
+    <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
+    />
 </resources>
