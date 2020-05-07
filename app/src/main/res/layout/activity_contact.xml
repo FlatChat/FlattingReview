@@ -54,14 +54,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/supportText" />
 
-    <Button
-        android:id="@+id/fbButton"
+    <ImageButton
+        android:id="@+id/imageButton8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="29dp"
-        android:text="Button"
+        android:layout_marginStart="33dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="31dp"
+        android:background="@android:color/transparent"
         app:layout_constraintStart_toEndOf="@+id/findUsOnText"
-        app:layout_constraintTop_toBottomOf="@+id/issuesText" />
+        app:layout_constraintTop_toBottomOf="@+id/issuesText"
+        app:srcCompat="@drawable/fb" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
