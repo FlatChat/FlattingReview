@@ -9,8 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+
+        <!-- Set the splash screen as the first screen when user installs the application -->
         <activity android:name=".SplashScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <!-- The remaining screens -->
         <activity android:name=".HomeScreen" />
         <activity android:name=".Contact" />
         <activity android:name=".create_new_flat" />
@@ -22,11 +29,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Flat" />
         <activity android:name=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

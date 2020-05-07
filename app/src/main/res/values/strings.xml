@@ -38,4 +38,7 @@
     <string name="location">Location</string>
     <string name="commenthint">Write comment here</string>
 
+    <!-- Splash screen button Strings -->
+    <string name="splashButton"> Temporary Button </string>
+
 </resources>
