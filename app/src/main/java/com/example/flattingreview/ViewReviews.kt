@@ -1,16 +1,13 @@
 package com.example.flattingreview
 
-import android.os.Bundle
-import android.os.Handler
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 
-class MainActivity : AppCompatActivity() {
-
-
+class ViewReviews : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_view_reviews)
     }
 }
