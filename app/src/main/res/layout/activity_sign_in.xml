@@ -131,4 +131,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.531" />
 
+    <Button
+        android:id="@+id/tempSignInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginRight="125dp"
+        android:text="@string/splashButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

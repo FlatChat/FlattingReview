@@ -18,12 +18,14 @@
             </intent-filter>
         </activity>
         <!-- The remaining screens -->
-        <activity android:name=".HomeScreen" />
+
         <activity android:name=".Contact" />
         <activity android:name=".create_new_flat" />
         <activity android:name=".create_account" />
         <activity android:name=".WriteReview" />
         <activity android:name=".SignIn" />
+
+        <activity android:name=".HomeScreen"/>
         <activity
             android:name=".ViewReviews"
             android:label="@string/title_activity_view_reviews"
