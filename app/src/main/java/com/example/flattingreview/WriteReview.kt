@@ -13,6 +13,8 @@ class WriteReview : AppCompatActivity() {
         setContentView(R.layout.activity_write_review)
     }
 
+
+    //below code is all for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)

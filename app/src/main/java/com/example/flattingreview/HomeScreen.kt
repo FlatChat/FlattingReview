@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class HomeScreen : AppCompatActivity() {
@@ -13,8 +14,16 @@ class HomeScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
+
+        //connecting the create a flat button to the create a new flat screen
+        createFlatButton.setOnClickListener{
+            val intent = Intent(this,create_new_flat::class.java)
+            startActivity(intent)
+        }
     }
 
+
+    //below code is all for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)

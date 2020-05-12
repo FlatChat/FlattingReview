@@ -7,7 +7,6 @@
     tools:context=".HomeScreen">
 
 
-
     <TextView
         android:id="@+id/featuredReviewText"
         android:layout_width="wrap_content"
@@ -59,7 +58,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <TextView
         android:id="@+id/reportText"
         android:layout_width="wrap_content"
@@ -71,6 +69,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/cantfindAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="31dp"
+        android:text="@string/createaFlat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchBarReviewText" />
+
+    <Button
+        android:id="@+id/createFlatButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="11dp"
+        android:text="@string/createflatBut"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cantfindAddressText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
