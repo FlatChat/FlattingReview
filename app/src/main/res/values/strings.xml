@@ -9,9 +9,9 @@
     <string name="searchForReview"> Enter an address... </string>
     <string name="writeReviewTextView"> Want to write a review? </string>
     <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
+    <string name="createaFlat"> Cannot find the flat you are looking for? Enter it in here  </string>
+    <string name="createflatBut"> Create a flat </string>
     />
-
-
 
     <string name="a"></string>
 
@@ -39,5 +39,10 @@
     <string name="value">Value</string>
     <string name="location">Location</string>
     <string name="commenthint">Write comment here</string>
+
+    <!-- Splash screen button Strings -->
+    <string name="splashButton"> Temporary Button </string>
+
+
 
 </resources>

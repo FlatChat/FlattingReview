@@ -9,23 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReadReviews"></activity>
-        <activity android:name=".Contact" />
-        <activity android:name=".create_new_flat"></activity>
-        <activity android:name=".create_account" />
-        <activity android:name=".WriteReview"></activity>
-        <activity
-            android:name=".ViewReviews"
-            android:label="@string/title_activity_view_reviews"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Flat" />
-        <activity android:name=".MainActivity">
+        <!-- Set the splash screen as the first screen when user installs the application -->
+        <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- The remaining screens -->
+        <activity android:name=".Contact" />
+        <activity android:name=".create_new_flat" />
+        <activity android:name=".create_account" />
+        <activity android:name=".WriteReview" />
+        <activity android:name=".SignIn" />
+        <activity android:name=".HomeScreen" />
+        <activity
+            android:name=".ViewReviews"
+            android:label="@string/title_activity_view_reviews"
+            android:theme="@style/AppTheme.DarkActionBar" />
+        <activity android:name=".Flat" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
