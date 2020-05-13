@@ -8,10 +8,15 @@ import android.view.MenuItem
 
 class WriteReview : AppCompatActivity() {
 
+//    // Get a reference to the database service
+////    var database = firebase.database();
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
     }
+
+
 
 
     //below code is all for the action bar
