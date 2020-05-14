@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homescreen"
+        android:title="Home">
+        </item>
+
+    <item
+        android:id="@+id/writereview"
+        android:title="Write a Review">
+    </item>
+
+    <item
+        android:id="@+id/contact"
+        android:title="Contact Us">
+    </item>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout">
+    </item>
+
+</menu>
