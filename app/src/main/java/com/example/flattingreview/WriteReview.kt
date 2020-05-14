@@ -1,6 +1,7 @@
 package com.example.flattingreview
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -8,10 +9,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
 import android.widget.Switch
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import domain.Review
+import java.time.LocalDateTime
 
 // Write a message to the database
 private val database = Firebase.database
@@ -19,6 +22,7 @@ private val myRef = database.getReference("message")
 
 class WriteReview : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
@@ -37,8 +41,11 @@ class WriteReview : AppCompatActivity() {
         val userID = 0
         val reviewID = 0
 
+        // When the review was created
+        val current = LocalDateTime.now()
+
         // Create a reference of a review
-        val rev = Review(reviewID, userID, flatID, cleanliness, landlord, location, value, anon)
+        val rev = Review(reviewID, userID, flatID, cleanliness, landlord, location, value, anon, current)
         rev.comment = comment // Set separately because its optional
 
         // Button Listener will save the information into the database
