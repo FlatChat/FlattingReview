@@ -1,15 +1,17 @@
 package com.example.flattingreview
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
+import android.widget.Switch
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import domain.review
 
 // Write a message to the database
 private val database = Firebase.database
@@ -21,25 +23,27 @@ class WriteReview : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
 
-        // Get reference to button
+        // Get inputs
         val buttonClick = findViewById<Button>(R.id.submit_button)
-        // Get reference to the text
-        val comment = findViewById<EditText>(R.id.comment)
-        // Get reference to the rating bars
-        val cleanliness = findViewById<RatingBar>(R.id.cleanlinessRatingBar)
-        val landlord = findViewById<RatingBar>(R.id.landlordRatingBar)
-        val location = findViewById<RatingBar>(R.id.locationRatingBar)
-        val value = findViewById<RatingBar>(R.id.valueRatingBar)
+        val comment = findViewById<EditText>(R.id.comment).text
+        val cleanliness = findViewById<RatingBar>(R.id.cleanlinessRatingBar).rating
+        val landlord = findViewById<RatingBar>(R.id.landlordRatingBar).rating
+        val location = findViewById<RatingBar>(R.id.locationRatingBar).rating
+        val value = findViewById<RatingBar>(R.id.valueRatingBar).rating
+        val anon = findViewById<Switch>(R.id.anonSwitch).isChecked
+
+        val flatID = 0
+        val userID = 0
+        val reviewID = 0
+
+        // Create a reference of a review
+        val rev = review(reviewID, userID, flatID, cleanliness, landlord, location, value,
+            comment.toString(), anon)
 
         // Button Listener will save the information into the database
         // when the submit button is clicked.
         buttonClick.setOnClickListener {
-            myRef.setValue(comment)
-            myRef.setValue(cleanliness)
-            myRef.setValue(landlord)
-            myRef.setValue(location)
-            myRef.setValue(value)
-            //myRef.setValue(userID)
+            myRef.setValue(rev)
         }
     }
 
