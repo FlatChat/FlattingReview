@@ -98,25 +98,25 @@
                 android:orientation="vertical">
 
                 <RatingBar
-                    android:id="@+id/ratingBar2"
+                    android:id="@+id/cleanlinessRatingBar"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RatingBar
-                    android:id="@+id/ratingBar3"
+                    android:id="@+id/landlordRatingBar"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RatingBar
-                    android:id="@+id/ratingBar4"
+                    android:id="@+id/valueRatingBar"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RatingBar
-                    android:id="@+id/ratingBar5"
+                    android:id="@+id/locationRatingBar"
                     style="@style/Widget.AppCompat.RatingBar.Indicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -125,17 +125,17 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/comment"
             android:layout_width="match_parent"
-            android:layout_height="327dp"
+            android:layout_height="96dp"
             android:layout_margin="16dp"
+            android:autofillHints=""
             android:background="#D8CFCF"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/commenthint"
             android:inputType="textMultiLine"
-            android:padding="5dp"
-            android:autofillHints="" />
+            android:padding="5dp" />
 
         <Switch
             android:id="@+id/switch1"
@@ -160,7 +160,7 @@
                 android:text="@string/cancel" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/submit_button"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
