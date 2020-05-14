@@ -11,7 +11,7 @@ import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import domain.review
+import domain.Review
 
 // Write a message to the database
 private val database = Firebase.database
@@ -25,7 +25,7 @@ class WriteReview : AppCompatActivity() {
 
         // Get inputs
         val buttonClick = findViewById<Button>(R.id.submit_button)
-        val comment = findViewById<EditText>(R.id.comment).text
+        val comment = findViewById<EditText>(R.id.comment).text.toString()
         val cleanliness = findViewById<RatingBar>(R.id.cleanlinessRatingBar).rating
         val landlord = findViewById<RatingBar>(R.id.landlordRatingBar).rating
         val location = findViewById<RatingBar>(R.id.locationRatingBar).rating
@@ -38,8 +38,8 @@ class WriteReview : AppCompatActivity() {
         val reviewID = 0
 
         // Create a reference of a review
-        val rev = review(reviewID, userID, flatID, cleanliness, landlord, location, value,
-            comment.toString(), anon)
+        val rev = Review(reviewID, userID, flatID, cleanliness, landlord, location, value, anon)
+        rev.comment = comment // Set separately because its optional
 
         // Button Listener will save the information into the database
         // when the submit button is clicked.

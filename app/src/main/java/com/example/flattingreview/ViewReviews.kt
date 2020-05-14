@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import domain.Review
 
 // Write a message to the database
 private val database = Firebase.database
@@ -27,13 +28,13 @@ class ViewReviews : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<String>()
-                Log.d(TAG, "Value is: $value")
+                val value = dataSnapshot.getValue<Review>()
+                //Log.d(TAG, "Value is: $value") the TAG was producing errors
             }
 
             override fun onCancelled(error: DatabaseError) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException())
+                //Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
 

@@ -131,7 +131,7 @@
         <EditText
             android:id="@+id/comment"
             android:layout_width="match_parent"
-            android:layout_height="96dp"
+            android:layout_height="156dp"
             android:layout_margin="16dp"
             android:autofillHints=""
             android:background="#D8CFCF"
