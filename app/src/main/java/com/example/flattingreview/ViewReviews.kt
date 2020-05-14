@@ -21,6 +21,10 @@ import kotlinx.android.synthetic.main.activity_view_reviews.*
 private val database = Firebase.database
 private val myRef = database.getReference("message")
 
+/**
+ * Class for presenting the reviews.
+ * @author Ryan
+ */
 class ViewReviews : AppCompatActivity() {
 
     private lateinit var reviewAdaptor: ReviewAdaptor
@@ -56,6 +60,10 @@ class ViewReviews : AppCompatActivity() {
 
     }
 
+    /**
+     * Sets the layout of the recycling view to linear. Connects this class to the adaptor class
+     * which gets the data from the database.
+     */
     private fun initRecyclerView(){
         review_recycler_view.apply {
             layoutManager = LinearLayoutManager(this@ViewReviews)

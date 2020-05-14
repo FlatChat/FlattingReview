@@ -20,14 +20,19 @@ import java.time.LocalDateTime
 private val database = Firebase.database
 private val myRef = database.getReference("message")
 
+/**
+ * Class designed to collect the data inputted by the users from activity_write_review.xml
+ * and write the data into the database.
+ * @author Ryan
+ */
 class WriteReview : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @RequiresApi(Build.VERSION_CODES.O) // To get the current date and time
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
 
-        // Get inputs
+        // Get inputs from the input fields
         val buttonClick = findViewById<Button>(R.id.submit_button)
         val comment = findViewById<EditText>(R.id.comment).text.toString()
         val cleanliness = findViewById<RatingBar>(R.id.cleanlinessRatingBar).rating

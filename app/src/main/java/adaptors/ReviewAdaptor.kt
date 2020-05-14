@@ -10,10 +10,18 @@ import domain.Review
 import kotlinx.android.synthetic.main.layout_review.view.*
 import java.lang.String.format
 
+/**
+ * Adapter for the recycling view to the reviews. The class will read out the data from the
+ * database in realtime and input the data into the recycling view.
+ * @author ryan
+ */
 class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var reviews: List<Review> = ArrayList()
 
+    /**
+     * Collects the layout format from layout_review.xml
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ReviewViewHolder(
             LayoutInflater.from(parent.context)
@@ -29,6 +37,11 @@ class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return reviews.size
     }
 
+    /**
+     * Checks to see what type of review view holder should be user (what card format).
+     * There is only one format so the when loop should only run once. It also calls the
+     * bind function which binds the data.
+     */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
             is ReviewViewHolder -> {
@@ -37,10 +50,16 @@ class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
+    /**
+     * This function is called to input the data into this class.
+     */
     fun submitList(reviewList: List<Review>){
         reviews = reviewList
     }
 
+    /**
+     * declares the individual elements and and binds them to the holder.
+     */
     class ReviewViewHolder constructor(
         reviewView: View
     ): RecyclerView.ViewHolder(reviewView){
