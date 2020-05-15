@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.ktx.Firebase
@@ -38,7 +39,7 @@ class create_account : AppCompatActivity() {
                 return
             }
             //if the email is not a valid email, set an error message
-            if(Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()){
+            if(!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()){
                 email.error="Please enter a valid email"
                 email.requestFocus()
                 return
@@ -57,14 +58,10 @@ class create_account : AppCompatActivity() {
                     finish()
 
                 } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    // If sign in fails, display a message to the user. Failure could be because of a network issue.
+                    Toast.makeText(baseContext, "Sign Up failed. Please try again soon.",
                         Toast.LENGTH_SHORT).show()
-                    updateUI(null)
                 }
-
-                // ...
             }
         }
 }
