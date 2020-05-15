@@ -17,5 +17,10 @@ class SignIn  : AppCompatActivity() {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
+        //connected the sign up button to the create an account screen
+        signUpButton.setOnClickListener{
+            val intent = Intent(this, create_account::class.java)
+            startActivity(intent)
+        }
     }
 }

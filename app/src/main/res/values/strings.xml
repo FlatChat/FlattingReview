@@ -43,6 +43,8 @@
     <!-- Splash screen button Strings -->
     <string name="splashButton"> Temporary Button </string>
 
+    <!-- Create account Strings -->
+    <string name="signUpbutton"> Sign Up  </string>
 
 
 </resources>
