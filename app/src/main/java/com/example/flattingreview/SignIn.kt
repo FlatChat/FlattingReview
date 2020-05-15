@@ -2,10 +2,14 @@ package com.example.flattingreview
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.activity_sign_in.signUpButton
 
 
 class SignIn  : AppCompatActivity() {
@@ -30,7 +34,51 @@ class SignIn  : AppCompatActivity() {
             startActivity(intent)
             finish()//kill the current activity
         }
+
+        //click listener for the login button
+        loginButton.setOnClickListener{
+            doLogin()
+        }
+
     }
+
+    /**
+     * Method to check email and password has been entered and login in an existing user. 
+     */
+    private fun doLogin() {
+       //if the email address is empty, set an error message
+        if(enterEmailtv.text.toString().isEmpty()){
+            enterEmailtv.error="Please enter email"
+            enterEmailtv.requestFocus()
+            return
+        }
+        //if the email is not a valid email, set an error message
+        if(!Patterns.EMAIL_ADDRESS.matcher(enterEmailtv.text.toString()).matches()){
+            enterEmailtv.error="Please enter a valid email"
+            enterEmailtv.requestFocus()
+            return
+        }
+        //if the password is empty, set an error message
+        if(enterPasstv.text.toString().isEmpty()){
+            enterPasstv.error="Please enter a password"
+            enterPasstv.requestFocus()
+            return
+        }
+        //if all of the checks are ok, then we need to login.
+        auth.signInWithEmailAndPassword(enterEmailtv.text.toString(), enterPasstv.text.toString())
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(baseContext, "Login failed.",
+                        Toast.LENGTH_SHORT).show()
+                    updateUI(null)
+                }
+            }
+    }
+
     /**
      * Check if the user is already signed in.
      */
