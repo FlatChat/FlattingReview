@@ -54,9 +54,14 @@ class create_account : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(email.text.toString(), enterPass1.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    startActivity(Intent(this,SignIn::class.java))
-                    finish()
-
+                    val user =auth.currentUser
+                    user!!.sendEmailVerification()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                startActivity(Intent(this,SignIn::class.java))
+                                finish()
+                            }
+                        }
                 } else {
                     // If sign in fails, display a message to the user. Failure could be because of a network issue.
                     Toast.makeText(baseContext, "Sign Up failed. Please try again soon.",

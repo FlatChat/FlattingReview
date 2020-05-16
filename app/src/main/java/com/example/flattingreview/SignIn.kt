@@ -43,7 +43,7 @@ class SignIn  : AppCompatActivity() {
     }
 
     /**
-     * Method to check email and password has been entered and login in an existing user. 
+     * Method to check email and password has been entered and login in an existing user.
      */
     private fun doLogin() {
        //if the email address is empty, set an error message
@@ -89,11 +89,21 @@ class SignIn  : AppCompatActivity() {
         updateUI(currentUser)
     }
     /**
-     * UpdateUI handler.
+     * UpdateUI method to check if the user is null. If they are not null, then sign in is successful.
      *
      * @param currentUser a null firebase user that is not already signed in to the application.
      */
-    fun updateUI(currentUser: FirebaseUser?){
-
+    private fun updateUI(currentUser: FirebaseUser?){
+       if(currentUser!=null){
+           //check if the user email is verified
+           if(currentUser.isEmailVerified) {
+               startActivity(Intent(this, HomeScreen::class.java))
+               finish()
+           } else{
+               Toast.makeText(baseContext, "Please verify your email address.",Toast.LENGTH_SHORT).show()
+           }
+        }else{
+           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
+        }
     }
 }
