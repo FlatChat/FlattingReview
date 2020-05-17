@@ -40,7 +40,8 @@ class ViewReviews : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                val value = dataSnapshot.getValue<Review>()
+                val data = dataSnapshot.getValue<Review>()
+                reviewAdaptor.submitList(data)
                 //Log.d(TAG, "Value is: $value") the TAG was producing errors
             }
 
@@ -49,15 +50,6 @@ class ViewReviews : AppCompatActivity() {
                 //Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-    }
-
-    /**
-     * Use this function to get the data from the database and submit it
-     * with reviewAdaptor.submitList(data). Data must be:
-     * data = ...
-     */
-    private fun addDataSet(){
-
     }
 
     /**
