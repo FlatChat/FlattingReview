@@ -18,6 +18,7 @@ class SplashScreen : AppCompatActivity() {
        splashScreenButton.setOnClickListener{
             val intent = Intent(this,SignIn::class.java)
            startActivity(intent)
+           finish()
        }
 
     }
