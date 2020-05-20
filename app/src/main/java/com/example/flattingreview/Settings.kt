@@ -13,7 +13,7 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        //connecting the create a flat button to the create a new flat screen
+        //connecting the change password button to the change password screen
         changePassBut.setOnClickListener{
             val intent = Intent(this,ChangePassword::class.java)
             startActivity(intent)
