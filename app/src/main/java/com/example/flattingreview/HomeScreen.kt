@@ -51,9 +51,9 @@ class HomeScreen : AppCompatActivity() {
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen
-        if(id==R.id.logout)
+        if(id==R.id.settings)
         {
-            val intent = Intent(this, SignIn::class.java)
+            val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
         return super.onOptionsItemSelected(item)

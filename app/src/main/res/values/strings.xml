@@ -46,5 +46,9 @@
     <!-- Create account Strings -->
     <string name="signUpbutton"> Sign Up  </string>
 
+    <!-- Settings page Strings -->
+    <string name="changePassButton"> Change Password </string>
+    <string name="logout"> Logout </string>
+
 
 </resources>
