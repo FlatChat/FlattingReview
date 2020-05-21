@@ -9,7 +9,7 @@ import java.time.LocalDateTime
  */
 class Review(
     var reviewID: Int,
-    var userID: Int,
+    var userID: String?,
     var flatID: Int,
     var cleanliness: Float,
     var landlord: Float,

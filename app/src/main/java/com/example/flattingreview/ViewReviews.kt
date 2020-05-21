@@ -41,7 +41,7 @@ class ViewReviews : AppCompatActivity() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val data = dataSnapshot.getValue<Review>()
-                reviewAdaptor.submitList(data)
+                //reviewAdaptor.submitList(data)
                 //Log.d(TAG, "Value is: $value") the TAG was producing errors
             }
 

@@ -58,7 +58,7 @@ class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     /**
-     * declares the individual elements and and binds them to the holder.
+     * declares the individual elements and binds them to the holder.
      */
     class ReviewViewHolder constructor(
         reviewView: View
@@ -70,7 +70,7 @@ class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val report: String = "report"
 
     fun bind(Review: Review){
-        reviewUser.setText(Review.userID)
+        reviewUser.text = Review.userID.toString()
         reviewComment.text = Review.comment
         reviewDate.text = format(Review.date.toString())
         report
