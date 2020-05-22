@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <!-- Set the splash screen as the first screen when user installs the application -->
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -18,17 +19,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- The remaining screens -->
+        </activity>
+
+        <!-- The remaining screens -->
         <activity android:name=".Contact" />
         <activity android:name=".CreateFlat" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".WriteReview" />
         <activity android:name=".SignIn" />
         <activity android:name=".HomeScreen" />
-        <activity
-            android:name=".ViewReviews"
-            android:label="@string/title_activity_view_reviews"
-            android:theme="@style/AppTheme.DarkActionBar" />
+        <activity android:name=".ViewReviews"/>
         <activity android:name=".Flat" />
         <activity android:name=".MainActivity" />
     </application>
