@@ -8,7 +8,7 @@ import java.time.LocalDateTime
  * Created by Ryan.
  */
 class Review(
-    var reviewID: Int,
+    var reviewID: String?,
     var userID: String?,
     var flatID: Int,
     var cleanliness: Float,
