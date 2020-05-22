@@ -34,8 +34,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val value = findViewById<RatingBar>(R.id.value)
         val anon = findViewById<Switch>(R.id.anonSwitch)
 
-        // Set at 0 until we have the working accounts
-        val flatID = 0
+        // Set at 0 until we have the working flats
+        val flatID = "0"
         // Current signed in user
         val userID = FirebaseAuth.getInstance().currentUser?.uid
 
@@ -45,13 +45,14 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Button Listener will save the information into the database
         // when the submit button is clicked.
         submitButton.setOnClickListener {
+
             val myRef = FirebaseDatabase.getInstance().getReference("reviews")
             // Creates reviewID
             val reviewID = myRef.push().key
 
             // Create a review object
-            val rev = Review(reviewID, userID, flatID, cleanliness.rating, landlord.rating, location.rating, value.rating, anon.isChecked, current)
-            rev.comment = comment.text.toString() // Set separately because its optional
+            val rev = Review(reviewID, userID, flatID, cleanliness.rating, landlord.rating,
+                location.rating, value.rating, anon.isChecked, current, comment.text.toString())
 
             myRef.child(reviewID.toString()).setValue(rev)
         }

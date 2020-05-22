@@ -10,15 +10,12 @@ import java.time.LocalDateTime
 class Review(
     var reviewID: String?,
     var userID: String?,
-    var flatID: Int,
+    var flatID: String?,
     var cleanliness: Float,
     var landlord: Float,
     var location: Float,
     var value: Float,
     var anonymous: Boolean,
-    var date: LocalDateTime
-    ) {
-
-    var comment: String? = null // Default value
-}
-
+    var date: LocalDateTime,
+    var comment: String? = null
+    )

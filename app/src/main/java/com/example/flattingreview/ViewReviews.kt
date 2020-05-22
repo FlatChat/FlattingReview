@@ -1,25 +1,20 @@
 package com.example.flattingreview
 
 import adaptors.ReviewAdaptor
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import domain.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
-
-// Write a message to the database
-private val database = Firebase.database
-private val myRef = database.getReference("message")
 
 /**
  * Class for presenting the reviews.
@@ -33,7 +28,11 @@ class ViewReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
 
-        initRecyclerView()
+        val myRef = FirebaseDatabase.getInstance().getReference("reviews")
+
+
+
+        //initRecyclerView()
 
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
@@ -41,7 +40,7 @@ class ViewReviews : AppCompatActivity() {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 val data = dataSnapshot.getValue<Review>()
-                //reviewAdaptor.submitList(data)
+                reviewAdaptor.submitList(data)
                 //Log.d(TAG, "Value is: $value") the TAG was producing errors
             }
 

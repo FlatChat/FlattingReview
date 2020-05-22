@@ -53,8 +53,8 @@ class ReviewAdaptor : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     /**
      * This function is called to input the data into this class.
      */
-    fun submitList(reviewList: List<Review>){
-        reviews = reviewList
+    fun submitList(reviewList: Review?){
+        //reviews = reviewList
     }
 
     /**

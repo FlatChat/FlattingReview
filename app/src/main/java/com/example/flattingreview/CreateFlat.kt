@@ -5,12 +5,44 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.NonNull
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.api.net.PlacesClient
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 
-class create_new_flat : AppCompatActivity() {
+class CreateFlat : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_new_flat)
+
+        val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
+
+        if(!Places.isInitialized()){
+            Places.initialize(applicationContext, apiKey)
+        }
+
+        var placesClient: PlacesClient = Places.createClient(this)
+
+        val autocompleteSupportFragment: AutocompleteSupportFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+
+        autocompleteSupportFragment.setPlaceFields(listOf(Places.Field.ID, Place.Field.LAT_LNG, Places.Field.NAME))
+
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener()){
+
+            override fun onPlacesSelected(@NonNull place: Place){
+                val latLng: LatLng = place.getLatLng()
+            }
+
+            override fun onError(@NonNull status: Status){
+
+            }
+
+        }
+
     }
 
     //below code is for the action bar
@@ -18,7 +50,6 @@ class create_new_flat : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id=item.itemId

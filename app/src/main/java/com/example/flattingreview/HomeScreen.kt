@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_home_screen.*
-import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class HomeScreen : AppCompatActivity() {
 
@@ -17,7 +15,7 @@ class HomeScreen : AppCompatActivity() {
 
         //connecting the create a flat button to the create a new flat screen
         createFlatButton.setOnClickListener{
-            val intent = Intent(this,create_new_flat::class.java)
+            val intent = Intent(this,CreateFlat::class.java)
             startActivity(intent)
         }
     }
