@@ -13,10 +13,17 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 
+
+/**
+ * Creates a flat: a user can look up the address using google places, the address is created
+ * into a flat object which is then saved into the database.
+ * @author Ryan
+ */
 class CreateFlat : AppCompatActivity() {
 
     private lateinit var placesClient: PlacesClient
 
+    // Attributes to store from the address that the user chooses
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +33,20 @@ class CreateFlat : AppCompatActivity() {
         setupPlacesAutoComplete()
     }
 
+    /**
+     * Initialise google places by using the apiKey.
+     * Creates a places client.
+     */
     private fun initPlaces(){
-        val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
-        Places.initialize(this, apiKey)
+        Places.initialize(this, R.string.apiKey.toString())
         placesClient = Places.createClient(this)
     }
 
+    /**
+     * Implements an google places autocomplete into a fragment.
+     * Listener is for when a location is selected, you use the listener to pull the data
+     * from the fragment.
+     */
     private fun setupPlacesAutoComplete(){
         val autocompleteFragment = supportFragmentManager
             .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment

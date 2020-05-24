@@ -30,7 +30,6 @@
         <activity android:name=".HomeScreen" />
         <activity android:name=".ViewReviews"/>
         <activity android:name=".Flat" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

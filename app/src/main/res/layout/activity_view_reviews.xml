@@ -153,9 +153,9 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/review_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/review_recycler_view"/>
+                android:layout_height="524dp" />
 
         </LinearLayout>
     </ScrollView>

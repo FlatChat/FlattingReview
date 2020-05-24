@@ -1,6 +1,7 @@
 package com.example.flattingreview
 
 import android.content.Intent
+import android.media.Rating
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
@@ -20,42 +21,63 @@ import java.time.LocalDateTime
  */
 class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
 
-    @RequiresApi(Build.VERSION_CODES.O) // To get the current date and time
+    private lateinit var submitButton: Button
+    private lateinit var cleanliness: RatingBar
+    private lateinit var landlord: RatingBar
+    private lateinit var location: RatingBar
+    private lateinit var value: RatingBar
+    private lateinit var anon: Switch
+    private var comment: String? = null // Comment is optional
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
 
-        // Get inputs from the input fields
-        val submitButton = findViewById<Button>(R.id.submit_button)
-        val comment = findViewById<EditText>(R.id.comment)
-        val cleanliness = findViewById<RatingBar>(R.id.cleanliness)
-        val landlord = findViewById<RatingBar>(R.id.landlord)
-        val location = findViewById<RatingBar>(R.id.location)
-        val value = findViewById<RatingBar>(R.id.value)
-        val anon = findViewById<Switch>(R.id.anonSwitch)
+        collectInput()
 
+        submitButton.setOnClickListener {
+            saveObject()
+        }
+    }
+
+    /**
+     * Will get the users input from the activity_write_review screen and save
+     * the data into variables
+     */
+    private fun collectInput(){
+        submitButton = findViewById(R.id.submit_button)
+        comment = findViewById<EditText>(R.id.comment).toString()
+        cleanliness = findViewById(R.id.cleanliness)
+        landlord = findViewById(R.id.landlord)
+        location = findViewById(R.id.location)
+        value = findViewById(R.id.value)
+        anon = findViewById(R.id.anonSwitch)
+    }
+
+    /**
+     * Gets the FlatID and UserID to attach to the review. Records a time stamp of when the
+     * review was created. Get the firebase reference to save the data into. Creates a reviewID
+     * through the firebase id system. Creates a reviews object. Writes the review object into
+     * the database.
+     */
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun saveObject(){
         // Set at 0 until we have the working flats
         val flatID = "0"
         // Current signed in user
         val userID = FirebaseAuth.getInstance().currentUser?.uid
-
         // When the review was created
         val current = LocalDateTime.now()
-
-        // Button Listener will save the information into the database
-        // when the submit button is clicked.
-        submitButton.setOnClickListener {
-
-            val myRef = FirebaseDatabase.getInstance().getReference("reviews")
-            // Creates reviewID
-            val reviewID = myRef.push().key
-
-            // Create a review object
-            val rev = Review(reviewID, userID, flatID, cleanliness.rating, landlord.rating,
-                location.rating, value.rating, anon.isChecked, current, comment.text.toString())
-
-            myRef.child(reviewID.toString()).setValue(rev)
-        }
+        // Database reference
+        val myRef = FirebaseDatabase.getInstance().getReference("reviews")
+        // Creates reviewID
+        val reviewID = myRef.push().key
+        // Create a review object
+        val rev = Review(reviewID, userID, flatID, cleanliness.rating, landlord.rating,
+            location.rating, value.rating, anon.isChecked, current, comment)
+        // Writes into database
+        myRef.child(reviewID.toString()).setValue(rev)
     }
 
     //below code is all for the action bar
