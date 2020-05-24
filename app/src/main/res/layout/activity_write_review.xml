@@ -42,13 +42,12 @@
             android:layout_height="wrap_content" />
 
         <EditText
-            android:id="@+id/comment"
+            android:id="@+id/comment_input"
             android:layout_width="match_parent"
             android:layout_height="202dp"
             android:autofillHints=""
             android:ems="10"
             android:gravity="start|top"
-            android:hint="@string/common_open_on_phone"
             android:inputType="textMultiLine" />
 
         <Switch

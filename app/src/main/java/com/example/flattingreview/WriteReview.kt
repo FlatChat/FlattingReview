@@ -1,18 +1,21 @@
 package com.example.flattingreview
 
 import android.content.Intent
-import android.media.Rating
+import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RatingBar
+import android.widget.Switch
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import domain.Review
-import java.time.LocalDateTime
+import java.util.*
 
 /**
  * Class designed to collect the data inputted by the users from activity_write_review.xml
@@ -27,7 +30,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var location: RatingBar
     private lateinit var value: RatingBar
     private lateinit var anon: Switch
-    private var comment: String? = null // Comment is optional
+    private var comment: String? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +50,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     private fun collectInput(){
         submitButton = findViewById(R.id.submit_button)
-        comment = findViewById<EditText>(R.id.comment).toString()
+        comment = findViewById<EditText>(R.id.comment_input).toString()
         cleanliness = findViewById(R.id.cleanliness)
         landlord = findViewById(R.id.landlord)
         location = findViewById(R.id.location)
@@ -63,21 +66,26 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject(){
+        // If the user is offline it still saves the data to upload later
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
         // Set at 0 until we have the working flats
         val flatID = "0"
         // Current signed in user
         val userID = FirebaseAuth.getInstance().currentUser?.uid
         // When the review was created
-        val current = LocalDateTime.now()
+        val date = Date()
+        val newDate = Date(date.time + 604800000L * 2 + 24 * 60 * 60)
+        val dt = SimpleDateFormat("yyyy-MM-dd")
+        val stringDate: String = dt.format(newDate)
         // Database reference
-        val myRef = FirebaseDatabase.getInstance().getReference("reviews")
+        val reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         // Creates reviewID
-        val reviewID = myRef.push().key
+        val reviewID = reviewReference.push().key
         // Create a review object
         val rev = Review(reviewID, userID, flatID, cleanliness.rating, landlord.rating,
-            location.rating, value.rating, anon.isChecked, current, comment)
+            location.rating, value.rating, anon.isChecked, stringDate, comment)
         // Writes into database
-        myRef.child(reviewID.toString()).setValue(rev)
+        reviewReference.child(reviewID.toString()).setValue(rev)
     }
 
     //below code is all for the action bar
