@@ -1,20 +1,19 @@
 package com.example.flattingreview
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import domain.Review
-import kotlinx.android.synthetic.main.example_item.view.*
+import kotlinx.android.synthetic.main.review_layout.view.*
 
-class ExampleAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+class ReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
 
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.example_item,
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.review_layout,
         parent, false)
         return ExampleViewHolder(itemView)
     }

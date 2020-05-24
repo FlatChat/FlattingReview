@@ -24,17 +24,7 @@ class ViewReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
 
-        getList()
-
-        recycler_view.adapter = ExampleAdapter(reviewList)
-        recycler_view.layoutManager = LinearLayoutManager(this)
-        recycler_view.setHasFixedSize(true)
-    }
-
-    private fun getList() {
-
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -68,9 +58,16 @@ class ViewReviews : AppCompatActivity() {
                     )
                     reviewList.add(rev)
                 }
+                createView()
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
+    }
+
+    private fun createView(){
+        recycler_view.adapter = ReviewAdapter(reviewList)
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.setHasFixedSize(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

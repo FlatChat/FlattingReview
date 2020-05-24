@@ -12,5 +12,5 @@
         android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/example_item"/>
+        tools:listitem="@layout/review_layout"/>
 </RelativeLayout>
