@@ -12,7 +12,7 @@ class Review(
     var cleanliness: Float = 0f,
     var landlord: Float = 0f,
     var location: Float = 0f,
-    var value: Float,
+    var value: Float = 0f,
     var anonymous: Boolean = false,
     var date: String? = null,
     var comment: String? = null

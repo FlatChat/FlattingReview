@@ -15,6 +15,13 @@
     <!-- use this to copy and paste -->
     <string name="id">Text</string>
 
+    <!-- Progress Bars -->
+    <string name="overall">Overall Rating</string>
+
+    <!-- CardView layout -->
+    <string name="card_name">John</string>
+    <string name="card_date">2020-06-07</string>
+
     <!-- Google maps API key for google places -->
     <string name="apiKey">AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo</string>
 

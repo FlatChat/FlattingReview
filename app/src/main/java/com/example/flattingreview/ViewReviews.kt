@@ -3,12 +3,16 @@ package com.example.flattingreview
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import domain.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
+import kotlinx.android.synthetic.main.activity_write_review.*
 import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
+import kotlin.properties.Delegates
 
 /**
  * Class for presenting the reviews.
@@ -19,6 +23,7 @@ class ViewReviews : AppCompatActivity() {
     private var reviewList: ArrayList<Review> = ArrayList<Review>()
     private lateinit var reviewReference: DatabaseReference
     private var reviewListener: ValueEventListener? = null
+    private var progress: Float = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +37,8 @@ class ViewReviews : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
+
+                    Log.d("ViewReview", "" + ds.child("cleanliness").value + " : " + ds.child("location").value)
 
                     val reviewID = ds.child("reviewID").value as String
                     val userID = ds.child("userID").value as String
@@ -56,9 +63,14 @@ class ViewReviews : AppCompatActivity() {
                         date,
                         comment
                     )
-                    reviewList.add(rev)
+                    progress += clean + lord + location + value
+                    if(comment != ""){
+                        reviewList.add(rev)
+                    }
                 }
                 createView()
+                var overallBar = findViewById<ProgressBar>(R.id.overall)
+                overallBar.progress = progress.roundToInt()/100
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
