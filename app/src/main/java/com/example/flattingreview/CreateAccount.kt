@@ -1,16 +1,14 @@
 package com.example.flattingreview
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_create_account.*
 
-class create_account : AppCompatActivity() {
+class CreateAccount : AppCompatActivity() {
 
     //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth

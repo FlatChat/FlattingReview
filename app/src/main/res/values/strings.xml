@@ -13,12 +13,19 @@
     <string name="createflatBut"> Create a flat </string>
     />
 
-    <string name="a"></string>
+    <string name="a"></string> <!-- use this to copy and paste -->
 
     <!-- Flat strings -->
     <string name="flat_image">Image of the flat</string>
     <string name="flat_address">660 Castle St Dunedin</string>
     <string name="star">Star</string>
+
+    <!-- Create a flat strings -->
+    <string name="street_address">Street Address</string>
+    <string name="suburb">Suburb</string>
+    <string name="city">City</string>
+    <string name="postcode">Postcode</string>
+    <string name="flat_name">Flat Name</string>
 
     <!-- Button Strings -->
     <string name="show_all_reviews">Show All Reviews</string>
