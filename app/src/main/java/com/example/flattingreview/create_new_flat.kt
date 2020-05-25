@@ -3,40 +3,72 @@ package com.example.flattingreview
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_create_new_flat.*
+import com.google.firebase.database.FirebaseDatabase
 
-// Write a message to the database
-private val database = Firebase.database
-private val myRef = database.getReference("message")
-
-
+/**
+ * This class creates new flats and adds them to the database
+ * @author Meggie Morrison
+ */
 class create_new_flat : AppCompatActivity() {
 
+
+    private lateinit var address: Editable
+    // Bedrooms and bathrooms are optional
+    private lateinit var bedrooms: Editable
+    private lateinit var bathrooms: Editable
+    private lateinit var createButton: Button
+
+    /**
+     * This is the driver code for collecting
+     * information about the flat and then adding
+     * it to the database
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_new_flat)
 
-        val address = findViewById<EditText>(R.id.addressBox).text.toString()
-        val bedrooms = findViewById<EditText>(R.id.bedroomBox).text.toString()
-        val bathrooms = findViewById<EditText>(R.id.bathroomBox).text.toString()
-        val createButton = findViewById<Button>(R.id.createButton)
-
-        val flat = NewFlat(address)
-        flat.bedrooms = bedrooms
-        flat.bathrooms = bathrooms
+        collectInput()
 
         createButton.setOnClickListener {
-            myRef.setValue(flat)
+            //myRef.setValue(flat)
+            writeNewFlat()
         }
     }
 
-    //below code is for the action bar
+    /**
+     * This function takes user input from the
+     * create_new_flat activity, and stores
+     * it into variables
+     */
+    private fun collectInput(){
+        address = findViewById<EditText>(R.id.addressBox).text
+        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
+        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
+        createButton = findViewById(R.id.createButton)
+    }
+
+    /**
+     * This function writes the New Flat
+     * to the database
+     */
+    private fun writeNewFlat(){
+        // Database reference
+        val myRef = FirebaseDatabase.getInstance().getReference("flats")
+        // Creates the flatID
+        val flatID = myRef.push().key
+        // Creates a flat object
+        val flat = NewFlat(address.toString(), bedrooms.toString(), bathrooms.toString())
+        // Writes the flat to the database
+        myRef.child(flatID.toString()).setValue(flat)
+
+    }
+
+    // Below code is for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)

@@ -33,8 +33,8 @@ class Flat : AppCompatActivity() {
                 //Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-        **/
 
+**/
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
