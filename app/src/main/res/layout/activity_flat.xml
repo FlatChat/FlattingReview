@@ -99,7 +99,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/comment_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
@@ -134,14 +134,14 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/show_reviews_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="@string/show_all_reviews" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/add_review_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
