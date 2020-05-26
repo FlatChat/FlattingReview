@@ -1,6 +1,5 @@
 package com.example.flattingreview
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,7 +30,7 @@ import domain.NewFlat
 class CreateFlat : AppCompatActivity() {
 
     private lateinit var placesClient: PlacesClient
-    private lateinit var address: Editable
+    private lateinit var address: String
     // Bedrooms and bathrooms are optional
     private lateinit var bedrooms: Editable
     private lateinit var bathrooms: Editable
@@ -49,12 +48,11 @@ class CreateFlat : AppCompatActivity() {
         setContentView(R.layout.activity_create_new_flat)
         initPlaces()
         setupPlacesAutoComplete()
-//        collectInput()
+        collectInput()
 
-//        createButton.setOnClickListener {
-//            //myRef.setValue(flat)
-//            writeNewFlat()
-//        }
+        createButton.setOnClickListener {
+            writeNewFlat()
+        }
     }
 
     /**
@@ -62,7 +60,8 @@ class CreateFlat : AppCompatActivity() {
      * Creates a places client.
      */
     private fun initPlaces(){
-        Places.initialize(this, R.string.apiKey.toString())
+        val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
+        Places.initialize(this, apiKey)
         placesClient = Places.createClient(this)
     }
 
@@ -78,8 +77,8 @@ class CreateFlat : AppCompatActivity() {
         autocompleteFragment.setOnPlaceSelectedListener(object:PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
                 Toast.makeText(this@CreateFlat, ""+ p0.address, Toast.LENGTH_SHORT).show()
-                TODO("create the flat object here, I think you use the p0.address somehow and turn" +
-                        "it into a flat object, once that's done store it in the database")
+                Log.d("CreateFlat", "" + p0.address)
+                address = p0.address.toString()
             }
 
             override fun onError(p0: Status) {
@@ -93,32 +92,32 @@ class CreateFlat : AppCompatActivity() {
      * create_new_flat activity, and stores
      * it into variables
      */
-//    private fun collectInput(){
-//        //address = findViewById<EditText>(R.id.addressBox).text
-////        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
-////        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
-////        createButton = findViewById(R.id.createButton)
-//    }
+    private fun collectInput(){
+        //address = findViewById<EditText>(R.id.addressBox).text
+        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
+        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
+        createButton = findViewById(R.id.createButton)
+    }
 
     /**
      * This function writes the New Flat.kt
      * to the database
      */
-//    private fun writeNewFlat(){
-//        // Database reference
-//        val myRef = FirebaseDatabase.getInstance().getReference("flats")
-//        // Creates the flatID
-//        val flatID = myRef.push().key
-//        // Creates a flat object
-//        val flat = NewFlat(
-//            address.toString(),
-//            bedrooms.toString(),
-//            bathrooms.toString()
-//        )
-//        // Writes the flat to the database
-//        myRef.child(flatID.toString()).setValue(flat)
-//
-//    }
+    private fun writeNewFlat(){
+        // Database reference
+        val myRef = FirebaseDatabase.getInstance().getReference("flats")
+        // Creates the flatID
+        val flatID = myRef.push().key
+        // Creates a flat object
+        val flat = NewFlat(
+            address,
+            bedrooms.toString(),
+            bathrooms.toString()
+        )
+        // Writes the flat to the database
+        myRef.child(flatID.toString()).setValue(flat)
+
+    }
 
     // Below code is for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

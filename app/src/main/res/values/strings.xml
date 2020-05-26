@@ -20,7 +20,7 @@
 
     <!-- CardView layout -->
     <string name="card_name">John</string>
-    <string name="card_date">2020-06-07</string>
+    <string name="card_date">2020–06–07</string>
 
     <!-- Google maps API key for google places -->
     <string name="apiKey">AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo</string>
@@ -36,6 +36,7 @@
     <string name="city">City</string>
     <string name="postcode">Postcode</string>
     <string name="flat_name">Flat Name</string>
+    <string name="create_flat_search_bar">Type address here</string>
 
     <!-- Button Strings -->
     <string name="show_all_reviews">Show All Reviews</string>
