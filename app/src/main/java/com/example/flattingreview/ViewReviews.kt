@@ -1,18 +1,15 @@
 package com.example.flattingreview
 
+import adapters.ReviewAdapter
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
 import domain.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
-import kotlinx.android.synthetic.main.activity_write_review.*
 import kotlin.collections.ArrayList
-import kotlin.math.roundToInt
-import kotlin.properties.Delegates
 
 /**
  * Class for presenting the reviews.

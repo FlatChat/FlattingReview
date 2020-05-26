@@ -1,15 +1,13 @@
-package com.example.flattingreview
+package adapters
 
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flattingreview.R
 import domain.Review
 import kotlinx.android.synthetic.main.review_layout.view.*
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
@@ -17,7 +15,8 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.A
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.review_layout,
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.review_layout,
         parent, false)
         return ExampleViewHolder(itemView)
     }

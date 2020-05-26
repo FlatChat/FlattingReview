@@ -19,7 +19,7 @@ class HomeScreen : AppCompatActivity() {
 
         //connecting the create a flat button to the create a new flat screen
         createFlatButton.setOnClickListener{
-            val intent = Intent(this,create_new_flat::class.java)
+            val intent = Intent(this,CreateFlat::class.java)
             startActivity(intent)
         }
 

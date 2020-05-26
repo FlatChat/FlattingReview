@@ -12,12 +12,11 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_flat.*
 
-
-// Write a message to the database
-private val database = Firebase.database
-private val myRef = database.getReference("message")
-
 class Flat : AppCompatActivity() {
+
+    // Write a message to the database
+    private val database = Firebase.database
+    private val myRef = database.getReference("message")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +32,7 @@ class Flat : AppCompatActivity() {
             startActivity(intent)
         }
 
-/**
+/*
         // Read from the database
         myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -47,7 +46,7 @@ class Flat : AppCompatActivity() {
             }
         })
 
-**/
+*/
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
