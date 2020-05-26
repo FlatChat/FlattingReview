@@ -23,7 +23,6 @@ class ViewReviews : AppCompatActivity() {
     private var reviewList: ArrayList<Review> = ArrayList<Review>()
     private lateinit var reviewReference: DatabaseReference
     private var reviewListener: ValueEventListener? = null
-    private var progress: Float = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,14 +62,11 @@ class ViewReviews : AppCompatActivity() {
                         date,
                         comment
                     )
-                    progress += clean + lord + location + value
                     if(comment != ""){
                         reviewList.add(rev)
                     }
                 }
                 createView()
-                var overallBar = findViewById<ProgressBar>(R.id.overall)
-                overallBar.progress = progress.roundToInt()/100
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
