@@ -23,11 +23,7 @@ class SignIn  : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        //connecting the sign in screen dummy button to the home screen
-        tempSignInButton.setOnClickListener{
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
+
         //connected the sign up button to the create an account screen
         signUpButton.setOnClickListener{
             val intent = Intent(this, create_account::class.java)
