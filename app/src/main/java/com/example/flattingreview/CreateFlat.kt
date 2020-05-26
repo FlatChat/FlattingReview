@@ -22,10 +22,10 @@ import domain.NewFlat
 
 /**
  * This class creates new flats and adds them to the database
- * @author Meggie Morrison
  * Creates a flat: a user can look up the address using google places, the address is created
  * into a flat object which is then saved into the database.
  * @author Ryan
+ * @author Meggie Morrison
  */
 
 class CreateFlat : AppCompatActivity() {
@@ -49,12 +49,12 @@ class CreateFlat : AppCompatActivity() {
         setContentView(R.layout.activity_create_new_flat)
         initPlaces()
         setupPlacesAutoComplete()
-        collectInput()
+//        collectInput()
 
-        createButton.setOnClickListener {
-            //myRef.setValue(flat)
-            writeNewFlat()
-        }
+//        createButton.setOnClickListener {
+//            //myRef.setValue(flat)
+//            writeNewFlat()
+//        }
     }
 
     /**
@@ -93,32 +93,32 @@ class CreateFlat : AppCompatActivity() {
      * create_new_flat activity, and stores
      * it into variables
      */
-    private fun collectInput(){
-        //address = findViewById<EditText>(R.id.addressBox).text
-        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
-        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
-        createButton = findViewById(R.id.createButton)
-    }
+//    private fun collectInput(){
+//        //address = findViewById<EditText>(R.id.addressBox).text
+////        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
+////        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
+////        createButton = findViewById(R.id.createButton)
+//    }
 
     /**
      * This function writes the New Flat.kt
      * to the database
      */
-    private fun writeNewFlat(){
-        // Database reference
-        val myRef = FirebaseDatabase.getInstance().getReference("flats")
-        // Creates the flatID
-        val flatID = myRef.push().key
-        // Creates a flat object
-        val flat = NewFlat(
-            address.toString(),
-            bedrooms.toString(),
-            bathrooms.toString()
-        )
-        // Writes the flat to the database
-        myRef.child(flatID.toString()).setValue(flat)
-
-    }
+//    private fun writeNewFlat(){
+//        // Database reference
+//        val myRef = FirebaseDatabase.getInstance().getReference("flats")
+//        // Creates the flatID
+//        val flatID = myRef.push().key
+//        // Creates a flat object
+//        val flat = NewFlat(
+//            address.toString(),
+//            bedrooms.toString(),
+//            bathrooms.toString()
+//        )
+//        // Writes the flat to the database
+//        myRef.child(flatID.toString()).setValue(flat)
+//
+//    }
 
     // Below code is for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
