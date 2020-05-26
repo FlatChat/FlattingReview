@@ -1,4 +1,4 @@
-package com.example.flattingreview
+package domain
 
 import com.google.firebase.database.IgnoreExtraProperties
 

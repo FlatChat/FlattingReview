@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
@@ -16,6 +17,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.database.FirebaseDatabase
+import domain.NewFlat
 
 /**
  * This class creates new flats and adds them to the database
@@ -27,14 +29,11 @@ import com.google.firebase.database.FirebaseDatabase
 class create_new_flat : AppCompatActivity() {
 
     private lateinit var placesClient: PlacesClient
-
     private lateinit var address: Editable
     // Bedrooms and bathrooms are optional
     private lateinit var bedrooms: Editable
     private lateinit var bathrooms: Editable
     private lateinit var createButton: Button
-
-
     // Attributes to store from the address that the user chooses
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 
@@ -46,7 +45,8 @@ class create_new_flat : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_new_flat)
-
+        initPlaces()
+        setupPlacesAutoComplete()
         collectInput()
 
         createButton.setOnClickListener {
@@ -59,7 +59,7 @@ class create_new_flat : AppCompatActivity() {
      * Initialise google places by using the apiKey.
      * Creates a places client.
      */
-    private fun initPlaces() {
+    private fun initPlaces(){
         Places.initialize(this, R.string.apiKey.toString())
         placesClient = Places.createClient(this)
     }
@@ -73,7 +73,7 @@ class create_new_flat : AppCompatActivity() {
         val autocompleteFragment = supportFragmentManager
             .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteFragment.setPlaceFields(placeFields)
-        autocompleteFragment.setOnPlaceSelectedListener(object: PlaceSelectionListener {
+        autocompleteFragment.setOnPlaceSelectedListener(object:PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
                 Toast.makeText(this@create_new_flat, ""+ p0.address, Toast.LENGTH_SHORT).show()
                 TODO("create the flat object here, I think you use the p0.address somehow and turn" +
@@ -108,7 +108,11 @@ class create_new_flat : AppCompatActivity() {
         // Creates the flatID
         val flatID = myRef.push().key
         // Creates a flat object
-        val flat = NewFlat(address.toString(), bedrooms.toString(), bathrooms.toString())
+        val flat = NewFlat(
+            address.toString(),
+            bedrooms.toString(),
+            bathrooms.toString()
+        )
         // Writes the flat to the database
         myRef.child(flatID.toString()).setValue(flat)
 
