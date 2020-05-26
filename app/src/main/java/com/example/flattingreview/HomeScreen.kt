@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.multidex.MultiDex
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreen : AppCompatActivity() {
@@ -20,7 +22,17 @@ class HomeScreen : AppCompatActivity() {
             val intent = Intent(this,CreateFlat::class.java)
             startActivity(intent)
         }
+
+        //connecting the flat button to the create the flat screen
+        tempFlat.setOnClickListener(){
+            val intent = Intent(this, Flat::class.java)
+            startActivity(intent)
+        }
     }
+
+
+
+
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)

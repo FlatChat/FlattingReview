@@ -1,17 +1,18 @@
 package com.example.flattingreview
 
-import adaptors.ReviewAdaptor
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
+import com.google.firebase.database.*
 import domain.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
+import kotlinx.android.synthetic.main.activity_write_review.*
+import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
+import kotlin.properties.Delegates
 
 /**
  * Class for presenting the reviews.
@@ -19,49 +20,66 @@ import kotlinx.android.synthetic.main.activity_view_reviews.*
  */
 class ViewReviews : AppCompatActivity() {
 
-    private lateinit var reviewAdaptor: ReviewAdaptor
+    private var reviewList: ArrayList<Review> = ArrayList<Review>()
+    private lateinit var reviewReference: DatabaseReference
+    private var reviewListener: ValueEventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
 
-        val myRef = FirebaseDatabase.getInstance().getReference("reviews")
+        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+        val reviewListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+                Log.w("ViewReview", "loadItem:onCancelled")
+            }
 
-
-
-        //initRecyclerView()
-
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                val data = dataSnapshot.getValue<Review>()
-                reviewAdaptor.submitList(data)
-                //Log.d(TAG, "Value is: $value") the TAG was producing errors
-            }
+                for (ds in dataSnapshot.children) {
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                //Log.w(TAG, "Failed to read value.", error.toException())
+                    Log.d("ViewReview", "" + ds.child("cleanliness").value + " : " + ds.child("location").value)
+
+                    val reviewID = ds.child("reviewID").value as String
+                    val userID = ds.child("userID").value as String
+                    val flatID = ds.child("flatID").value as String
+                    val clean = ds.child("cleanliness").value as Long
+                    val lord = ds.child("landlord").value as Long
+                    val location = ds.child("location").value as Long
+                    val value = ds.child("value").value as Long
+                    val anon = ds.child("anonymous").value as Boolean
+                    val date = ds.child("date").value as String
+                    val comment = ds.child("comment").value as String
+
+                    val rev = Review(
+                        reviewID,
+                        userID,
+                        flatID,
+                        clean.toFloat(),
+                        lord.toFloat(),
+                        location.toFloat(),
+                        value.toFloat(),
+                        anon,
+                        date,
+                        comment
+                    )
+                    if(comment != ""){
+                        reviewList.add(rev)
+                    }
+                }
+                createView()
             }
-        })
+        }
+        reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
-    /**
-     * Sets the layout of the recycling view to linear. Connects this class to the adaptor class
-     * which gets the data from the database.
-     */
-    private fun initRecyclerView(){
-        review_recycler_view.apply {
-            layoutManager = LinearLayoutManager(this@ViewReviews)
-            reviewAdaptor = ReviewAdaptor()
-            adapter = reviewAdaptor
-        }
+    private fun createView(){
+        recycler_view.adapter = ReviewAdapter(reviewList)
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.setHasFixedSize(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
+        menuInflater.inflate(R.menu.menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

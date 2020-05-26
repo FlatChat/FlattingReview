@@ -6,14 +6,24 @@
     <string name="contactTribunalEmail"> Contact www.tenancy.govt.nz</string>
     <string name="featuredReview"> Featured Reviews </string>
     <string name="searchflatTextView"> Address Search </string>
-    <string name="searchForReview"> Enter an address... </string>
+    <string name="searchForReview"> Enter an address… </string>
     <string name="writeReviewTextView"> Want to write a review? </string>
     <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
     <string name="createaFlat"> Cannot find the flat you are looking for? Enter it in here  </string>
     <string name="createflatBut"> Create a flat </string>
-    />
 
-    <string name="a"></string> <!-- use this to copy and paste -->
+    <!-- use this to copy and paste -->
+    <string name="id">Text</string>
+
+    <!-- Progress Bars -->
+    <string name="overall">Overall Rating</string>
+
+    <!-- CardView layout -->
+    <string name="card_name">John</string>
+    <string name="card_date">2020-06-07</string>
+
+    <!-- Google maps API key for google places -->
+    <string name="apiKey">AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo</string>
 
     <!-- Flat strings -->
     <string name="flat_image">Image of the flat</string>
