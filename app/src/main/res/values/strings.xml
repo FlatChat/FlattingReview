@@ -50,5 +50,8 @@
     <string name="changePassButton"> Change Password </string>
     <string name="logout"> Logout </string>
 
+    <!-- Splash screen page Strings -->
+    <string name="flatchat"> flatchat </string>
+
 
 </resources>
