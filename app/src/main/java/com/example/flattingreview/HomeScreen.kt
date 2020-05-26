@@ -1,13 +1,15 @@
 package com.example.flattingreview
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import android.widget.Button
+import androidx.multidex.MultiDex
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home_screen.*
-import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class HomeScreen : AppCompatActivity() {
 
@@ -17,11 +19,25 @@ class HomeScreen : AppCompatActivity() {
 
         //connecting the create a flat button to the create a new flat screen
         createFlatButton.setOnClickListener{
-            val intent = Intent(this,create_new_flat::class.java)
+            val intent = Intent(this,CreateFlat::class.java)
+            startActivity(intent)
+        }
+
+        //connecting the flat button to the create the flat screen
+        tempFlat.setOnClickListener(){
+            val intent = Intent(this, Flat::class.java)
             startActivity(intent)
         }
     }
 
+
+
+
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+    }
 
     //below code is all for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_in.signUpButton
 
@@ -26,7 +25,7 @@ class SignIn  : AppCompatActivity() {
 
         //connected the sign up button to the create an account screen
         signUpButton.setOnClickListener{
-            val intent = Intent(this, create_account::class.java)
+            val intent = Intent(this, CreateAccount::class.java)
             startActivity(intent)
             finish()//kill the current activity
         }
