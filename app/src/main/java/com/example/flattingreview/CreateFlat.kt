@@ -116,6 +116,9 @@ class CreateFlat : AppCompatActivity() {
         )
         // Writes the flat to the database
         myRef.child(flatID.toString()).setValue(flat)
+        // Once a flat is created, redirect to the HomeScreen
+        val intent = Intent(this, HomeScreen::class.java)
+        startActivity(intent)
 
     }
 
