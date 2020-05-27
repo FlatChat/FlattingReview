@@ -21,6 +21,9 @@
     <!-- CardView layout -->
     <string name="card_name">John</string>
     <string name="card_date">2020–06–07</string>
+    <string name="flat_icon_description">This is an image of a flat</string>
+    <string name="flat_icon_address">5 Castle St Dunedin</string>
+    <string name="flat_icon_rating">4.9</string>
 
     <!-- Google maps API key for google places -->
     <string name="apiKey">AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo</string>
