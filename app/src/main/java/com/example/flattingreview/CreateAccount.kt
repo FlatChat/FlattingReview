@@ -22,7 +22,6 @@ class CreateAccount : AppCompatActivity() {
 
     //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
-
     private lateinit var firstNameUser: Editable
     private lateinit var lastNameUser: Editable
     private lateinit var emailUser: Editable
@@ -41,7 +40,8 @@ class CreateAccount : AppCompatActivity() {
             signUpUser()
         }
     }
-    private fun collectInput(){
+
+    private fun collectInput() {
         firstNameUser = findViewById<EditText>(R.id.firstNameTV).text
         lastNameUser = findViewById<EditText>(R.id.lastNameTV).text
         emailUser = findViewById<EditText>(R.id.email).text
@@ -50,63 +50,71 @@ class CreateAccount : AppCompatActivity() {
 
     /**
      * Method to check that the user has entered in an email and password before they are able to sign up.
-     * If any checks do not pass, then the method fails.
+     * If any checks do not pass, then the method fails. This method also saves a user object (first name, last name and
+     * email) to the database.
      */
-    private fun signUpUser(){
+    private fun signUpUser() {
 
         //if the first name is empty, set an error message
-        if(firstNameTV.text.toString().isEmpty()){
-            firstNameTV.error="Please enter your first name"
+        if (firstNameTV.text.toString().isEmpty()) {
+            firstNameTV.error = "Please enter your first name"
             firstNameTV.requestFocus()
             return
         }
         //if the last name is empty, set an error message
-        if(lastNameTV.text.toString().isEmpty()){
-            lastNameTV.error="Please enter your last name"
+        if (lastNameTV.text.toString().isEmpty()) {
+            lastNameTV.error = "Please enter your last name"
             lastNameTV.requestFocus()
             return
         }
-            //if the email address is empty, set an error message
-            if(email.text.toString().isEmpty()){
-                email.error="Please enter email"
-                email.requestFocus()
-                return
-            }
-            //if the email is not a valid email, set an error message
-            if(!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()){
-                email.error="Please enter a valid email"
-                email.requestFocus()
-                return
-            }
-            //if the password is empty, set an error message
-            if(enterPass1.text.toString().isEmpty()){
-                enterPass1.error="Please enter a password"
-                enterPass1.requestFocus()
-                return
-            }
+        //if the email address is empty, set an error message
+        if (email.text.toString().isEmpty()) {
+            email.error = "Please enter email"
+            email.requestFocus()
+            return
+        }
+        //if the email is not a valid email, set an error message
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
+            email.error = "Please enter a valid email"
+            email.requestFocus()
+            return
+        }
+        //if the password is empty, set an error message
+        if (enterPass1.text.toString().isEmpty()) {
+            enterPass1.error = "Please enter a password"
+            enterPass1.requestFocus()
+            return
+        }
         //if all the tests pass, then a user account can be created
         auth.createUserWithEmailAndPassword(email.text.toString(), enterPass1.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val user =auth.currentUser
-
+                    val user = auth.currentUser
                     user!!.sendEmailVerification()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                               val userID= user.uid
-                                val userReference = FirebaseDatabase.getInstance().getReference("users")
-                                val usersDatabase= Users(userID,firstNameUser.toString(),lastNameUser.toString(),emailUser.toString())
+                                val userID = user.uid
+                                val userReference =
+                                    FirebaseDatabase.getInstance().getReference("users")
+                                val usersDatabase = Users(
+                                    userID,
+                                    firstNameUser.toString(),
+                                    lastNameUser.toString(),
+                                    emailUser.toString()
+                                )
                                 //write to the database
                                 userReference.child(userID).setValue(usersDatabase)
-                                startActivity(Intent(this,SignIn::class.java))
+                                startActivity(Intent(this, SignIn::class.java))
                                 finish()
                             }
                         }
                 } else {
                     // If sign in fails, display a message to the user. Failure could be because of a network issue.
-                    Toast.makeText(baseContext, "Sign Up failed. Please try again soon.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        baseContext, "Sign Up failed. Please try again soon.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        }
+    }
 }
