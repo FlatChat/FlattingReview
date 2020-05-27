@@ -63,13 +63,22 @@
 
     <!-- Create account Strings -->
     <string name="signUpbutton"> Sign Up  </string>
+    <string name="firstName" > First Name </string>
+    <string name="lastName" > Last Name </string>
 
     <!-- Settings page Strings -->
     <string name="changePassButton"> Change Password </string>
     <string name="logout"> Logout </string>
 
-    <!-- Splash screen page Strings -->
+    <!-- flat name for action bar Strings -->
     <string name="flatchat"> flatchat </string>
 
+    <!-- login screen Strings -->
+    <string name="forgotPass"> Forgot password? </string>
+    <string name="noAccount" > Don\'t have an account? </string>
+    <string name="Login" > Login </string>
+    <string name="Passwordhint"> Password </string>
+    <string name="Emailhint"> Email </string>
+    <string name="SignUp"> Sign Up </string>
 
 </resources>
