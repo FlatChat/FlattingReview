@@ -95,7 +95,7 @@ class CreateAccount : AppCompatActivity() {
                             if (task.isSuccessful) {
                                val userID= user.uid
                                 val userReference = FirebaseDatabase.getInstance().getReference("users")
-                                val usersDatabase= Users(firstNameUser.toString(),lastNameUser.toString(),emailUser.toString())
+                                val usersDatabase= Users(userID,firstNameUser.toString(),lastNameUser.toString(),emailUser.toString())
                                 //write to the database
                                 userReference.child(userID).setValue(usersDatabase)
                                 startActivity(Intent(this,SignIn::class.java))
