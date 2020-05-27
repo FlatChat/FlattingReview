@@ -35,6 +35,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private var comment: Editable? = null
     private lateinit var reviewReference: DatabaseReference
     private var reviewListener: ValueEventListener? = null
+    private var name: String? = null
+    private var userID = FirebaseAuth.getInstance().currentUser?.uid
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +68,30 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     }
 
     /**
+     * Connects to the database and collects the users first name identified by their userID
+     */
+    public override fun onStart() {
+        super.onStart()
+        reviewReference = FirebaseDatabase.getInstance().getReference("users")
+        val reviewListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.w("WriteReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val u = ds.child("userID").value as String
+                    if (u == userID) {
+                        name = ds.child("firstNameUsers").value as String
+                        Log.d("WriteReview", "" + ds.child("firstNameUsers").value as String)
+                    }
+                }
+            }
+        }
+        reviewReference.orderByKey().addValueEventListener(reviewListener)
+    }
+
+    /**
      * Gets the FlatID and UserID to attach to the review. Records a time stamp of when the
      * review was created. Get the firebase reference to save the data into. Creates a reviewID
      * through the firebase id system. Creates a reviews object. Writes the review object into
@@ -76,8 +102,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Set at 0 until we have the working flats
         val flatID = "0"
         // Current signed in user
-        val userID = FirebaseAuth.getInstance().currentUser?.uid
-        val name = getName(userID.toString())
+
         // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
@@ -86,34 +111,27 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Creates reviewID
         val reviewID = reviewReference.push().key
         // Create a review object
+
+        Log.d("WriteReview", "" + cleanliness.rating.toDouble())
+
         val rev = Review(
-            reviewID, userID, flatID, name, cleanliness.rating, landlord.rating,
-            location.rating, value.rating, anon.isChecked, currentDate, comment.toString()
+            reviewID,
+            userID,
+            flatID,
+            name.toString(),
+            cleanliness.rating + 0.1,
+            landlord.rating + 0.1,
+            location.rating + 0.1,
+            value.rating + 0.1,
+            anon.isChecked,
+            currentDate,
+            comment.toString()
         )
+        Log.d("WriteReview", "rev")
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
         val intent = Intent(this, Flat::class.java)
         startActivity(intent)
-    }
-
-    private fun getName(user : String): String{
-        var name = ""
-        val reviewListener: ValueEventListener = object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Log.w("WriteReview", "loadItem:onCancelled")
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (ds in dataSnapshot.children) {
-                    val u = ds.child("userID").value as String
-                    if(u == user){
-                        name = ds.child("firstNameUsers").value as String
-                    }
-                }
-            }
-
-        }
-        return name
     }
 
     //below code is all for the action bar
@@ -141,8 +159,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen
-        if(id==R.id.settings)
-        {
+        if (id == R.id.settings) {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
