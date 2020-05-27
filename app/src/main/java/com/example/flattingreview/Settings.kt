@@ -8,6 +8,11 @@ import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_settings.*
 
+/**
+ * A class designed to allow the user to logout and be redirected to the sign in screen. This class also
+ * allows the user to access the another activity where they are able to change their password.
+ * @author Nikki Meadows
+ */
 class Settings : AppCompatActivity() {
 
     //global variable for firebase authentication
