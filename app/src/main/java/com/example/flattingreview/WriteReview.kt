@@ -121,16 +121,13 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen
-        if (id == R.id.settings) {
+        if(id==R.id.settings)
+        {
             val intent = Intent(this, Settings::class.java)
-            if (id == R.id.settings) {
-                val intent = Intent(this, SignIn::class.java)
-                startActivity(intent)
-            }
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
-
 
     override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
         TODO("Not yet implemented")

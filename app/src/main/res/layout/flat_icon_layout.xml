@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flat_card_view"
-    android:layout_width="match_parent"
+    android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="#FFFFFF" >
+    app:cardBackgroundColor="#FFFFFF">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -17,7 +17,7 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/flat_icon_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
@@ -33,11 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
+        android:drawableStart="@android:drawable/btn_star"
         android:drawableLeft="@android:drawable/btn_star"
         android:gravity="center"
         android:text="@string/flat_icon_rating"
         android:textColor="#000000"
-        android:textSize="20sp"
-        android:drawableStart="@android:drawable/btn_star" />
+        android:textSize="20sp" />
 
 </androidx.cardview.widget.CardView>

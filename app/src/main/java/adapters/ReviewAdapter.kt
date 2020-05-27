@@ -13,7 +13,6 @@ import java.util.*
 class ReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.review_layout,
