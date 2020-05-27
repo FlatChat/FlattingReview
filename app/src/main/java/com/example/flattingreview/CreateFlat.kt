@@ -110,6 +110,7 @@ class CreateFlat : AppCompatActivity() {
         val flatID = myRef.push().key
         // Creates a flat object
         val flat = NewFlat(
+            flatID,
             address,
             bedrooms.toString(),
             bathrooms.toString()
