@@ -22,7 +22,7 @@ class FeatReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerVi
 
     override fun onBindViewHolder(holder: FeatRevViewHolder, position: Int) {
         val currentItem = exampleList[position]
-        holder.textView1.text = currentItem.userID
+        holder.textView1.text = currentItem.name
         holder.textView2.text = currentItem.comment
         holder.textView3.text = currentItem.date
     }

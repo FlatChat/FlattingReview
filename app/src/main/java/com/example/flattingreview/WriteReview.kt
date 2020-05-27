@@ -14,7 +14,7 @@ import android.widget.Switch
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import domain.Review
 import kotlinx.android.synthetic.main.activity_write_review.*
 import java.util.Date
@@ -33,18 +33,17 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var value: RatingBar
     private lateinit var anon: Switch
     private var comment: Editable? = null
+    private lateinit var reviewReference: DatabaseReference
+    private var reviewListener: ValueEventListener? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
-
         collectInput()
-
         submitButton.setOnClickListener {
             saveObject()
         }
-
         cancel.setOnClickListener() {
             val intent = Intent(this, Flat::class.java)
             startActivity(intent)
@@ -78,6 +77,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val flatID = "0"
         // Current signed in user
         val userID = FirebaseAuth.getInstance().currentUser?.uid
+        val name = getName(userID.toString())
         // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
@@ -87,13 +87,33 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val reviewID = reviewReference.push().key
         // Create a review object
         val rev = Review(
-            reviewID, userID, flatID, cleanliness.rating, landlord.rating,
+            reviewID, userID, flatID, name, cleanliness.rating, landlord.rating,
             location.rating, value.rating, anon.isChecked, currentDate, comment.toString()
         )
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
         val intent = Intent(this, Flat::class.java)
         startActivity(intent)
+    }
+
+    private fun getName(user : String): String{
+        var name = ""
+        val reviewListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.w("WriteReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val u = ds.child("userID").value as String
+                    if(u == user){
+                        name = ds.child("firstNameUsers").value as String
+                    }
+                }
+            }
+
+        }
+        return name
     }
 
     //below code is all for the action bar

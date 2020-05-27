@@ -43,6 +43,7 @@ class ViewReviews : AppCompatActivity() {
                     val reviewID = ds.child("reviewID").value as String
                     val userID = ds.child("userID").value as String
                     val flatID = ds.child("flatID").value as String
+                    val name = ds.child("name").value as String
                     val clean = ds.child("cleanliness").value as Long
                     val lord = ds.child("landlord").value as Long
                     val location = ds.child("location").value as Long
@@ -55,6 +56,7 @@ class ViewReviews : AppCompatActivity() {
                         reviewID,
                         userID,
                         flatID,
+                        name,
                         clean.toFloat(),
                         lord.toFloat(),
                         location.toFloat(),

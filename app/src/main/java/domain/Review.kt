@@ -9,6 +9,7 @@ class Review(
     var reviewID: String? = null,
     var userID: String? = null,
     var flatID: String? = null,
+    var name: String? = null,
     var cleanliness: Float = 0f,
     var landlord: Float = 0f,
     var location: Float = 0f,

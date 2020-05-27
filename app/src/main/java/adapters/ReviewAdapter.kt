@@ -22,7 +22,7 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val currentItem = exampleList[position]
-        holder.textView1.text = currentItem.userID
+        holder.textView1.text = currentItem.name
         holder.textView2.text = currentItem.comment
         holder.textView3.text = currentItem.date
     }
