@@ -47,16 +47,16 @@ class SignIn  : AppCompatActivity() {
         //click listener for the forgot password button
         forgotPassButton.setOnClickListener {
             val builder=AlertDialog.Builder(this)
-            builder.setTitle("Forgot Password")
+            builder.setTitle("Forgot Password: Enter your email")
             val view=layoutInflater.inflate(R.layout.dialog_forgot_password,null)
             val username=view.findViewById<EditText>(R.id.et_username)
             builder.setView(view)
             builder.setPositiveButton("Reset",DialogInterface.OnClickListener { _,  _->
                 forgotPassword(username)
             })
-            builder.setNegativeButton("Close",DialogInterface.OnClickListener { _, _->
+            builder.setNegativeButton("Close",DialogInterface.OnClickListener { _, _-> })
                 builder.show()
-            })
+
         }
 
     }
