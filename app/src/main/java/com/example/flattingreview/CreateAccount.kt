@@ -8,6 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_create_account.*
 
+/**
+ * A class that allows the user to create a new account using their email address and a password.
+ * Once the user has successfully created a new account they will be redirected to the sign in page where
+ * they can sign in with their new credentials.
+ * @author Nikki Meadows
+ */
 class CreateAccount : AppCompatActivity() {
 
     //global variable for firebase authentication
@@ -30,6 +36,18 @@ class CreateAccount : AppCompatActivity() {
      * If any checks do not pass, then the method fails.
      */
     private fun signUpUser(){
+        //if the first name is empty, set an error message
+        if(firstNameTV.text.toString().isEmpty()){
+            firstNameTV.error="Please enter your first name"
+            firstNameTV.requestFocus()
+            return
+        }
+        //if the last name is empty, set an error message
+        if(lastNameTV.text.toString().isEmpty()){
+            lastNameTV.error="Please enter your last name"
+            lastNameTV.requestFocus()
+            return
+        }
             //if the email address is empty, set an error message
             if(email.text.toString().isEmpty()){
                 email.error="Please enter email"

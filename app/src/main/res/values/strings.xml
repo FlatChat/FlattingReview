@@ -63,6 +63,8 @@
 
     <!-- Create account Strings -->
     <string name="signUpbutton"> Sign Up  </string>
+    <string name="firstName" > First Name </string>
+    <string name="lastName" > Last Name </string>
 
     <!-- Settings page Strings -->
     <string name="changePassButton"> Change Password </string>
@@ -70,6 +72,7 @@
 
     <!-- Splash screen page Strings -->
     <string name="flatchat"> flatchat </string>
+
 
 
 </resources>

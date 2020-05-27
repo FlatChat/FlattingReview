@@ -10,7 +10,12 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_in.signUpButton
 
-
+/**
+ * A class that allows the user to sign in to their account, or alternatively access the create account page
+ * if the user does not have an existing account. If the user has forgotten their password, they will be able to
+ * reset their password from this activity.
+ * @author Nikki Meadows
+ */
 class SignIn  : AppCompatActivity() {
 
     //global variable for firebase authentication
@@ -38,7 +43,7 @@ class SignIn  : AppCompatActivity() {
     }
 
     /**
-     * Method to check email and password has been entered and login in an existing user.
+     * A method to check email and password has been entered and login in an existing user.
      */
     private fun doLogin() {
        //if the email address is empty, set an error message
@@ -75,7 +80,7 @@ class SignIn  : AppCompatActivity() {
     }
 
     /**
-     * Check if the user is already signed in.
+     * A method to check if the user is already signed in.
      */
     public override fun onStart() {
         super.onStart()
