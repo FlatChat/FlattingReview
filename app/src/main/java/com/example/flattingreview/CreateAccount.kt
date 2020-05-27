@@ -2,10 +2,14 @@ package com.example.flattingreview
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import domain.Users
 import kotlinx.android.synthetic.main.activity_create_account.*
 
 /**
@@ -19,16 +23,29 @@ class CreateAccount : AppCompatActivity() {
     //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
 
+    private lateinit var firstNameUser: Editable
+    private lateinit var lastNameUser: Editable
+    private lateinit var emailUser: Editable
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
+        collectInput()
+
         //set a listener for the sign up button to check if....
         signUpButton.setOnClickListener {
             signUpUser()
         }
+    }
+    private fun collectInput(){
+        firstNameUser = findViewById<EditText>(R.id.firstNameTV).text
+        lastNameUser = findViewById<EditText>(R.id.lastNameTV).text
+        emailUser = findViewById<EditText>(R.id.email).text
+
     }
 
     /**
@@ -36,6 +53,7 @@ class CreateAccount : AppCompatActivity() {
      * If any checks do not pass, then the method fails.
      */
     private fun signUpUser(){
+
         //if the first name is empty, set an error message
         if(firstNameTV.text.toString().isEmpty()){
             firstNameTV.error="Please enter your first name"
@@ -71,9 +89,15 @@ class CreateAccount : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user =auth.currentUser
+
                     user!!.sendEmailVerification()
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
+                               val userID= user.uid
+                                val userReference = FirebaseDatabase.getInstance().getReference("users")
+                                val usersDatabase= Users(firstNameUser.toString(),lastNameUser.toString(),emailUser.toString())
+                                //write to the database
+                                userReference.child(userID).setValue(usersDatabase)
                                 startActivity(Intent(this,SignIn::class.java))
                                 finish()
                             }
