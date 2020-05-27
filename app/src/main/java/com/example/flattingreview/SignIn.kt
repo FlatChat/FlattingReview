@@ -1,12 +1,17 @@
 package com.example.flattingreview
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_in.signUpButton
 
@@ -39,7 +44,42 @@ class SignIn  : AppCompatActivity() {
         loginButton.setOnClickListener{
             doLogin()
         }
+        //click listener for the forgot password button
+        forgotPassButton.setOnClickListener {
+            val builder=AlertDialog.Builder(this)
+            builder.setTitle("Forgot Password")
+            val view=layoutInflater.inflate(R.layout.dialog_forgot_password,null)
+            val username=view.findViewById<EditText>(R.id.et_username)
+            builder.setView(view)
+            builder.setPositiveButton("Reset",DialogInterface.OnClickListener { _,  _->
+                forgotPassword(username)
+            })
+            builder.setNegativeButton("Close",DialogInterface.OnClickListener { _, _->
+                builder.show()
+            })
+        }
 
+    }
+
+    /**
+     * A method that allows the user to reset their password.
+     * @param username from the dialog for validation.
+     */
+    private fun forgotPassword(username:EditText){
+
+        if(username.text.toString().isEmpty()){
+            return
+        }
+        //if the email is not a valid email, set an error message
+        if(!Patterns.EMAIL_ADDRESS.matcher(username.text.toString()).matches()){
+            return
+        }
+        auth.sendPasswordResetEmail(username.text.toString())
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Email Sent.",Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     /**
