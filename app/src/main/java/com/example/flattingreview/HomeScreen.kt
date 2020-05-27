@@ -2,13 +2,11 @@ package com.example.flattingreview
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 class HomeScreen : AppCompatActivity() {
