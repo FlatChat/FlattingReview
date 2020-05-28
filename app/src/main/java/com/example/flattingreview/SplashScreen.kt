@@ -10,17 +10,25 @@ import kotlinx.android.synthetic.main.activity_splash_screen.*
 
 /**
  * A class that displays a temporary splash screen when the user opens the app for the first time.
+ * The name of the application will fade in using an application. The splash screen will show for 400milliseconds
+ * and then the user will be directed to the sign in page.
+ *
  * @author Nikki Meadows
  * @author Ryan Cole
  */
 class SplashScreen : AppCompatActivity() {
 
+    /**
+     * This method contains the code and animation that will display the splash screen when the user
+     * first installs the application.
+     *
+     * @param savedInstanceState the most recent state of the application.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
         //animation for the flat chat
-
         val animation = AnimationUtils.loadAnimation(baseContext, R.anim.fadeanimation)
         splashFlatTV.startAnimation(animation)
         //controls how long the splash screen shows for
@@ -36,6 +44,5 @@ class SplashScreen : AppCompatActivity() {
             }
         }
         background.start()
-
     }
 }

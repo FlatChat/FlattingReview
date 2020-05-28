@@ -26,6 +26,13 @@ class SignIn  : AppCompatActivity() {
     //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
 
+    /**
+     * A method that gets the current firebase user authentication instance. This method also contains a click listener
+     * to re-direct the user to the create account page if the user does not have an existing account, a click listener
+     * to call the forgot password method, and a click listener to login a user.
+     *
+     * @param savedInstanceState the most recent state of the application.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -62,7 +69,10 @@ class SignIn  : AppCompatActivity() {
     }
 
     /**
-     * A method that allows the user to reset their password.
+     * A method that allows the user to reset their password by sending a link to the users email address.
+     * Once the user has successfully changed their password using this link, they will be re-directed to the login
+     * page where they will be able to login with their new credentials.
+     *
      * @param username from the dialog for validation.
      */
     private fun forgotPassword(username:EditText){
@@ -83,7 +93,7 @@ class SignIn  : AppCompatActivity() {
     }
 
     /**
-     * A method to check email and password has been entered and login in an existing user.
+     * A method to check that the email and password that has been entered and belong in an existing user.
      */
     private fun doLogin() {
        //if the email address is empty, set an error message
