@@ -3,51 +3,82 @@ package com.example.flattingreview
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
+import android.widget.TextView
+import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import domain.NewFlat
+import domain.Review
 import kotlinx.android.synthetic.main.activity_flat.*
 
 class Flat : AppCompatActivity() {
 
-    // Write a message to the database
-    private val database = Firebase.database
-    private val myRef = database.getReference("message")
+    private var featuredFlat: ArrayList<NewFlat> = ArrayList<NewFlat>()
+    private lateinit var flatRef: DatabaseReference
+    private var reviewList: ArrayList<Review> = ArrayList<Review>()
+    private lateinit var reviewReference: DatabaseReference
+    private var flatListener: ValueEventListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flat)
 
-        show_reviews_button.setOnClickListener(){
-            val intent = Intent(this,ViewReviews::class.java)
+        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+        flatRef = FirebaseDatabase.getInstance().getReference("flats")
+
+        show_reviews_button.setOnClickListener() {
+            val intent = Intent(this, ViewReviews::class.java)
             startActivity(intent)
         }
 
-        add_review_button.setOnClickListener(){
-            val intent = Intent(this,WriteReview::class.java)
+        add_review_button.setOnClickListener() {
+            val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
         }
 
-/*
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val info = dataSnapshot.getValue<NewFlat>()
-                //Log.d(TAG, "Value is: $value") the TAG was producing errors
-            }
+        floatingActionButton.setOnClickListener() {
+            val intent = Intent(this, HomeScreen::class.java)
+            startActivity(intent)
+        }
 
-            override fun onCancelled(error: DatabaseError) {
-                // Failed to read value
-                //Log.w(TAG, "Failed to read value.", error.toException())
-            }
-        })
-
-*/
+        // Currently isn't connecting to actual flat address:
+        // This is only the activity_main flat address
+        val addressText: TextView = findViewById<TextView>(R.id.textView)
+        addressText.setOnClickListener {
+            addressText.text = getString(R.string.flat_address)
+        }
     }
+
+    public override fun onStart() {
+        super.onStart()
+        val flatListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+                Log.w("Flat", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val address = ds.child("address").value as String
+                    val beds = ds.child("bedrooms").value as String
+                    val baths = ds.child("bathrooms").value as String
+                    val flat = NewFlat(address, beds, baths)
+                    featuredFlat.add(flat)
+                    //val flat = dataSnapshot.getValue<NewFlat>()
+                }
+            }
+        }
+        flatRef.addValueEventListener(flatListener)
+    }
+
+
+    /**
+     * The following code is for the action bar
+     * Different options are displayed to take the
+     * user to different screens
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
