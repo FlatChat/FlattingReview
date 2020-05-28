@@ -1,6 +1,5 @@
 package adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,23 +7,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
 import domain.Review
-import kotlinx.android.synthetic.main.review_layout.view.*
+import kotlinx.android.synthetic.main.featured_rev_layout.view.*
 import java.util.*
 
-class ReviewAdapter(private val exampleList: ArrayList<Review>) :
-    RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
+class FeatReviewAdapter(private val exampleList: ArrayList<Review>) :
+    RecyclerView.Adapter<FeatReviewAdapter.FeatRevViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeatRevViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.review_layout,
+            R.layout.featured_rev_layout,
             parent, false
         )
-        return ExampleViewHolder(itemView)
+        return FeatRevViewHolder(itemView)
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FeatRevViewHolder, position: Int) {
         val currentItem = exampleList[position]
         if(!currentItem.anonymous){
             holder.textView1.text = currentItem.name
@@ -37,10 +35,10 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) :
 
     override fun getItemCount() = exampleList.size
 
-    class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView1: TextView = itemView.name
-        val textView2: TextView = itemView.comment
-        var textView3: TextView = itemView.date
+    class FeatRevViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textView1: TextView = itemView.featured_name
+        val textView2: TextView = itemView.featured_comment
+        var textView3: TextView = itemView.featured_date
     }
 
 }

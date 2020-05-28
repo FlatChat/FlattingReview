@@ -20,12 +20,16 @@ class ViewReviews : AppCompatActivity() {
     private var reviewList: ArrayList<Review> = ArrayList<Review>()
     private lateinit var reviewReference: DatabaseReference
     private var reviewListener: ValueEventListener? = null
+    private var adapter: ReviewAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
-
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+    }
+
+    public override fun onStart() {
+        super.onStart()
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -39,10 +43,11 @@ class ViewReviews : AppCompatActivity() {
                     val reviewID = ds.child("reviewID").value as String
                     val userID = ds.child("userID").value as String
                     val flatID = ds.child("flatID").value as String
-                    val clean = ds.child("cleanliness").value as Long
-                    val lord = ds.child("landlord").value as Long
-                    val location = ds.child("location").value as Long
-                    val value = ds.child("value").value as Long
+                    val name = ds.child("name").value as String
+                    val clean = ds.child("cleanliness").value as Double
+                    val lord = ds.child("landlord").value as Double
+                    val location = ds.child("location").value as Double
+                    val value = ds.child("value").value as Double
                     val anon = ds.child("anonymous").value as Boolean
                     val date = ds.child("date").value as String
                     val comment = ds.child("comment").value as String
@@ -51,10 +56,11 @@ class ViewReviews : AppCompatActivity() {
                         reviewID,
                         userID,
                         flatID,
-                        clean.toFloat(),
-                        lord.toFloat(),
-                        location.toFloat(),
-                        value.toFloat(),
+                        name,
+                        clean - 0.1,
+                        lord - 0.1,
+                        location - 0.1,
+                        value - 0.1,
                         anon,
                         date,
                         comment

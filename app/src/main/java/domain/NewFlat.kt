@@ -12,4 +12,6 @@ data class NewFlat(
     var address: String? = "",
     var bedrooms: String? = "",
     var bathrooms: String? = ""
-)
+){
+    var flatsReviews = listOf<String>()
+}

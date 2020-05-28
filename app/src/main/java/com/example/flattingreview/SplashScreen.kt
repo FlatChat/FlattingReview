@@ -8,7 +8,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
-
+/**
+ * A class that displays a temporary splash screen when the user opens the app for the first time.
+ * @author Nikki Meadows
+ * @author Ryan Cole
+ */
 class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
