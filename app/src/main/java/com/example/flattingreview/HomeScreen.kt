@@ -17,8 +17,10 @@ import domain.Review
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
 /**
- * Homescreen that the user will first when opening the app
- * @author Ryan
+ * The first screen the user will see when opening the app (after the splash screen). This screen
+ * displays a search bar (still to be implemented) and a selection of flats and reviews that
+ * users can browse.
+ * @author Ryan Cole
  */
 class HomeScreen : AppCompatActivity() {
 
@@ -29,6 +31,13 @@ class HomeScreen : AppCompatActivity() {
     private var reviewAdapter: FeatReviewAdapter? = null
     private var flatAdapter: FeaturedFlatAdapter? = null
 
+    /**
+     * Creates the references to the database for 'reviews' and 'flats'.
+     * Creates the button listeners for dummy flat button (temporary) and
+     * the create flat button which takes you to the create flat screen.
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
@@ -48,8 +57,8 @@ class HomeScreen : AppCompatActivity() {
     }
 
     /**
-     * On start it will connect to the database under the referencer reviews and flats. And take the
-     * data for both to put into two separate recycler views.
+     * On start it will connect to the database under the reference reviews and flats. And collect all
+     * the data for both the flats and reviews to display in the recycler views in the homescreen.
      */
     public override fun onStart() {
         super.onStart()
@@ -113,6 +122,12 @@ class HomeScreen : AppCompatActivity() {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
+    /**
+     * Creates an instance of the FeaturedFlatAdapter for the recycler and passes in
+     * a list of flats to display. The layout manager is set to horizontal to display
+     * the flats horizontally across the screen
+     *
+     */
     private fun createViewFeaturedFlats() {
         featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat)
         featured_flat_recycler.layoutManager =
@@ -120,6 +135,12 @@ class HomeScreen : AppCompatActivity() {
         featured_flat_recycler.setHasFixedSize(true)
     }
 
+    /**
+     * Creates an instance of the FeaturedReviewAdapter for the recycler and passes in
+     * a list of reviews to display. The layout manager is set to horizontal to display
+     * the reviews horizontally across the screen
+     *
+     */
     private fun createViewFeaturedReviews() {
         featured_reviews_recycler.adapter = FeatReviewAdapter(reviewList)
         featured_reviews_recycler.layoutManager =
@@ -127,6 +148,11 @@ class HomeScreen : AppCompatActivity() {
         featured_reviews_recycler.setHasFixedSize(true)
     }
 
+    /**
+     * To allow the project to increase its size over 64kb when its built.
+     *
+     * @param base
+     */
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
