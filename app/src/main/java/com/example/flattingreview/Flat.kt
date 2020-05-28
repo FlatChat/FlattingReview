@@ -14,6 +14,14 @@ import domain.NewFlat
 import domain.Review
 import kotlinx.android.synthetic.main.activity_flat.*
 
+/**
+ * This is the screen for a particular flat selected
+ * by a user (when clicked on from the HomeScreen).
+ * It is yet to be connected to the database, but
+ * when fully functional will show reviews, images,
+ * ratings and comments about a flat.
+ * @author Meggie Morrison
+ */
 class Flat : AppCompatActivity() {
 
     private var featuredFlat: ArrayList<NewFlat> = ArrayList<NewFlat>()
@@ -22,6 +30,10 @@ class Flat : AppCompatActivity() {
     private lateinit var reviewReference: DatabaseReference
     private var flatListener: ValueEventListener? = null
 
+    /**
+     * This connects a reference to flats and reviews in the database.
+     * It also has button listeners to take the user to other screens.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flat)
@@ -52,6 +64,11 @@ class Flat : AppCompatActivity() {
         }
     }
 
+    /**
+     * This method is not yet fully functional.
+     * It will serve to load the data about the
+     * selected flat from the database.
+     */
     public override fun onStart() {
         super.onStart()
         val flatListener: ValueEventListener = object : ValueEventListener {
@@ -75,9 +92,9 @@ class Flat : AppCompatActivity() {
 
 
     /**
-     * The following code is for the action bar
+     * The following code is for the action bar.
      * Different options are displayed to take the
-     * user to different screens
+     * user to different screens.
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)

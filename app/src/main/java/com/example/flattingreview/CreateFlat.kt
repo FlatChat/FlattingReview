@@ -20,9 +20,9 @@ import com.google.firebase.database.FirebaseDatabase
 import domain.NewFlat
 
 /**
- * This class creates new flats and adds them to the database
- * Creates a flat: a user can look up the address using google places, the address is created
- * into a flat object which is then saved into the database.
+ * This class creates new flat objects and saves them to the database.
+ * It also incorporates google places so that a user can look up the
+ * address they are entering, and the address may be auto-filled.
  * @author Ryan
  * @author Meggie Morrison
  */
@@ -90,7 +90,7 @@ class CreateFlat : AppCompatActivity() {
     /**
      * This function takes user input from the
      * create_new_flat activity, and stores
-     * it into variables
+     * it into variables.
      */
     private fun collectInput(){
         //address = findViewById<EditText>(R.id.addressBox).text
@@ -101,7 +101,7 @@ class CreateFlat : AppCompatActivity() {
 
     /**
      * This function writes the New Flat.kt
-     * to the database
+     * to the database.
      */
     private fun writeNewFlat(){
         // Database reference
@@ -123,7 +123,11 @@ class CreateFlat : AppCompatActivity() {
 
     }
 
-    // Below code is for the action bar
+    /**
+     * The following code is for the action bar.
+     * Different options are displayed to take the
+     * user to different screens.
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
