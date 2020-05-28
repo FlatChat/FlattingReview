@@ -41,7 +41,9 @@ class CreateFlat : AppCompatActivity() {
     /**
      * This is the driver code for collecting
      * information about the flat and then adding
-     * it to the database
+     * it to the database.
+     *
+     * @param  savedInstanceState the most recent state of the application.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,9 +68,9 @@ class CreateFlat : AppCompatActivity() {
     }
 
     /**
-     * Implements an google places autocomplete into a fragment.
-     * Listener is for when a location is selected, you use the listener to pull the data
-     * from the fragment.
+     * Implements a google places autocomplete into a fragment.
+     * The listener is for when a location is selected, and you use it to
+     * pull the data from the fragment.
      */
     private fun setupPlacesAutoComplete(){
         val autocompleteFragment = supportFragmentManager
@@ -89,7 +91,7 @@ class CreateFlat : AppCompatActivity() {
 
     /**
      * This function takes user input from the
-     * create_new_flat activity, and stores
+     * "Create Flat" screen, and stores
      * it into variables.
      */
     private fun collectInput(){
@@ -100,8 +102,8 @@ class CreateFlat : AppCompatActivity() {
     }
 
     /**
-     * This function writes the New Flat.kt
-     * to the database.
+     * This function writes the new flat to the database.
+     * It then sends the user back to the HomeScreen.
      */
     private fun writeNewFlat(){
         // Database reference
@@ -127,12 +129,20 @@ class CreateFlat : AppCompatActivity() {
      * The following code is for the action bar.
      * Different options are displayed to take the
      * user to different screens.
+     *
+     * @param menu the menu file containing the action bar options.
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * A method that allows a user to select a specific screen from the action bar.
+     *
+     * @param item the different action bar options for the user to select.
+     * @return the option that the user has selected.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id=item.itemId
 

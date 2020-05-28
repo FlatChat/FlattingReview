@@ -33,6 +33,8 @@ class Flat : AppCompatActivity() {
     /**
      * This connects a reference to flats and reviews in the database.
      * It also has button listeners to take the user to other screens.
+     *
+     * @param  savedInstanceState the most recent state of the application.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,12 +97,20 @@ class Flat : AppCompatActivity() {
      * The following code is for the action bar.
      * Different options are displayed to take the
      * user to different screens.
+     *
+     * @param menu the menu file containing the action bar options.
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
+    /**
+     * A method that allows a user to select a specific screen from the action bar.
+     *
+     * @param item the different action bar options for the user to select.
+     * @return the option that the user has selected.
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id=item.itemId
 
