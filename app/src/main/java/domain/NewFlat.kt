@@ -8,6 +8,7 @@ import com.google.firebase.database.IgnoreExtraProperties
  */
 @IgnoreExtraProperties
 data class NewFlat(
+    var flatID: String? = null,
     var address: String? = "",
     var bedrooms: String? = "",
     var bathrooms: String? = ""
