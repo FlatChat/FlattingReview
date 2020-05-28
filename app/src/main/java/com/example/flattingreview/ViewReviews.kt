@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.activity_view_reviews.*
 import kotlin.collections.ArrayList
 
 /**
- * Class for presenting the reviews.
+ * This will display all the written reviews for a particular flat. This page is navigated to
+ * by clicking 'show all reviews' form the Flat.kt screen.
  * @author Ryan
  */
 class ViewReviews : AppCompatActivity() {
@@ -22,12 +23,25 @@ class ViewReviews : AppCompatActivity() {
     private var reviewListener: ValueEventListener? = null
     private var adapter: ReviewAdapter? = null
 
+    /**
+     * Sets the database reference and collects the path to which the reviews and read from.
+     *
+     * @param savedInstanceState
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
     }
 
+    /**
+     * On start this method will connect to the database under the 'reviews' path and
+     * read all the reviews that are written about a particular flat. It creates a model
+     * review for each one that is read from the database and adds them to a list of
+     * reviews. When all the reviews are added to the list it calls the createView()
+     * method.
+     *
+     */
     public override fun onStart() {
         super.onStart()
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -75,6 +89,12 @@ class ViewReviews : AppCompatActivity() {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
+    /**
+     * The createView() method creates an instance of the ReviewAdapter adn sends
+     * a list of the reviews to display. It also sets the layout manager and to the recycler
+     * size to fixed.
+     *
+     */
     private fun createView(){
         recycler_view.adapter = ReviewAdapter(reviewList)
         recycler_view.layoutManager = LinearLayoutManager(this)

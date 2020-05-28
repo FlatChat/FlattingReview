@@ -38,11 +38,19 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
 
+    /**
+     * The onCreate method calls the setInputs() method which sets all the
+     * input elements to a variable. This method also has the cancel button which takes
+     * you back to the Flat.kt screen and the submit submit button that will call the
+     * saveObject() method.
+     *
+     * @param savedInstanceState
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
-        collectInput()
+        setInput()
         submitButton.setOnClickListener {
             saveObject()
         }
@@ -54,10 +62,9 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     }
 
     /**
-     * Will get the users input from the activity_write_review screen and save
-     * the data into variables
+     * Will set the input elements to variables, enabling collection of the users input
      */
-    private fun collectInput() {
+    private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         comment = findViewById<EditText>(R.id.comment1).text
         cleanliness = findViewById(R.id.cleanliness)
@@ -68,7 +75,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     }
 
     /**
-     * Connects to the database and collects the users first name identified by their userID
+     * On start will connect to the database under the 'users' path and collect the first name
+     * of the currently signed in user. In stores the first name in the variable name.
      */
     public override fun onStart() {
         super.onStart()
