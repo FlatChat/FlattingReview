@@ -27,12 +27,18 @@ class CreateAccount : AppCompatActivity() {
     private lateinit var emailUser: Editable
 
 
+    /**
+     * A method that gets the current firebase user authentication instance and calls the sign up user method
+     * when the sign up button has been pressed by the user. This method also calls the collect input method
+     * to collect the user information that the user has entered into the text fields.
+     *
+     * @param savedInstanceState the most recent state of the application.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
-
         collectInput()
 
         //set a listener for the sign up button to check if....
@@ -41,20 +47,23 @@ class CreateAccount : AppCompatActivity() {
         }
     }
 
+    /**
+     * A method that collects the user information that has been entered into the text fields containing the users
+     * first name, last name and email address. The information is saved into new variables.
+     *
+     */
     private fun collectInput() {
         firstNameUser = findViewById<EditText>(R.id.firstNameTV).text
         lastNameUser = findViewById<EditText>(R.id.lastNameTV).text
         emailUser = findViewById<EditText>(R.id.email).text
-
     }
 
     /**
      * Method to check that the user has entered in an email and password before they are able to sign up.
-     * If any checks do not pass, then the method fails. This method also saves a user object (first name, last name and
+     * If any checks do not pass, then the method fails. This method also saves a user object (user ID, first name, last name and
      * email) to the database.
      */
     private fun signUpUser() {
-
         //if the first name is empty, set an error message
         if (firstNameTV.text.toString().isEmpty()) {
             firstNameTV.error = "Please enter your first name"
