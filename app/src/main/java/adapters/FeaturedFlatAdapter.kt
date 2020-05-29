@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
-import domain.NewFlat
+import domain.Flat
 import kotlinx.android.synthetic.main.flat_icon_layout.view.*
 import java.util.*
 
@@ -15,7 +15,7 @@ import java.util.*
  *
  * @property exampleList list of Flat objects to display
  */
-class FeaturedFlatAdapter(private val exampleList: ArrayList<NewFlat>) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
+class FeaturedFlatAdapter(private val exampleList: ArrayList<Flat>, var clickListener: OnItemClickListener) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
 
     /**
      * On create the layout for each flat object is created, it gets the layout from the
@@ -28,7 +28,8 @@ class FeaturedFlatAdapter(private val exampleList: ArrayList<NewFlat>) : Recycle
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedFlatViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             R.layout.flat_icon_layout,
-            parent, false)
+            parent, false
+        )
         return FeaturedFlatViewHolder(itemView)
     }
 
@@ -41,6 +42,7 @@ class FeaturedFlatAdapter(private val exampleList: ArrayList<NewFlat>) : Recycle
     override fun onBindViewHolder(holder: FeaturedFlatViewHolder, position: Int) {
         val currentItem = exampleList[position]
         holder.textView1.text = currentItem.address!!.split(",")[0]
+        holder.initialize(currentItem, clickListener)
     }
 
     /**
@@ -54,9 +56,19 @@ class FeaturedFlatAdapter(private val exampleList: ArrayList<NewFlat>) : Recycle
      *
      * @param itemView The itemView is as single Flat object in its layout cardView.
      */
-    class FeaturedFlatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class FeaturedFlatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView1: TextView = itemView.flat_icon_address
 
+        fun initialize(item: Flat, action: OnItemClickListener) {
+            itemView.setOnClickListener(){
+                action.onItemClick(item, adapterPosition)
+            }
+        }
+
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(item: Flat, position: Int)
     }
 
 }

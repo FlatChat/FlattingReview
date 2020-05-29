@@ -7,14 +7,12 @@ import android.text.Editable
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RatingBar
-import android.widget.Switch
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import domain.Flat
 import domain.Review
 import kotlinx.android.synthetic.main.activity_write_review.*
 import java.util.Date
@@ -37,6 +35,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private var reviewListener: ValueEventListener? = null
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
+    private lateinit var flat: Flat
 
     /**
      * The onCreate method calls the setInputs() method which sets all the
@@ -50,15 +49,19 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
+        flat = intent.getSerializableExtra("flat") as Flat
         setInput()
         submitButton.setOnClickListener {
             saveObject()
-        }
-        cancel.setOnClickListener() {
-            val intent = Intent(this, Flat::class.java)
+            val intent = Intent(this, FlatScreen::class.java)
+            intent.putExtra("flat", flat)
             startActivity(intent)
         }
-
+        cancel.setOnClickListener() {
+            val intent = Intent(this, FlatScreen::class.java)
+            intent.putExtra("flat", flat)
+            startActivity(intent)
+        }
     }
 
     /**
@@ -80,6 +83,9 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     public override fun onStart() {
         super.onStart()
+        val address = flat.address
+        val addressText: TextView = findViewById(R.id.write_review_address)
+        addressText.text = address!!.split(",")[0]
         reviewReference = FirebaseDatabase.getInstance().getReference("users")
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -91,7 +97,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
                     val u = ds.child("userID").value as String
                     if (u == userID) {
                         name = ds.child("firstNameUsers").value as String
-                        Log.d("WriteReview", "" + ds.child("firstNameUsers").value as String)
                     }
                 }
             }
@@ -107,10 +112,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
-        // Set at 0 until we have the working flats
-        val flatID = "0"
-        // Current signed in user
 
+        val flatID = flat.flatID
         // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
@@ -119,9 +122,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Creates reviewID
         val reviewID = reviewReference.push().key
         // Create a review object
-
-        Log.d("WriteReview", "" + cleanliness.rating.toDouble())
-
         val rev = Review(
             reviewID,
             userID,
@@ -135,11 +135,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             currentDate,
             comment.toString()
         )
-        Log.d("WriteReview", "rev")
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
-        val intent = Intent(this, Flat::class.java)
-        startActivity(intent)
     }
 
     //below code is all for the action bar

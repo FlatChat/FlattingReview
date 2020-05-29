@@ -12,7 +12,7 @@ import android.view.MenuItem
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
-import domain.NewFlat
+import domain.Flat
 import domain.Review
 import kotlinx.android.synthetic.main.activity_home_screen.*
 
@@ -22,9 +22,9 @@ import kotlinx.android.synthetic.main.activity_home_screen.*
  * users can browse.
  * @author Ryan Cole
  */
-class HomeScreen : AppCompatActivity() {
+class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
 
-    private var featuredFlat: ArrayList<NewFlat> = ArrayList<NewFlat>()
+    private var featuredFlat: ArrayList<Flat> = ArrayList<Flat>()
     private lateinit var homeScreenReference: DatabaseReference
     private var reviewList: ArrayList<Review> = ArrayList<Review>()
     private lateinit var reviewReference: DatabaseReference
@@ -45,7 +45,7 @@ class HomeScreen : AppCompatActivity() {
         homeScreenReference = FirebaseDatabase.getInstance().getReference("flats")
 
         dummy_flat.setOnClickListener {
-            val intent = Intent(this, Flat::class.java)
+            val intent = Intent(this, FlatScreen::class.java)
             startActivity(intent)
         }
 
@@ -69,10 +69,12 @@ class HomeScreen : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
+                    val id = ds.child("flatID").value as String
                     val address = ds.child("address").value as String
                     val beds = ds.child("bedrooms").value as String
                     val baths = ds.child("bathrooms").value as String
-                    val flat = NewFlat(address, beds, baths)
+                    val flat = Flat(id, address, beds, baths)
+                    Log.d("FeaturedFlatAdapter", ""+ address)
                     featuredFlat.add(flat)
                 }
                 createViewFeaturedFlats()
@@ -129,7 +131,7 @@ class HomeScreen : AppCompatActivity() {
      *
      */
     private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat)
+        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat, this)
         featured_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)
@@ -146,6 +148,12 @@ class HomeScreen : AppCompatActivity() {
         featured_reviews_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_reviews_recycler.setHasFixedSize(true)
+    }
+
+    override fun onItemClick(item: Flat, position: Int){
+        val intent = Intent(this, FlatScreen::class.java)
+        intent.putExtra("flat", item)
+        startActivity(intent)
     }
 
     /**

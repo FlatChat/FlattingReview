@@ -17,7 +17,7 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.database.FirebaseDatabase
-import domain.NewFlat
+import domain.Flat
 
 /**
  * This class creates new flat objects and saves them to the database.
@@ -111,7 +111,7 @@ class CreateFlat : AppCompatActivity() {
         // Creates the flatID
         val flatID = myRef.push().key
         // Creates a flat object
-        val flat = NewFlat(
+        val flat = Flat(
             flatID,
             address,
             bedrooms.toString(),

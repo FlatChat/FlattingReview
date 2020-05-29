@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import domain.Flat
 import domain.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
 import kotlin.collections.ArrayList
@@ -34,6 +36,7 @@ class ViewReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+
     }
 
     /**
@@ -46,6 +49,12 @@ class ViewReviews : AppCompatActivity() {
      */
     public override fun onStart() {
         super.onStart()
+
+        val flat = intent.getSerializableExtra("flat") as Flat
+        val flatID = flat.flatID
+
+
+
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -53,39 +62,42 @@ class ViewReviews : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
+                    if (flatID == ds.child("flatID").value as String) {
+                        val reviewID = ds.child("reviewID").value as String
+                        val userID = ds.child("userID").value as String
+                        val flatID = ds.child("flatID").value as String
+                        val name = ds.child("name").value as String
+                        val clean = ds.child("cleanliness").value as Double
+                        val lord = ds.child("landlord").value as Double
+                        val location = ds.child("location").value as Double
+                        val value = ds.child("value").value as Double
+                        val anon = ds.child("anonymous").value as Boolean
+                        val date = ds.child("date").value as String
+                        val comment = ds.child("comment").value as String
 
-                    Log.d("ViewReview", "" + ds.child("cleanliness").value + " : " + ds.child("location").value)
-
-                    val reviewID = ds.child("reviewID").value as String
-                    val userID = ds.child("userID").value as String
-                    val flatID = ds.child("flatID").value as String
-                    val name = ds.child("name").value as String
-                    val clean = ds.child("cleanliness").value as Double
-                    val lord = ds.child("landlord").value as Double
-                    val location = ds.child("location").value as Double
-                    val value = ds.child("value").value as Double
-                    val anon = ds.child("anonymous").value as Boolean
-                    val date = ds.child("date").value as String
-                    val comment = ds.child("comment").value as String
-
-                    val rev = Review(
-                        reviewID,
-                        userID,
-                        flatID,
-                        name,
-                        clean - 0.1,
-                        lord - 0.1,
-                        location - 0.1,
-                        value - 0.1,
-                        anon,
-                        date,
-                        comment
-                    )
-                    if(comment != ""){
-                        reviewList.add(rev)
+                        val rev = Review(
+                            reviewID,
+                            userID,
+                            flatID,
+                            name,
+                            clean - 0.1,
+                            lord - 0.1,
+                            location - 0.1,
+                            value - 0.1,
+                            anon,
+                            date,
+                            comment
+                        )
+                        if (comment != "") {
+                            reviewList.add(rev)
+                        }
                     }
                 }
-                createView()
+                if(reviewList.size == 0){
+
+                } else {
+                    createView()
+                }
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
@@ -97,7 +109,7 @@ class ViewReviews : AppCompatActivity() {
      * size to fixed.
      *
      */
-    private fun createView(){
+    private fun createView() {
         recycler_view.adapter = ReviewAdapter(reviewList)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)

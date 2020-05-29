@@ -1,17 +1,13 @@
 package com.example.flattingreview
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import domain.NewFlat
-import domain.Review
+import domain.Flat
 import kotlinx.android.synthetic.main.activity_flat.*
 
 /**
@@ -22,13 +18,12 @@ import kotlinx.android.synthetic.main.activity_flat.*
  * ratings and comments about a flat.
  * @author Meggie Morrison
  */
-class Flat : AppCompatActivity() {
+class FlatScreen : AppCompatActivity() {
 
-    private var featuredFlat: ArrayList<NewFlat> = ArrayList<NewFlat>()
     private lateinit var flatRef: DatabaseReference
-    private var reviewList: ArrayList<Review> = ArrayList<Review>()
-    private lateinit var reviewReference: DatabaseReference
     private var flatListener: ValueEventListener? = null
+    private var address: String? = null
+    private lateinit var flat: Flat
 
     /**
      * This connects a reference to flats and reviews in the database.
@@ -40,16 +35,17 @@ class Flat : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flat)
 
-        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatRef = FirebaseDatabase.getInstance().getReference("flats")
 
         show_reviews_button.setOnClickListener() {
             val intent = Intent(this, ViewReviews::class.java)
+            intent.putExtra("flat", flat)
             startActivity(intent)
         }
 
         add_review_button.setOnClickListener() {
             val intent = Intent(this, WriteReview::class.java)
+            intent.putExtra("flat", flat)
             startActivity(intent)
         }
 
@@ -57,13 +53,11 @@ class Flat : AppCompatActivity() {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
+    }
 
-        // Currently isn't connecting to actual flat address:
-        // This is only the activity_main flat address
-        val addressText: TextView = findViewById<TextView>(R.id.textView)
-        addressText.setOnClickListener {
-            addressText.text = getString(R.string.flat_address)
-        }
+    private fun set(){
+        val addressText: TextView = findViewById(R.id.flat_address)
+        addressText.text = address!!.split(",")[0]
     }
 
     /**
@@ -73,24 +67,12 @@ class Flat : AppCompatActivity() {
      */
     public override fun onStart() {
         super.onStart()
-        val flatListener: ValueEventListener = object : ValueEventListener {
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-                Log.w("Flat", "loadItem:onCancelled")
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (ds in dataSnapshot.children) {
-                    val address = ds.child("address").value as String
-                    val beds = ds.child("bedrooms").value as String
-                    val baths = ds.child("bathrooms").value as String
-                    val flat = NewFlat(address, beds, baths)
-                    featuredFlat.add(flat)
-                    //val flat = dataSnapshot.getValue<NewFlat>()
-                }
-            }
-        }
-        flatRef.addValueEventListener(flatListener)
+        flat = intent.getSerializableExtra("flat") as Flat
+        address = flat.address
+        set()
     }
+
+
 
 
     /**
