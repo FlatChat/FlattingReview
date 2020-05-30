@@ -1,5 +1,6 @@
 package com.example.flattingreview
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -21,8 +22,9 @@ import kotlinx.android.synthetic.main.activity_flat.*
 class FlatScreen : AppCompatActivity() {
 
     private lateinit var flatRef: DatabaseReference
-    private var flatListener: ValueEventListener? = null
     private var address: String? = null
+    private var overallRating: String? = null
+    private var numberOfReviews: Int? = null
     private lateinit var flat: Flat
 
     /**
@@ -55,8 +57,11 @@ class FlatScreen : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun set(){
         val addressText: TextView = findViewById(R.id.flat_address)
+        val flatRating: TextView = findViewById(R.id.flat_rating)
+        flatRating.text = "$overallRating ($numberOfReviews reviews)"
         addressText.text = address!!.split(",")[0]
     }
 
@@ -69,6 +74,8 @@ class FlatScreen : AppCompatActivity() {
         super.onStart()
         flat = intent.getSerializableExtra("flat") as Flat
         address = flat.address
+        overallRating = intent.getStringExtra("overallRating")
+        numberOfReviews = intent.getIntExtra("numberOfRatings", 0)
         set()
     }
 

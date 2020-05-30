@@ -79,7 +79,7 @@
                     android:layout_marginStart="16dp" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/flat_rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"

@@ -57,12 +57,6 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/createaFlat" />
 
-        <Button
-            android:id="@+id/dummy_flat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="dummyFlat" />
-
         <TextView
             android:id="@+id/featured_flats_text"
             android:layout_width="match_parent"

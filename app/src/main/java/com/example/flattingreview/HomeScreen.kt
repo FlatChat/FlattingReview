@@ -15,6 +15,7 @@ import com.google.firebase.database.*
 import domain.Flat
 import domain.Review
 import kotlinx.android.synthetic.main.activity_home_screen.*
+import kotlin.math.round
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -24,12 +25,12 @@ import kotlinx.android.synthetic.main.activity_home_screen.*
  */
 class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
 
-    private var featuredFlat: ArrayList<Flat> = ArrayList<Flat>()
-    private lateinit var homeScreenReference: DatabaseReference
-    private var reviewList: ArrayList<Review> = ArrayList<Review>()
+    private var featuredFlat: ArrayList<Flat> = ArrayList()
+    private var reviewList: ArrayList<Review> = ArrayList()
+    private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
-    private var reviewAdapter: FeatReviewAdapter? = null
-    private var flatAdapter: FeaturedFlatAdapter? = null
+    private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
+    private var numberOfReviews: HashMap<String, Int> = HashMap()
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -42,12 +43,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-        homeScreenReference = FirebaseDatabase.getInstance().getReference("flats")
-
-        dummy_flat.setOnClickListener {
-            val intent = Intent(this, FlatScreen::class.java)
-            startActivity(intent)
-        }
+        flatReference = FirebaseDatabase.getInstance().getReference("flats")
 
         //connecting the create a flat button to the create a new flat screen
         createFlatButton.setOnClickListener {
@@ -62,7 +58,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      */
     public override fun onStart() {
         super.onStart()
-        val homeScreenListener: ValueEventListener = object : ValueEventListener {
+        val flatListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
             }
@@ -74,7 +70,6 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                     val beds = ds.child("bedrooms").value as String
                     val baths = ds.child("bathrooms").value as String
                     val flat = Flat(id, address, beds, baths)
-                    Log.d("FeaturedFlatAdapter", ""+ address)
                     featuredFlat.add(flat)
                 }
                 createViewFeaturedFlats()
@@ -113,6 +108,10 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                         date,
                         comment
                     )
+                    val ratings: ArrayList<Double> = ArrayList()
+                    ratings.add(round((clean + lord + location + value - 0.4) / 4))
+                    ratingList[flatID] = ratings
+                    numberOfReviews[flatID] =+ 1
                     if (comment != "") {
                         reviewList.add(rev)
                     }
@@ -120,7 +119,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                 createViewFeaturedReviews()
             }
         }
-        homeScreenReference.orderByKey().addValueEventListener(homeScreenListener)
+        flatReference.orderByKey().addValueEventListener(flatListener)
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
@@ -131,7 +130,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      *
      */
     private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat, this)
+        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat, ratingList, this)
         featured_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)
@@ -153,6 +152,17 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
     override fun onItemClick(item: Flat, position: Int){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
+        val array = ratingList[item.flatID]
+        var sum = 0.0
+        if(!array.isNullOrEmpty()){
+            for(item in array) sum += item
+        }
+        if (array != null) {
+            intent.putExtra("overallRating", (sum / array.size).toString())
+        } else {
+            intent.putExtra("overallRating", "0")
+        }
+        intent.putExtra("numberOfRatings", numberOfReviews[item.flatID])
         startActivity(intent)
     }
 

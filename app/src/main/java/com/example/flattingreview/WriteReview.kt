@@ -31,8 +31,9 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var value: RatingBar
     private lateinit var anon: Switch
     private var comment: Editable? = null
+    private lateinit var userReference: DatabaseReference
+    private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
-    private var reviewListener: ValueEventListener? = null
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
     private lateinit var flat: Flat
@@ -49,7 +50,12 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_review)
+
+        userReference = FirebaseDatabase.getInstance().getReference("users")
+        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+
         flat = intent.getSerializableExtra("flat") as Flat
+        setDisplay()
         setInput()
         submitButton.setOnClickListener {
             saveObject()
@@ -63,6 +69,13 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             startActivity(intent)
         }
     }
+
+    private fun setDisplay(){
+        val address = flat.address
+        val addressText: TextView = findViewById(R.id.write_review_address)
+        addressText.text = address!!.split(",")[0]
+    }
+
 
     /**
      * Will set the input elements to variables, enabling collection of the users input
@@ -83,11 +96,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     public override fun onStart() {
         super.onStart()
-        val address = flat.address
-        val addressText: TextView = findViewById(R.id.write_review_address)
-        addressText.text = address!!.split(",")[0]
-        reviewReference = FirebaseDatabase.getInstance().getReference("users")
-        val reviewListener: ValueEventListener = object : ValueEventListener {
+        val flatID = flat.flatID
+        val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.w("WriteReview", "loadItem:onCancelled")
             }
@@ -101,7 +111,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
                 }
             }
         }
-        reviewReference.orderByKey().addValueEventListener(reviewListener)
+        userReference.orderByKey().addValueEventListener(userListener)
     }
 
     /**
@@ -112,13 +122,10 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
-
         val flatID = flat.flatID
         // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
-        // Database reference
-        val reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         // Creates reviewID
         val reviewID = reviewReference.push().key
         // Create a review object
@@ -138,6 +145,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
+
 
     //below code is all for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
