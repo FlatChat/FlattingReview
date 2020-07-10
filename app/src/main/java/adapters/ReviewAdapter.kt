@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.review_layout.view.*
 import java.util.*
 
 /**
- * This class receives a list of Review objects and displays them in the recycler view.
+ * This class receives a list of Review objects and displays them in the recycler view x.
  *
  * @property exampleList list of Review objects to display
  */
