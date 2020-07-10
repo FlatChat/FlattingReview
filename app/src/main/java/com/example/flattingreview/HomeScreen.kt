@@ -21,6 +21,7 @@ import kotlin.math.round
  * The first screen the user will see when opening the app (after the splash screen). This screen
  * displays a search bar (still to be implemented) and a selection of flats and reviews that
  * users can browse.
+ *
  * @author Ryan Cole
  */
 class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
