@@ -28,5 +28,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Generate Dokka
-        run: ./gradlew :dokka
+        run: ./gradlew build
 
