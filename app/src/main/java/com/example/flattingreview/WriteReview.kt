@@ -1,5 +1,6 @@
 package com.example.flattingreview
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -96,7 +97,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      */
     public override fun onStart() {
         super.onStart()
-        val flatID = flat.flatID
+        flat.flatID
         val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.w("WriteReview", "loadItem:onCancelled")
@@ -120,6 +121,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
      * through the firebase id system. Creates a reviews object. Writes the review object into
      * the database.
      */
+    @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
         val flatID = flat.flatID

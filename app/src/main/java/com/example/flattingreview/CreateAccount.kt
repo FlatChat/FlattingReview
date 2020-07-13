@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_create_account.*
  * they can sign in with their new credentials.
  * @author Nikki Meadows
  */
+@Suppress("NAME_SHADOWING")
 class CreateAccount : AppCompatActivity() {
 
     //global variable for firebase authentication

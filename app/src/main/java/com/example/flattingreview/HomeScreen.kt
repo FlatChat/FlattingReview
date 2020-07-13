@@ -23,6 +23,7 @@ import kotlin.math.round
  * users can browse.
  * @author Ryan Cole
  */
+@Suppress("NAME_SHADOWING")
 class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()

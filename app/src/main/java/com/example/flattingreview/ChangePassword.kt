@@ -65,7 +65,7 @@ class ChangePassword : AppCompatActivity() {
                                     "Re-authentication is successful",
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                user!!.updatePassword(newPassET.text.toString())//pass the new password
+                                user.updatePassword(newPassET.text.toString())//pass the new password
                                     .addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
                                             Toast.makeText(

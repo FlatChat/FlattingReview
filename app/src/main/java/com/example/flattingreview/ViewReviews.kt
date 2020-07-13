@@ -20,6 +20,7 @@ import kotlin.collections.ArrayList
  * by clicking 'show all reviews' form the Flat.kt screen.
  * @author Ryan
  */
+@Suppress("NAME_SHADOWING")
 class ViewReviews : AppCompatActivity() {
 
     private var reviewList: ArrayList<Review> = ArrayList<Review>()
@@ -93,9 +94,7 @@ class ViewReviews : AppCompatActivity() {
                         }
                     }
                 }
-                if(reviewList.size == 0){
-
-                } else {
+                if(reviewList.size != 0) {
                     createView()
                 }
             }
