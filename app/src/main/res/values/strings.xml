@@ -7,7 +7,6 @@
     <string name="featuredReview"> Featured Reviews </string>
     <string name="featuredFlats"> Featured Flats </string>
     <string name="searchflatTextView"> Address Search </string>
-    <string name="searchForReview"> Enter an address… </string>
     <string name="writeReviewTextView"> Want to write a review? </string>
     <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
     <string name="createaFlat"> Cannot find the flat you are looking for? Enter it in here  </string>
@@ -15,6 +14,10 @@
 
     <!-- use this to copy and paste -->
     <string name="id">Text</string>
+
+    <!-- Home Screen -->
+    <string name="search_for_flat"> Location, address or city </string>
+    <string name="popular_flats">Popular Flats</string>
 
     <!-- Progress Bars -->
     <string name="overall">Overall Rating</string>

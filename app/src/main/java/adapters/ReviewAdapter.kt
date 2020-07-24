@@ -21,7 +21,7 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) :
 
     /**
      * On create the layout for each Review object is created, it gets the layout from the
-     * 'featured_rev_layout' file.
+     * 'popular_flats' file.
      *
      * @param parent
      * @param viewType

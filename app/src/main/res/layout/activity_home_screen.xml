@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".HomeScreen">
 
 
@@ -18,51 +19,36 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/searchFlatText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/searchflatTextView"
-                android:textSize="24sp" />
-
-            <Button
-                android:id="@+id/createFlatButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/createflatBut" />
-        </LinearLayout>
-
         <EditText
             android:id="@+id/searchBarReviewText"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
+            android:autofillHints=""
+            android:background="@drawable/rounded_edit_text"
+            android:elevation="20dp"
             android:ems="10"
+            android:hint="@string/search_for_flat"
             android:inputType="textPersonName"
-            android:text="@string/searchForReview"
-            android:hint="@string/searchForReview"
-            android:autofillHints="" />
+            android:padding="10dp"
+            android:text="@string/search_for_flat"
+            android:textColor="#000000" />
 
-        <TextView
-            android:id="@+id/cantfindAddressText"
+        <Button
+            android:id="@+id/createFlatButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/createaFlat" />
+            android:layout_margin="8dp"
+            android:text="@string/createflatBut" />
 
         <TextView
-            android:id="@+id/featured_flats_text"
+            android:id="@+id/popular_flats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/featuredFlats"
+            android:layout_margin="8dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/popular_flats"
+            android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -89,7 +75,7 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:padding="4dp"
-            tools:listitem="@layout/featured_rev_layout">
+            tools:listitem="@layout/flat_icon_layout">
 
         </androidx.recyclerview.widget.RecyclerView>
 
