@@ -84,5 +84,9 @@
     <string name="Passwordhint"> Password </string>
     <string name="Emailhint"> Email </string>
     <string name="SignUp"> Sign Up </string>
+    <string name="enter_password_here">Enter Password here</string>
+    <string name="enter_a_new_flat">Enter a New Flat</string>
+    <string name="bedrooms_please_enter_a_number">Bedrooms (please enter a number):</string>
+    <string name="how_many_bedrooms">How Many Bedrooms</string>
 
 </resources>
