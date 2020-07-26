@@ -11,6 +11,8 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationMenu
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import domain.Flat
 import domain.Review
@@ -50,6 +52,26 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         createFlatButton.setOnClickListener {
             val intent = Intent(this, CreateFlat::class.java)
             startActivity(intent)
+        }
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    val intent = Intent(this, CreateFlat::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
         }
     }
 

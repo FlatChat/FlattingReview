@@ -18,6 +18,7 @@
     <!-- Home Screen -->
     <string name="search_for_flat"> Location, address or city </string>
     <string name="popular_flats">Popular Flats</string>
+    <string name="show_all">Show All</string>
 
     <!-- Progress Bars -->
     <string name="overall">Overall Rating</string>
@@ -91,5 +92,8 @@
     <string name="enter_a_new_flat">Enter a New Flat</string>
     <string name="bedrooms_please_enter_a_number">Bedrooms (please enter a number):</string>
     <string name="how_many_bedrooms">How Many Bedrooms</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="add_flat">Add Flat</string>
 
 </resources>

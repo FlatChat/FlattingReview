@@ -26,12 +26,10 @@
             android:layout_margin="8dp"
             android:autofillHints=""
             android:background="@drawable/rounded_edit_text"
-            android:elevation="20dp"
             android:ems="10"
             android:hint="@string/search_for_flat"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:text="@string/search_for_flat"
             android:textColor="#000000" />
 
         <Button
@@ -52,21 +50,35 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/featured_flat_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:padding="4dp"
             tools:listitem="@layout/flat_icon_layout" />
+
+
+        <Button
+            android:id="@+id/show_all_popular_flats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:shadowColor="#000000"
+            android:text="@string/show_all"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:strokeColor="#000000"
+            app:strokeWidth="20dp" />
 
         <TextView
             android:id="@+id/featuredReviewText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="8dp"
             android:text="@string/featuredReview"
             android:textSize="18sp"
+            android:textColor="#000000"
+            android:fontFamily="sans-serif-light"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -75,9 +87,16 @@
             android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:padding="4dp"
-            tools:listitem="@layout/flat_icon_layout">
+            tools:listitem="@layout/flat_icon_layout" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            app:menu="@menu/bottom_nav_menu"
+            app:itemIconTint="@color/selector_nav_item"
+            app:itemTextColor="@color/selector_nav_item"/>
 
     </LinearLayout>
 
