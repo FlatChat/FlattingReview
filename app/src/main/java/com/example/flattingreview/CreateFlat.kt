@@ -18,6 +18,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.database.FirebaseDatabase
 import domain.Flat
+import kotlinx.android.synthetic.main.activity_home_screen.*
 
 /**
  * This class creates new flat objects and saves them to the database.
@@ -54,6 +55,26 @@ class CreateFlat : AppCompatActivity() {
 
         createButton.setOnClickListener {
             writeNewFlat()
+        }
+
+        // Bottom navigation
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    val intent = Intent(this, Account::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    true
+                }
+                else -> false
+            }
         }
     }
 
@@ -161,7 +182,7 @@ class CreateFlat : AppCompatActivity() {
         //If contact us option is pressed go to contact us screen
         if(id==R.id.contact)
         {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

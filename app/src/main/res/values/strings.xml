@@ -95,5 +95,8 @@
     <string name="home">Home</string>
     <string name="account">Account</string>
     <string name="add_flat">Add Flat</string>
+    <string name="bathrooms_please_enter_a_number">Bathrooms (please enter a number):</string>
+    <string name="create">CREATE</string>
+    <string name="enter_address">Enter Address:</string>
 
 </resources>

@@ -170,7 +170,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         }
         //If contact us option is pressed go to contact us screen
         if (id == R.id.contact) {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

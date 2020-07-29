@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_home_screen.*
 
 /**
  * A class that allows the user to find contact information for the application development team or the
  * tenancy tribunal.
  *
  */
-class Contact : AppCompatActivity() {
+class Account : AppCompatActivity() {
 
     /**
      * A method that will display the contact screen information from the corresponding activity xml file.
@@ -20,7 +21,28 @@ class Contact : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contact)
+        setContentView(R.layout.activity_account)
+
+        // Bottom navigation
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    val intent = Intent(this, CreateFlat::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     /**
@@ -59,7 +81,7 @@ class Contact : AppCompatActivity() {
         //If contact us option is pressed go to contact us screen
         if(id==R.id.contact)
         {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If settings option is selected then redirect user to the settings screen

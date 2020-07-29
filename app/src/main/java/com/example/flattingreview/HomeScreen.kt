@@ -11,8 +11,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import domain.Flat
 import domain.Review
@@ -54,15 +52,15 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
             startActivity(intent)
         }
 
+        // Bottom navigation
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
-
+                    val intent = Intent(this, Account::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.home_screen -> {
-                    val intent = Intent(this, HomeScreen::class.java)
-                    startActivity(intent)
                     true
                 }
                 R.id.add_flat_screen -> {
@@ -220,7 +218,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         }
         //If contact us option is pressed go to contact us screen
         if (id == R.id.contact) {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen
