@@ -46,12 +46,6 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
 
-        //connecting the create a flat button to the create a new flat screen
-        createFlatButton.setOnClickListener {
-            val intent = Intent(this, CreateFlat::class.java)
-            startActivity(intent)
-        }
-
         // Bottom navigation
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {

@@ -7,6 +7,7 @@
     tools:context=".CreateFlat">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -36,8 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp">
+            app:cardCornerRadius="35dp"
+            app:cardElevation="8dp">
 
             <fragment
                 android:id="@+id/autocomplete_fragment"
@@ -62,8 +63,9 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             android:ems="10"
+            android:hint="@string/how_many_bedrooms"
             android:inputType="number"
-            android:hint="@string/how_many_bedrooms"/>
+            android:autofillHints="" />
 
         <TextView
             android:id="@+id/bathrooms"
@@ -80,16 +82,27 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:autofillHints="" />
 
         <Button
-            android:id="@+id/createButton"
+            android:id="@+id/create_flat"
             android:layout_width="124dp"
             android:layout_height="68dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="16dp"
             android:text="@string/create" />
     </LinearLayout>
+
+    <fragment
+        android:layout_width="79dp"
+        android:layout_height="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:name="fragments.CreateFlatAdress"
+        tools:layout="@layout/create_address"
+        android:id="@+id/TODO" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

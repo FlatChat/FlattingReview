@@ -54,7 +54,7 @@ class CreateFlat : AppCompatActivity() {
         collectInput()
 
         createButton.setOnClickListener {
-            writeNewFlat()
+
         }
 
         // Bottom navigation
@@ -119,7 +119,7 @@ class CreateFlat : AppCompatActivity() {
         //address = findViewById<EditText>(R.id.addressBox).text
         bedrooms = findViewById<EditText>(R.id.bedroomBox).text
         bathrooms = findViewById<EditText>(R.id.bathroomBox).text
-        createButton = findViewById(R.id.createButton)
+        createButton = findViewById(R.id.create_flat)
     }
 
     /**
