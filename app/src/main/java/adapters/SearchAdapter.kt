@@ -20,7 +20,7 @@ import kotlin.collections.HashMap
 class SearchAdapter(
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, ArrayList<Double>>,
-    var clickListener: Search
+    private var clickListener: Search
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     /**
@@ -76,7 +76,7 @@ class SearchAdapter(
         val textView1: TextView = itemView.search_flat_address
         val textView2: TextView = itemView.search_flat_rating
         fun initialize(item: Flat, action: Search) {
-            itemView.setOnClickListener() {
+            itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
             }
         }

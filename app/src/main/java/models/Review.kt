@@ -1,5 +1,8 @@
 package models
 
+import com.google.firebase.database.IgnoreExtraProperties
+import java.io.Serializable
+
 /**
  * A review object. Used to model the reviews. This model is used when presenting, and reading
  * writing reviews from the database.
@@ -17,6 +20,7 @@ package models
  * @property date The date the review was created
  * @property comment Any comments a user choose to write about the flat
  */
+@IgnoreExtraProperties
 class Review(
     var reviewID: String? = null,
     var userID: String? = null,
@@ -29,4 +33,4 @@ class Review(
     var anonymous: Boolean = false,
     var date: String? = null,
     var comment: String? = null
-)
+) : Serializable

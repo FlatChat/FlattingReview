@@ -1,7 +1,7 @@
 package com.example.flattingreview
 
-import adapters.FeatReviewAdapter
 import adapters.FeaturedFlatAdapter
+import adapters.FeaturedReviewsAdapter
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,7 +23,6 @@ import kotlin.math.round
  * users can browse.
  * @author Ryan Cole
  */
-@Suppress("NAME_SHADOWING")
 class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
@@ -45,6 +44,9 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
+
+        createViewFeaturedReviews()
+        createViewFeaturedReviews()
 
         // Bottom navigation
         bottom_navigation.setOnNavigationItemSelectedListener {
@@ -70,14 +72,15 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                 else -> false
             }
         }
+
+        getData()
     }
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
-     * the data for both the flats and reviews to display in the recycler views in the homescreen.
+     * the data for both the flats and reviews to display in the recycler views in the home screen.
      */
-    public override fun onStart() {
-        super.onStart()
+    private fun getData() {
         val flatListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -163,7 +166,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      *
      */
     private fun createViewFeaturedReviews() {
-        featured_reviews_recycler.adapter = FeatReviewAdapter(reviewList)
+        featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
         featured_reviews_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_reviews_recycler.setHasFixedSize(true)
@@ -206,12 +209,12 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         val id = item.itemId
 
         //If home screen option is pressed go to home screen
-        if (id == R.id.homescreen) {
+        if (id == R.id.home_screen) {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if (id == R.id.writereview) {
+        if (id == R.id.write_review) {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
         }

@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.flattingreview
 
 import android.annotation.SuppressLint
@@ -33,7 +35,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var anon: Switch
     private var comment: Editable? = null
     private lateinit var userReference: DatabaseReference
-    private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
@@ -64,7 +65,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
-        cancel.setOnClickListener() {
+        cancel.setOnClickListener {
             val intent = Intent(this, FlatScreen::class.java)
             intent.putExtra("flat", flat)
             startActivity(intent)
@@ -159,12 +160,12 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val id = item.itemId
 
         //If home screen option is pressed go to home screen
-        if (id == R.id.homescreen) {
+        if (id == R.id.home_screen) {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if (id == R.id.writereview) {
+        if (id == R.id.write_review) {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
         }

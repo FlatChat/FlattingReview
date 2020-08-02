@@ -48,7 +48,7 @@
             android:autofillHints=""
             android:ems="10"
             android:gravity="start|top"
-            android:hint="@string/commenthint"
+            android:hint="@string/comment_hint"
             android:inputType="textMultiLine" />
 
         <Switch

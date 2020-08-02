@@ -39,20 +39,15 @@ class FlatScreen : AppCompatActivity() {
 
         flatRef = FirebaseDatabase.getInstance().getReference("flats")
 
-        show_reviews_button.setOnClickListener() {
+        show_reviews_button.setOnClickListener {
             val intent = Intent(this, ViewReviews::class.java)
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
 
-        add_review_button.setOnClickListener() {
+        add_review_button.setOnClickListener {
             val intent = Intent(this, WriteReview::class.java)
             intent.putExtra("flat", flat)
-            startActivity(intent)
-        }
-
-        floatingActionButton.setOnClickListener() {
-            val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
     }
@@ -104,13 +99,13 @@ class FlatScreen : AppCompatActivity() {
         val id=item.itemId
 
         //If home screen option is pressed go to home screen
-        if(id==R.id.homescreen)
+        if(id==R.id.home_screen)
         {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if(id==R.id.writereview)
+        if(id==R.id.write_review)
         {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)

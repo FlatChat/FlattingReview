@@ -83,7 +83,8 @@
             android:layout_margin="16dp"
             android:ems="10"
             android:inputType="number"
-            android:autofillHints="" />
+            android:autofillHints=""
+            android:labelFor="@id/bathroomBox"/>
 
         <Button
             android:id="@+id/create_flat"
@@ -93,16 +94,6 @@
             android:layout_margin="16dp"
             android:text="@string/create" />
     </LinearLayout>
-
-    <fragment
-        android:layout_width="79dp"
-        android:layout_height="21dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:name="fragments.CreateFlatAdress"
-        tools:layout="@layout/create_address"
-        android:id="@+id/TODO" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"

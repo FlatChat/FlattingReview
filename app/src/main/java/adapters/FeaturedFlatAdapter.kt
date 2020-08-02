@@ -19,7 +19,7 @@ import kotlin.collections.HashMap
 class FeaturedFlatAdapter(
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, ArrayList<Double>>,
-    var clickListener: OnItemClickListener
+    private var clickListener: OnItemClickListener
 ) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
 
     /**
@@ -75,7 +75,7 @@ class FeaturedFlatAdapter(
         val textView1: TextView = itemView.flat_icon_address
         val textView2: TextView = itemView.flat_icon_rating
         fun initialize(item: Flat, action: OnItemClickListener) {
-            itemView.setOnClickListener() {
+            itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
             }
         }

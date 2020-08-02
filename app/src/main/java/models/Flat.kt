@@ -19,4 +19,4 @@ data class Flat(
     var address: String? = "",
     var bedrooms: String? = "",
     var bathrooms: String? = ""
-) : Serializable {}
+) : Serializable
