@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-import domain.Flat
+import models.Flat
 import kotlinx.android.synthetic.main.activity_flat.*
 
 /**

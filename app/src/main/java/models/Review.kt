@@ -1,4 +1,4 @@
-package domain
+package models
 
 /**
  * A review object. Used to model the reviews. This model is used when presenting, and reading

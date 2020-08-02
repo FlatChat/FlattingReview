@@ -9,8 +9,8 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
-import domain.Flat
-import domain.Review
+import models.Flat
+import models.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
 import kotlin.collections.ArrayList
 

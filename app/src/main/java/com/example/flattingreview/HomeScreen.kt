@@ -12,8 +12,8 @@ import android.view.MenuItem
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
-import domain.Flat
-import domain.Review
+import models.Flat
+import models.Review
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlin.math.round
 
@@ -55,6 +55,11 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                     true
                 }
                 R.id.home_screen -> {
+                    true
+                }
+                R.id.search_screen -> {
+                    val intent = Intent(this, Search::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.add_flat_screen -> {

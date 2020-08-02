@@ -1,4 +1,4 @@
-package domain
+package models
 
 import com.google.firebase.database.IgnoreExtraProperties
 import java.io.Serializable

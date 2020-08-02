@@ -9,30 +9,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Search"></activity>
         <!-- function activities -->
         <activity android:name=".Settings" />
-        <activity android:name=".ChangePassword" />
-
-        <!-- Set the splash screen as the first screen when user installs the application -->
+        <activity android:name=".ChangePassword" /> <!-- Set the splash screen as the first screen when user installs the application -->
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- The remaining activities -->
+        </activity> <!-- The remaining activities -->
         <activity android:name=".Account" />
         <activity android:name=".CreateFlat" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".WriteReview" />
         <activity android:name=".SignIn" />
         <activity android:name=".HomeScreen" />
-        <activity android:name=".ViewReviews"/>
+        <activity android:name=".ViewReviews" />
         <activity android:name=".FlatScreen" />
     </application>
 

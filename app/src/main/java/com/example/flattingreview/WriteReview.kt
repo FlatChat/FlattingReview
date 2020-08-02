@@ -13,8 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import domain.Flat
-import domain.Review
+import models.Flat
+import models.Review
 import kotlinx.android.synthetic.main.activity_write_review.*
 import java.util.Date
 
