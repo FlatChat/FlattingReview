@@ -51,3 +51,6 @@ jobs:
         
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
+      
+      - name: "Run UI Tests"
+        uses: vgaidarji/android-github-actions-emulator@v1.0.1
