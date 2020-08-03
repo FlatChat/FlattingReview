@@ -44,6 +44,10 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
+    
+ # Check the code with Android linter
+      - name: Run Android Linter
+        run: ./gradlew lintStagingDebug
         
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
