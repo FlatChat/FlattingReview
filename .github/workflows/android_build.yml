@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate Dokka
         run: ./gradlew dokka
-
+      
   # This workflow contains a single job called "tests"
   tests:
     name: Run Tests
@@ -39,6 +39,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
+ # Decode Google services configuration file
+      - name: Decode google-services.json
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $FIREBASE_CONFIG > app/google-services.json
+        
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
