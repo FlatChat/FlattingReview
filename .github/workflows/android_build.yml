@@ -45,12 +45,17 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
     
- # Check the code with Android linter
-      - name: Run Android Linter
-        run: ./gradlew lintStagingDebug
+ # Check the code with Android linter UNCHECK WHEN READY TO DEBUG THE PROJECT
+ #     - name: Run Android Linter
+ #       run: ./gradlew lintStagingDebug
         
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
       
-      - name: "Run UI Tests"
-        uses: vgaidarji/android-github-actions-emulator@v1.0.1
+      - name: Run Instrumentation Tests
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.3
+        with:
+          cmd: ./gradlew connectedCheck --stacktrace
+          api: 23
+          tag: default
+          abi: x86
