@@ -72,9 +72,3 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 }
 
-    //androidx. test dependencies
-    def androidx_test = "1.1.0"
-    androidTestImplementation "androidx.test:runner:$androidx_test"
-    androidTestImplementation "androidx.test:core:$androidx_test"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
-}
