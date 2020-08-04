@@ -1,8 +1,6 @@
 package com.example.flattingreview
 
 import android.app.AlertDialog
-import android.app.Dialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -11,9 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
-import kotlinx.android.synthetic.main.activity_sign_in.signUpButton
 
 /**
  * A class that allows the user to sign in to their account, or alternatively access the create account page
@@ -52,20 +48,18 @@ class SignIn  : AppCompatActivity() {
             doLogin()
         }
         //click listener for the forgot password button
-        forgotPassButton.setOnClickListener {
+        forget_password_button.setOnClickListener {
             val builder=AlertDialog.Builder(this)
             builder.setTitle("Forgot Password: Enter your email")
             val view=layoutInflater.inflate(R.layout.dialog_forgot_password,null)
             val username=view.findViewById<EditText>(R.id.et_username)
             builder.setView(view)
-            builder.setPositiveButton("Reset",DialogInterface.OnClickListener { _,  _->
+            builder.setPositiveButton("Reset") { _, _->
                 forgotPassword(username)
-            })
-            builder.setNegativeButton("Close",DialogInterface.OnClickListener { _, _-> })
-                builder.show()
-
+            }
+            builder.setNegativeButton("Close") { _, _-> }
+            builder.show()
         }
-
     }
 
     /**
@@ -97,25 +91,25 @@ class SignIn  : AppCompatActivity() {
      */
     private fun doLogin() {
        //if the email address is empty, set an error message
-        if(enterEmailtv.text.toString().isEmpty()){
-            enterEmailtv.error="Please enter email"
-            enterEmailtv.requestFocus()
+        if(enter_email.text.toString().isEmpty()){
+            enter_email.error="Please enter email"
+            enter_email.requestFocus()
             return
         }
         //if the email is not a valid email, set an error message
-        if(!Patterns.EMAIL_ADDRESS.matcher(enterEmailtv.text.toString()).matches()){
-            enterEmailtv.error="Please enter a valid email"
-            enterEmailtv.requestFocus()
+        if(!Patterns.EMAIL_ADDRESS.matcher(enter_email.text.toString()).matches()){
+            enter_email.error="Please enter a valid email"
+            enter_email.requestFocus()
             return
         }
         //if the password is empty, set an error message
-        if(enterPasstv.text.toString().isEmpty()){
-            enterPasstv.error="Please enter a password"
-            enterPasstv.requestFocus()
+        if(enter_password.text.toString().isEmpty()){
+            enter_password.error="Please enter a password"
+            enter_password.requestFocus()
             return
         }
         //if all of the checks are ok, then we need to login.
-        auth.signInWithEmailAndPassword(enterEmailtv.text.toString(), enterPasstv.text.toString())
+        auth.signInWithEmailAndPassword(enter_email.text.toString(), enter_password.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = auth.currentUser

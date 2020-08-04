@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homescreen"
-        android:title="Home">
+        android:id="@+id/home_screen"
+        android:title="@string/home">
         </item>
 
     <item
-        android:id="@+id/writereview"
-        android:title="Write a Review">
+        android:id="@+id/write_review"
+        android:title="@string/write_a_review">
     </item>
 
     <item
         android:id="@+id/contact"
-        android:title="Contact Us">
+        android:title="@string/contact_us">
     </item>
 
     <item
         android:id="@+id/settings"
-        android:title="Settings">
+        android:title="@string/settings">
     </item>
 
 </menu>

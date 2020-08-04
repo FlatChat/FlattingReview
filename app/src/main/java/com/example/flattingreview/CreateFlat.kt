@@ -1,8 +1,11 @@
 package com.example.flattingreview
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.text.Editable
 import android.util.Log
 import android.view.Menu
@@ -10,6 +13,8 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -17,7 +22,12 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.firebase.database.FirebaseDatabase
-import domain.Flat
+import kotlinx.android.synthetic.main.activity_home_screen.*
+import models.Flat
+import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * This class creates new flat objects and saves them to the database.
@@ -37,6 +47,8 @@ class CreateFlat : AppCompatActivity() {
     private lateinit var createButton: Button
     // Attributes to store from the address that the user chooses
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
+    private val requestPhoto = 1
+    private lateinit var currentPhotoPath: String
 
     /**
      * This is the driver code for collecting
@@ -53,7 +65,27 @@ class CreateFlat : AppCompatActivity() {
         collectInput()
 
         createButton.setOnClickListener {
-            writeNewFlat()
+
+        }
+
+        // Bottom navigation
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    val intent = Intent(this, Account::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    true
+                }
+                else -> false
+            }
         }
     }
 
@@ -65,6 +97,55 @@ class CreateFlat : AppCompatActivity() {
         val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
         Places.initialize(this, apiKey)
         placesClient = Places.createClient(this)
+    }
+
+    /**
+     * This function is called to access the phones camera to take a photo.
+     */
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    // Error occurred while creating the File
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        this,
+                        "com.example.android.fileprovider",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, requestPhoto)
+                }
+            }
+        }
+    }
+
+    /**
+     * Method that returns a unique file name for a new photo using a date-time stamp.
+     *
+     * @return
+     */
+    @SuppressLint("SimpleDateFormat")
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
     }
 
     /**
@@ -98,7 +179,7 @@ class CreateFlat : AppCompatActivity() {
         //address = findViewById<EditText>(R.id.addressBox).text
         bedrooms = findViewById<EditText>(R.id.bedroomBox).text
         bathrooms = findViewById<EditText>(R.id.bathroomBox).text
-        createButton = findViewById(R.id.createButton)
+        createButton = findViewById(R.id.create_flat)
     }
 
     /**
@@ -147,13 +228,13 @@ class CreateFlat : AppCompatActivity() {
         val id=item.itemId
 
         //If home screen option is pressed go to home screen
-        if(id==R.id.homescreen)
+        if(id==R.id.home_screen)
         {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if(id==R.id.writereview)
+        if(id==R.id.write_review)
         {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
@@ -161,7 +242,7 @@ class CreateFlat : AppCompatActivity() {
         //If contact us option is pressed go to contact us screen
         if(id==R.id.contact)
         {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

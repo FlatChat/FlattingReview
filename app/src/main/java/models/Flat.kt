@@ -1,4 +1,4 @@
-package domain
+package models
 
 import com.google.firebase.database.IgnoreExtraProperties
 import java.io.Serializable
@@ -19,4 +19,4 @@ data class Flat(
     var address: String? = "",
     var bedrooms: String? = "",
     var bathrooms: String? = ""
-) : Serializable {}
+) : Serializable

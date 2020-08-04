@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
-import domain.Review
+import models.Review
 import kotlinx.android.synthetic.main.featured_rev_layout.view.*
 import java.util.*
 
@@ -16,8 +16,8 @@ import java.util.*
  *
  * @property exampleList list of Review objects to display
  */
-class FeatReviewAdapter(private val exampleList: ArrayList<Review>) :
-    RecyclerView.Adapter<FeatReviewAdapter.FeatRevViewHolder>() {
+class FeaturedReviewsAdapter(private val exampleList: ArrayList<Review>) :
+    RecyclerView.Adapter<FeaturedReviewsAdapter.FeatRevViewHolder>() {
 
     /**
      * On create the layout for each Review object is created, it gets the layout from the

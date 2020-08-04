@@ -2,9 +2,7 @@ package com.example.flattingreview
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 
@@ -35,7 +33,7 @@ class SplashScreen : AppCompatActivity() {
         val background = object : Thread() {
             override fun run() {
                 try {
-                    Thread.sleep(4000)
+                    sleep(4000)
                     val intent = Intent(baseContext, SignIn::class.java)
                     startActivity(intent)
                 } catch (e: Exception) {

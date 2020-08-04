@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
-import domain.Flat
+import models.Flat
 import kotlinx.android.synthetic.main.activity_flat.*
 
 /**
@@ -39,20 +39,15 @@ class FlatScreen : AppCompatActivity() {
 
         flatRef = FirebaseDatabase.getInstance().getReference("flats")
 
-        show_reviews_button.setOnClickListener() {
+        show_reviews_button.setOnClickListener {
             val intent = Intent(this, ViewReviews::class.java)
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
 
-        add_review_button.setOnClickListener() {
+        add_review_button.setOnClickListener {
             val intent = Intent(this, WriteReview::class.java)
             intent.putExtra("flat", flat)
-            startActivity(intent)
-        }
-
-        floatingActionButton.setOnClickListener() {
-            val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
     }
@@ -104,13 +99,13 @@ class FlatScreen : AppCompatActivity() {
         val id=item.itemId
 
         //If home screen option is pressed go to home screen
-        if(id==R.id.homescreen)
+        if(id==R.id.home_screen)
         {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if(id==R.id.writereview)
+        if(id==R.id.write_review)
         {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
@@ -118,7 +113,7 @@ class FlatScreen : AppCompatActivity() {
         //If contact us option is pressed go to contact us screen
         if(id==R.id.contact)
         {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

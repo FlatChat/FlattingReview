@@ -5,22 +5,11 @@
     <string name="support"> Need tenancy advice?  </string>
     <string name="contactTribunalEmail"> Contact www.tenancy.govt.nz</string>
     <string name="featuredReview"> Featured Reviews </string>
-    <string name="featuredFlats"> Featured Flats </string>
-    <string name="searchflatTextView"> Address Search </string>
-    <string name="writeReviewTextView"> Want to write a review? </string>
-    <string name="reportITTextView"> Seeing something inappropriate? Report it! </string>
-    <string name="createaFlat"> Cannot find the flat you are looking for? Enter it in here  </string>
-    <string name="createflatBut"> Create a flat </string>
-
-    <!-- use this to copy and paste -->
-    <string name="id">Text</string>
 
     <!-- Home Screen -->
     <string name="search_for_flat"> Location, address or city </string>
     <string name="popular_flats">Popular Flats</string>
-
-    <!-- Progress Bars -->
-    <string name="overall">Overall Rating</string>
+    <string name="show_all">Show All</string>
 
     <!-- CardView layout -->
     <string name="card_name">John</string>
@@ -29,21 +18,10 @@
     <string name="flat_icon_address">5 Castle St Dunedin</string>
     <string name="flat_icon_rating">4.9</string>
 
-    <!-- Google maps API key for google places -->
-    <string name="apiKey">AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo</string>
-
     <!-- Flat.kt strings -->
     <string name="flat_image">Image of the flat</string>
     <string name="flat_address">660 Castle St Dunedin</string>
     <string name="star">Star</string>
-
-    <!-- Create a flat strings -->
-    <string name="street_address">Street Address</string>
-    <string name="suburb">Suburb</string>
-    <string name="city">City</string>
-    <string name="postcode">Postcode</string>
-    <string name="flat_name">Flat Name</string>
-    <string name="create_flat_search_bar">Type address here</string>
 
     <!-- Button Strings -->
     <string name="show_all_reviews">Show All Reviews</string>
@@ -58,20 +36,13 @@
     <string name="report">report comment</string>
     <string name="date">28th January 2018</string>
     <string name="reviewer">Ryan Cole</string>
-    <string name="title_activity_view_reviews">ViewReviews</string>
-    <string name="cleanliness">Cleanliness</string>
     <string name="landlord">LandLord</string>
-    <string name="value">Value</string>
-    <string name="location">Location</string>
-    <string name="commenthint">Write comment here</string>
-
-    <!-- Splash screen button Strings -->
-    <string name="splashButton"> Temporary Button </string>
+    <string name="comment_hint">Write comment here</string>
 
     <!-- Create account Strings -->
-    <string name="signUpbutton"> Sign Up  </string>
-    <string name="firstName" > First Name </string>
-    <string name="lastName" > Last Name </string>
+    <string name="sign_up_button"> Sign Up  </string>
+    <string name="firstName"> First Name </string>
+    <string name="lastName"> Last Name </string>
 
     <!-- Settings page Strings -->
     <string name="changePassButton"> Change Password </string>
@@ -82,14 +53,33 @@
 
     <!-- login screen Strings -->
     <string name="forgotPass"> Forgot password? </string>
-    <string name="noAccount" > Don\'t have an account? </string>
-    <string name="Login" > Login </string>
-    <string name="Passwordhint"> Password </string>
-    <string name="Emailhint"> Email </string>
+    <string name="noAccount"> Don\'t have an account? </string>
+    <string name="Login"> Login </string>
+    <string name="password_hint"> Password </string>
+    <string name="email_hint"> Email </string>
     <string name="SignUp"> Sign Up </string>
     <string name="enter_password_here">Enter Password here</string>
     <string name="enter_a_new_flat">Enter a New Flat</string>
     <string name="bedrooms_please_enter_a_number">Bedrooms (please enter a number):</string>
     <string name="how_many_bedrooms">How Many Bedrooms</string>
+    <string name="account">Account</string>
+    <string name="add_flat">Add Flat</string>
+    <string name="bathrooms_please_enter_a_number">Bathrooms (please enter a number):</string>
+    <string name="create">CREATE</string>
+    <string name="enter_address">Enter Address:</string>
+    <string name="search">search</string>
+    <string name="home">Home</string>
+    <string name="write_a_review">Write a Review</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="settings">Settings</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="current_address_optional">Current Address (optional)</string>
+    <string name="tenant">Tenant</string>
+    <string name="i_am_a">I am a…</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="new_password">New Password</string>
+    <string name="current_password">Current Password</string>
 
 </resources>

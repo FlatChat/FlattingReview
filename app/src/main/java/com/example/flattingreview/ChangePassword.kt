@@ -49,7 +49,7 @@ class ChangePassword : AppCompatActivity() {
             confirmPassET.text.isNotEmpty()
         ) {
             //check if new password and confirm password are the same
-            if (newPassET.text.toString().equals(confirmPassET.text.toString())) {
+            if (newPassET.text.toString() == confirmPassET.text.toString()) {
                 val user = auth.currentUser
                 //if user is already logged in, then we can re-authenticate the user user
                 if (user != null && user.email != null) {
@@ -119,18 +119,18 @@ class ChangePassword : AppCompatActivity() {
         val id = item.itemId
 
         //If home screen option is pressed go to home screen
-        if (id == R.id.homescreen) {
+        if (id == R.id.home_screen) {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if (id == R.id.writereview) {
+        if (id == R.id.write_review) {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
         }
         //If contact us option is pressed go to contact us screen
         if (id == R.id.contact) {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
-import domain.Flat
-import domain.Review
+import models.Flat
+import models.Review
 import kotlinx.android.synthetic.main.activity_view_reviews.*
 import kotlin.collections.ArrayList
 
@@ -23,10 +22,8 @@ import kotlin.collections.ArrayList
 @Suppress("NAME_SHADOWING")
 class ViewReviews : AppCompatActivity() {
 
-    private var reviewList: ArrayList<Review> = ArrayList<Review>()
+    private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
-    private var reviewListener: ValueEventListener? = null
-    private var adapter: ReviewAdapter? = null
 
     /**
      * Sets the database reference and collects the path to which the reviews and read from.
@@ -123,18 +120,18 @@ class ViewReviews : AppCompatActivity() {
         val id = item.itemId
 
         //If home screen option is pressed go to home screen
-        if (id == R.id.homescreen) {
+        if (id == R.id.home_screen) {
             val intent = Intent(this, HomeScreen::class.java)
             startActivity(intent)
         }
         //If write a review option is pressed go to review screen
-        if (id == R.id.writereview) {
+        if (id == R.id.write_review) {
             val intent = Intent(this, WriteReview::class.java)
             startActivity(intent)
         }
         //If contact us option is pressed go to contact us screen
         if (id == R.id.contact) {
-            val intent = Intent(this, Contact::class.java)
+            val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen

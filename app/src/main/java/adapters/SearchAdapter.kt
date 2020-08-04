@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
+import com.example.flattingreview.Search
 import models.Flat
-import kotlinx.android.synthetic.main.flat_layout.view.*
+import kotlinx.android.synthetic.main.flat_search_layout.view.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
@@ -16,11 +17,11 @@ import kotlin.collections.HashMap
  *
  * @property exampleList list of Flat objects to display
  */
-class FeaturedFlatAdapter(
+class SearchAdapter(
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, ArrayList<Double>>,
-    private var clickListener: OnItemClickListener
-) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
+    private var clickListener: Search
+) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     /**
      * On create the layout for each flat object is created, it gets the layout from the
@@ -30,12 +31,12 @@ class FeaturedFlatAdapter(
      * @param viewType
      * @return
      */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedFlatViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.flat_layout,
+            R.layout.flat_search_layout,
             parent, false
         )
-        return FeaturedFlatViewHolder(itemView)
+        return SearchViewHolder(itemView)
     }
 
     /**
@@ -44,7 +45,7 @@ class FeaturedFlatAdapter(
      * @param holder The holder that holds a single Flat object to display
      * @param position The position of the Object in the list
      */
-    override fun onBindViewHolder(holder: FeaturedFlatViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val currentItem = exampleList[position]
         holder.textView1.text = currentItem.address!!.split(",")[0]
         val array  = ratingList[currentItem.flatID]
@@ -71,10 +72,10 @@ class FeaturedFlatAdapter(
      *
      * @param itemView The itemView is as single Flat object in its layout cardView.
      */
-    class FeaturedFlatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textView1: TextView = itemView.flat_icon_address
-        val textView2: TextView = itemView.flat_icon_rating
-        fun initialize(item: Flat, action: OnItemClickListener) {
+    class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val textView1: TextView = itemView.search_flat_address
+        val textView2: TextView = itemView.search_flat_rating
+        fun initialize(item: Flat, action: Search) {
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
             }
