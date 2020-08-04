@@ -178,7 +178,9 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         val array = ratingList[item.flatID]
         var sum = 0.0
         if(!array.isNullOrEmpty()){
-            for(item in array) sum += item
+            for(@Suppress("NAME_SHADOWING") item in array) {
+                sum += item
+            }
         }
         if (array != null) {
             intent.putExtra("overallRating", (sum / array.size).toString())
