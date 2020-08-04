@@ -21,6 +21,6 @@ class SplashScreenTest{
     @Test
     fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(SplashScreen::class.java)
-        onView(withId(R.id.splashTag)).check(matches(isDisplayed()))
+        onView(withId(R.id.splash_screen_tag)).check(matches(isDisplayed()))
     }
 }

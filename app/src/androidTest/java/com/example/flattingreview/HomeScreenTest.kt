@@ -21,14 +21,14 @@ class HomeScreenTest{
     @Test
     fun test_isActivitiyInView() {
         val activityScenario=ActivityScenario.launch(HomeScreen::class.java)
-        onView(withId(R.id.homeScreenTag)).check(matches(isDisplayed()))
+        onView(withId(R.id.home_screen_tag)).check(matches(isDisplayed()))
 
     }
-    //a test to check the visibility of the create a flat button
+    //a test to check the visibility of show all popular flats button
     @Test
     fun test_Visibility_CreateFlat_Button() {
         val activityScenario=ActivityScenario.launch(HomeScreen::class.java)
-        onView(withId(R.id.createFlatButton))
+        onView(withId(R.id.show_all_popular_flats))
             .check(matches(isDisplayed()))
     }
 }

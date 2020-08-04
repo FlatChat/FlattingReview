@@ -18,7 +18,7 @@ class CreateFlatTest{
     @Test
     fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(CreateFlat::class.java)
-        onView(ViewMatchers.withId(R.id.createFlatTag))
+        onView(ViewMatchers.withId(R.id.create_flat_tag))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
@@ -26,7 +26,7 @@ class CreateFlatTest{
     @Test
     fun test_Visibility_Create_Button() {
         val activityScenario=ActivityScenario.launch(CreateFlat::class.java)
-        onView(ViewMatchers.withId(R.id.createButton))
+        onView(ViewMatchers.withId(R.id.create_flat))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
