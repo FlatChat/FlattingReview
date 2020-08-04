@@ -81,6 +81,11 @@ class CreateFlat : AppCompatActivity() {
                     startActivity(intent)
                     true
                 }
+                R.id.search_screen -> {
+                    val intent = Intent(this, Search::class.java)
+                    startActivity(intent)
+                    true
+                }
                 R.id.add_flat_screen -> {
                     true
                 }

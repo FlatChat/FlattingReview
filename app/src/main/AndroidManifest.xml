@@ -28,6 +28,7 @@
         </activity>
 
         <!-- The remaining activities -->
+        <activity android:name=".Search" />
         <activity android:name=".Account" />
         <activity android:name=".CreateFlat" />
         <activity android:name=".CreateAccount" />
