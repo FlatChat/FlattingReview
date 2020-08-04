@@ -21,12 +21,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      # Decode Google services configuration file
+      - name: Decode google-services.json
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $FIREBASE_CONFIG > app/google-services.json
 
       - name: Change wrapper permissions
         run: chmod +x ./gradlew
 
       - name: Generate Dokka
         run: ./gradlew dokka
+
 
   # This workflow contains a single job called "tests"
   tests:
@@ -39,6 +45,24 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+ # Decode Google services configuration file
+      - name: Decode google-services.json
+        env:
+          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
+        run: echo $FIREBASE_CONFIG > app/google-services.json
+    
+ # Check the code with Android linter UNCHECK WHEN READY TO DEBUG THE PROJECT
+ #     - name: Run Android Linter
+ #       run: ./gradlew lintStagingDebug
+        
 
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
+      
+      - name: Run Instrumentation Tests
+        uses: malinskiy/action-android/emulator-run-cmd@release/0.0.3
+        with:
+          cmd: ./gradlew connectedCheck --stacktrace
+          api: 23
+          tag: default
+          abi: x86

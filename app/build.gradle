@@ -60,4 +60,21 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
+    //Espresso UI dependencies
+    def androidx_test_espresso = "3.1.0"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso"
+    implementation 'com.google.android.libraries.places:places:2.3.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    //noinspection GradleCompatible,GradleCompatible
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+}
+
+    //androidx. test dependencies
+    def androidx_test = "1.1.0"
+    androidTestImplementation "androidx.test:runner:$androidx_test"
+    androidTestImplementation "androidx.test:core:$androidx_test"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$androidx_test"
 }
