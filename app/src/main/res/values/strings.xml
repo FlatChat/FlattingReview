@@ -49,7 +49,7 @@
     <string name="logout"> Logout </string>
 
     <!-- flat name for action bar Strings -->
-    <string name="flatchat"> flatchat </string>
+    <string name="flat_chat"> flatchat </string>
 
     <!-- login screen Strings -->
     <string name="forgotPass"> Forgot password? </string>

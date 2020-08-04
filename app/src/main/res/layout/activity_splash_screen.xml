@@ -13,7 +13,7 @@
         android:id="@+id/splashFlatTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/flatchat"
+        android:text="@string/flat_chat"
         android:textColor="@color/colorRed"
         android:textSize="40sp"
         android:textStyle="italic"

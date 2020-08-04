@@ -32,15 +32,6 @@ class Settings : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        //connecting the change password button to the change password screen
-        changePassBut.setOnClickListener {
-            val intent = Intent(this, ChangePassword::class.java)
-            startActivity(intent)
-        }
-        //logging out the user
-        logoutBut.setOnClickListener {
-            logout()
-        }
         // Bottom navigation
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -64,6 +55,15 @@ class Settings : AppCompatActivity() {
                 }
                 else -> false
             }
+        }
+        //connecting the change password button to the change password screen
+        changePassBut.setOnClickListener {
+            val intent = Intent(this, ChangePassword::class.java)
+            startActivity(intent)
+        }
+        //logging out the user
+        logoutBut.setOnClickListener {
+            logout()
         }
     }
 
