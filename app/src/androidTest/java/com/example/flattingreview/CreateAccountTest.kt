@@ -22,7 +22,7 @@ class CreateAccountTest{
     @Test
     fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(CreateAccount::class.java)
-        onView(ViewMatchers.withId(R.id.createAccountTag))
+        onView(ViewMatchers.withId(R.id.create_account_tag))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
