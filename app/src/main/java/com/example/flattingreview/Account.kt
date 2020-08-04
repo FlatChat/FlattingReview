@@ -27,11 +27,11 @@ class Account : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
-                    val intent = Intent(this, Account::class.java)
-                    startActivity(intent)
                     true
                 }
                 R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.search_screen -> {
