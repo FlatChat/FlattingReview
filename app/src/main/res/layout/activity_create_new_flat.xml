@@ -6,93 +6,177 @@
     android:layout_height="match_parent"
     tools:context=".CreateFlat">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_marginTop="200dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="35dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/title"
+        <fragment
+            android:id="@+id/autocomplete_fragment"
+            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_margin="16dp"
-            android:text="@string/enter_a_new_flat"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:layout_height="match_parent"
+            tools:layout="@layout/places_autocomplete_item_powered_by_google" />
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/enterAddress"
-            android:layout_width="121dp"
-            android:layout_height="30dp"
-            android:layout_margin="16dp"
-            android:text="@string/enter_address"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="35dp"
-            app:cardElevation="8dp">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-            <fragment
-                android:id="@+id/autocomplete_fragment"
-                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout="@layout/places_autocomplete_item_powered_by_google" />
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/bedrooms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:text="@string/bedrooms_please_enter_a_number" />
 
         <EditText
-            android:id="@+id/bedroomBox"
-            android:layout_width="wrap_content"
+            android:id="@+id/street"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
+            android:autofillHints="@string/street_name"
+            android:background="@drawable/rounded_edit_text"
+            android:elevation="7dp"
             android:ems="10"
-            android:hint="@string/how_many_bedrooms"
-            android:inputType="number"
-            android:autofillHints="" />
-
-        <TextView
-            android:id="@+id/bathrooms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:text="@string/bathrooms_please_enter_a_number" />
+            android:hint="@string/_660_castle_street"
+            android:inputType="textPostalAddress"
+            android:padding="12dp" />
 
         <EditText
-            android:id="@+id/bathroomBox"
+            android:id="@+id/suburb"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autofillHints="@string/suburb"
+            android:background="@drawable/rounded_edit_text"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="@string/north_dunedin"
+            android:inputType="textPostalAddress"
+            android:padding="12dp" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autofillHints="@string/region"
+            android:background="@drawable/rounded_edit_text"
+            android:elevation="7dp"
+            android:ems="10"
+            android:hint="@string/dunedin"
+            android:inputType="textPostalAddress"
+            android:padding="12dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.061"
+        tools:layout_editor_absoluteX="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bedrooms_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:text="@string/bedrooms"
+                android:textAlignment="textStart"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/bedrooms"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/rounded_edit_text"
+                android:elevation="7dp"
+                android:ems="10"
+                android:hint="@string/Two"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bathrooms_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="8dp"
+                android:text="@string/bathrooms"
+                android:textAlignment="textStart"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/bathrooms"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:autofillHints=""
+                android:background="@drawable/rounded_edit_text"
+                android:elevation="7dp"
+                android:ems="10"
+                android:hint="@string/number_bedrooms_example"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/upload_flat_image"
+            android:layout_width="250dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/upload_an_image" />
+
+        <Button
+            android:id="@+id/upload_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:ems="10"
-            android:inputType="number"
-            android:autofillHints=""
-            android:labelFor="@id/bathroomBox"/>
+            android:text="@string/upload_image" />
 
         <Button
             android:id="@+id/create_flat"
-            android:layout_width="124dp"
-            android:layout_height="68dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
             android:text="@string/create" />
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

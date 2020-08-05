@@ -1,20 +1,20 @@
 package com.example.flattingreview
 
-import android.annotation.SuppressLint
+import android.Manifest
+import android.app.Activity
 import android.content.Intent
-import android.net.Uri
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.text.Editable
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.FileProvider
 import com.google.android.gms.common.api.Status
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
@@ -23,12 +23,10 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_home_screen.*
+import kotlinx.android.synthetic.main.activity_create_new_flat.*
+import kotlinx.android.synthetic.main.activity_home_screen.bottom_navigation
 import models.Flat
-import java.io.File
-import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
+
 
 /**
  * This class creates new flat objects and saves them to the database.
@@ -42,14 +40,10 @@ class CreateFlat : AppCompatActivity() {
 
     private lateinit var placesClient: PlacesClient
     private lateinit var address: String
-    // Bedrooms and bathrooms are optional
     private lateinit var bedrooms: Editable
     private lateinit var bathrooms: Editable
     private lateinit var createButton: Button
-    // Attributes to store from the address that the user chooses
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
-    private val requestPhoto = 1
-    private lateinit var currentPhotoPath: String
 
     /**
      * This is the driver code for collecting
@@ -63,10 +57,11 @@ class CreateFlat : AppCompatActivity() {
         setContentView(R.layout.activity_create_new_flat)
         initPlaces()
         setupPlacesAutoComplete()
-        collectInput()
 
-        createButton.setOnClickListener {
 
+        create_flat.setOnClickListener {
+            collectInput()
+            writeNewFlat()
         }
 
         // Bottom navigation
@@ -95,6 +90,86 @@ class CreateFlat : AppCompatActivity() {
                 else -> false
             }
         }
+
+        //BUTTON CLICK
+        upload_image.setOnClickListener {
+            //check runtime permission
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE)
+                }
+                else{
+                    //permission already granted
+                    pickImageFromGallery()
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                pickImageFromGallery()
+            }
+        }
+
+    }
+
+
+
+    /**
+     * Will select the selected image from the users gallery.
+     *
+     */
+    private fun pickImageFromGallery() {
+        //Intent to pick image
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    companion object {
+        //image pick code
+        private const val IMAGE_PICK_CODE = 1000
+        //Permission code
+        private const val PERMISSION_CODE = 1001
+    }
+
+    /**
+     * Handles the request permissions.
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
+                    pickImageFromGallery()
+                }
+                else{
+                    //permission from popup denied
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    /**
+     * Handles the results of the picked image.
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            upload_flat_image.setImageURI(data?.data)
+        }
     }
 
     /**
@@ -105,55 +180,6 @@ class CreateFlat : AppCompatActivity() {
         val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
         Places.initialize(this, apiKey)
         placesClient = Places.createClient(this)
-    }
-
-    /**
-     * This function is called to access the phones camera to take a photo.
-     */
-    private fun dispatchTakePictureIntent() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-            // Ensure that there's a camera activity to handle the intent
-            takePictureIntent.resolveActivity(packageManager)?.also {
-                // Create the File where the photo should go
-                val photoFile: File? = try {
-                    createImageFile()
-                } catch (ex: IOException) {
-                    // Error occurred while creating the File
-                    null
-                }
-                // Continue only if the File was successfully created
-                photoFile?.also {
-                    val photoURI: Uri = FileProvider.getUriForFile(
-                        this,
-                        "com.example.android.fileprovider",
-                        it
-                    )
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    startActivityForResult(takePictureIntent, requestPhoto)
-                }
-            }
-        }
-    }
-
-    /**
-     * Method that returns a unique file name for a new photo using a date-time stamp.
-     *
-     * @return
-     */
-    @SuppressLint("SimpleDateFormat")
-    @Throws(IOException::class)
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "JPEG_${timeStamp}_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
-        }
     }
 
     /**
@@ -170,6 +196,7 @@ class CreateFlat : AppCompatActivity() {
                 Toast.makeText(this@CreateFlat, ""+ p0.address, Toast.LENGTH_SHORT).show()
                 Log.d("CreateFlat", "" + p0.address)
                 address = p0.address.toString()
+                fillAddressBoxes(address)
             }
 
             override fun onError(p0: Status) {
@@ -179,14 +206,32 @@ class CreateFlat : AppCompatActivity() {
     }
 
     /**
+     * If the user uses the google maps search to select an address then this method is called
+     * and will fill the address box's on the user screen
+     *
+     * @param address the users selected address
+     */
+    private fun fillAddressBoxes(address: String){
+        val list = address.split(",")
+        val street = list[0]
+        val suburb = list[1]
+        val city = list[2].split(" ")
+        val streetText: TextView = findViewById<EditText>(R.id.street)
+        val suburbText: TextView = findViewById(R.id.suburb)
+        val cityText : TextView = findViewById(R.id.city)
+        streetText.text = street
+        suburbText.text = suburb
+        cityText.text = city[1]
+    }
+
+    /**
      * This function takes user input from the
      * "Create Flat" screen, and stores
      * it into variables.
      */
     private fun collectInput(){
-        //address = findViewById<EditText>(R.id.addressBox).text
-        bedrooms = findViewById<EditText>(R.id.bedroomBox).text
-        bathrooms = findViewById<EditText>(R.id.bathroomBox).text
+        bedrooms = findViewById<EditText>(R.id.bedrooms).text
+        bathrooms = findViewById<EditText>(R.id.bathrooms).text
         createButton = findViewById(R.id.create_flat)
     }
 
