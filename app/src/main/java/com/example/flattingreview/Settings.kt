@@ -27,35 +27,11 @@ class Settings : AppCompatActivity() {
      * @param savedInstanceState the most recent state of the application.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        setContentView(R.layout.activity_settings)
+        super.onCreate(savedInstanceState)
+        // Initialize Firebase Auth
 
-        // Bottom navigation
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.settings_screen -> {
-                    true
-                }
-                R.id.home_screen -> {
-                    val intent = Intent(this, HomeScreen::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.search_screen -> {
-                    val intent = Intent(this, Search::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
         //connecting the change password button to the change password screen
         changePassBut.setOnClickListener {
             val intent = Intent(this, ChangePassword::class.java)
