@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
@@ -31,6 +33,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+    private lateinit var toolbar: ActionBar
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -49,7 +52,9 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         createViewFeaturedReviews()
 
         // Bottom navigation
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.home_screen
+        bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
                     val intent = Intent(this, Account::class.java)
@@ -72,9 +77,9 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                 else -> false
             }
         }
-
         getData()
     }
+
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all

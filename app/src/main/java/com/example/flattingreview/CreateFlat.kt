@@ -21,6 +21,7 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
@@ -69,6 +70,8 @@ class CreateFlat : AppCompatActivity() {
         }
 
         // Bottom navigation
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.add_flat_screen
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
