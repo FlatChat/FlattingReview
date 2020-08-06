@@ -97,5 +97,8 @@
     <string name="dunedin">Dunedin</string>
     <string name="upload_image">Upload Image</string>
     <string name="upload_an_image">Upload an image</string>
+    <string name="delaccount">Delete Account</string>
+    <string name="needHelp">Need Help</string>
+    <string name="splashhouse">Splash House</string>
 
 </resources>
