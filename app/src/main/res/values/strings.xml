@@ -82,5 +82,20 @@
     <string name="new_password">New Password</string>
     <string name="current_password">Current Password</string>
     <string name="flatchat">flatchat</string>
+    <string name="street_name">Street Name</string>
+    <string name="street_number">Street Number</string>
+    <string name="suburb">Suburb</string>
+    <string name="region">Region</string>
+    <string name="number_bedrooms_example">4</string>
+    <string name="number">Number</string>
+    <string name="bedrooms">Bedrooms:</string>
+    <string name="Two">2</string>
+    <string name="bathrooms">Bathrooms:</string>
+    <string name="street">Street</string>
+    <string name="_660_castle_street">660 Castle Street</string>
+    <string name="north_dunedin">North Dunedin</string>
+    <string name="dunedin">Dunedin</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="upload_an_image">Upload an image</string>
 
 </resources>
