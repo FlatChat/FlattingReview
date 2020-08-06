@@ -32,7 +32,7 @@ class DeleteAccount : AppCompatActivity() {
             deleteAccount()
         }
     }
-    
+
     private fun deleteAccount() {
         //if all of the text fields are not empty
         if (emailET.text.isNotEmpty() &&

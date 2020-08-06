@@ -29,6 +29,7 @@ class SplashScreen : AppCompatActivity() {
         //animation for the flat chat
         val animation = AnimationUtils.loadAnimation(baseContext, R.anim.fadeanimation)
         splashFlatTV.startAnimation(animation)
+        house.startAnimation(animation)
         //controls how long the splash screen shows for
         val background = object : Thread() {
             override fun run() {
