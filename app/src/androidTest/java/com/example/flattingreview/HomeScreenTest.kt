@@ -12,8 +12,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * TODO
+ * A class that tests the UI of the home screen.
  *
+ * @author Nikki Meadows
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class HomeScreenTest{
