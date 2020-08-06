@@ -47,6 +47,8 @@
     <!-- Settings page Strings -->
     <string name="changePassButton"> Change Password </string>
     <string name="logout"> Logout </string>
+    <string name="delaccount"> Delete Account</string>
+
 
     <!-- flat name for action bar Strings -->
     <string name="flat_chat"> flatchat </string>

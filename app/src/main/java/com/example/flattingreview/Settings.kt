@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_change_password.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -15,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_settings.*
  * @author Nikki Meadows
  */
 class Settings : AppCompatActivity() {
-
     //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
 
@@ -41,10 +43,15 @@ class Settings : AppCompatActivity() {
         logoutBut.setOnClickListener {
             logout()
         }
+        //connecting the delete account button to the delete account screen
+        deleteAccountButton.setOnClickListener{
+            val intent = Intent(this, DeleteAccount::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
-     * A Method that will logout the current user and re-direct the user to the login screen.
+     * A method that will logout the current user and re-direct the user to the login screen.
      */
     private fun logout() {
         auth.signOut()
