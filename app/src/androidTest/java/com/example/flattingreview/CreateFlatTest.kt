@@ -10,8 +10,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * TODO
+ * A class that tests the UI of the create flat screen.
  *
+ *@author Nikki Meadows
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class CreateFlatTest{

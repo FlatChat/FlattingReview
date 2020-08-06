@@ -4,20 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".SplashScreen">
 
 
     <TextView
         android:id="@+id/splashFlatTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="281dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="287dp"
+        android:fontFamily="@font/permanentmarker"
         android:text="@string/flatchat"
-        android:textColor="@color/colorRed"
-        android:textSize="40sp"
-        android:textStyle="italic"
+        android:textColor="@color/colorWhite"
+        android:textSize="60sp"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/house" />
+
+    <ImageView
+        android:id="@+id/house"
+        android:layout_width="137dp"
+        android:layout_height="94dp"
+        android:layout_marginTop="279dp"
+        android:contentDescription="@string/splashhouse"
+        android:src="@drawable/whitecartoonhouse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

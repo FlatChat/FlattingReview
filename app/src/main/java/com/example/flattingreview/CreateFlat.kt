@@ -70,7 +70,7 @@ class CreateFlat : AppCompatActivity() {
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
-                    val intent = Intent(this, Account::class.java)
+                    val intent = Intent(this, Settings::class.java)
                     startActivity(intent)
                     true
                 }
