@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- function activities -->
+        <activity android:name=".Settings" />
+        <activity android:name=".ChangePassword" />
 
         <!-- Set the splash screen as the first screen when user installs the application -->
         <activity
@@ -34,8 +37,6 @@
         <activity android:name=".HomeScreen" />
         <activity android:name=".ViewReviews"/>
         <activity android:name=".FlatScreen"/>
-        <activity android:name=".Settings" />
-        <activity android:name=".ChangePassword" />
         <activity android:name=".DeleteAccount" />
 
 

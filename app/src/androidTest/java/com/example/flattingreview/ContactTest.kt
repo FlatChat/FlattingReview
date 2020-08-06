@@ -11,17 +11,15 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * A class that tests the UI of the splash screen.
+ * TODO
  *
- *@author Nikki Meadows
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
-class SplashScreenTest{
+class ContactTest{
 
-    //checks if the activity is launched
     @Test
     fun test_isActivityInView() {
-        val activityScenario=ActivityScenario.launch(SplashScreen::class.java)
-        onView(withId(R.id.splashTag)).check(matches(isDisplayed()))
+        val activityScenario=ActivityScenario.launch(Contact::class.java)
+        onView(withId(R.id.contactScreenTag)).check(matches(isDisplayed()))
     }
 }

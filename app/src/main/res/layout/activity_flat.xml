@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/flat_screen_tag"
+    android:id="@+id/flatTag"
     tools:context=".FlatScreen">
 
     <ScrollView
@@ -53,8 +53,7 @@
                     android:layout_weight="1"
                     android:contentDescription="@string/star"
                     app:srcCompat="@android:drawable/btn_star"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp" />
+                    android:layout_marginStart="16dp" />
 
                 <TextView
                     android:id="@+id/flat_rating"
@@ -101,8 +100,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/report"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:layout_marginLeft="16dp" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <TextView
                     android:id="@+id/textView5"

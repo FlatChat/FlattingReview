@@ -24,17 +24,17 @@ class SignInTest{
     @Test
     fun test_isActivityinView() {
         val activityScenario=ActivityScenario.launch(SignIn::class.java)
-        onView(ViewMatchers.withId(R.id.sign_in_screen_tag))
+        onView(ViewMatchers.withId(R.id.signInTag))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-    //a test to check the viability of the login, forgot password and sign up button
+    //a test to check the viability of the login, forgot password and sign up botton
     @Test
     fun test_Signin_Button_Visability() {
         val activityScenario=ActivityScenario.launch(SignIn::class.java)
         onView(withId(R.id.loginButton))
             .check(matches(isDisplayed()))
 
-        onView(withId(R.id.forget_password_button))
+        onView(withId(R.id.forgotPassButton))
             .check(matches(isDisplayed()))
 
         onView(withId(R.id.signUpButton))

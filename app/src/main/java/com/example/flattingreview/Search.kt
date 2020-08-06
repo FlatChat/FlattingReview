@@ -10,8 +10,11 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.activity_search.*
+import kotlinx.android.synthetic.main.activity_search.bottom_navigation
 import models.Flat
 import models.Review
 import kotlin.math.round
@@ -36,6 +39,33 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
 
         mSearchText = findViewById(R.id.search_bar_text)
         mRecyclerView = findViewById(R.id.search_view_recycler)
+
+        // Bottom navigation
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.search_screen
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    val intent = Intent(this, Account::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.search_screen -> {
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    val intent = Intent(this, CreateFlat::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
 
         mSearchText.addTextChangedListener(object  : TextWatcher{
             override fun afterTextChanged(s: Editable?) {

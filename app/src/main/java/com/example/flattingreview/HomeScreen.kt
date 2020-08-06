@@ -9,8 +9,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
@@ -31,6 +33,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+    private lateinit var toolbar: ActionBar
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -49,10 +52,12 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         createViewFeaturedReviews()
 
         // Bottom navigation
-        bottom_navigation.setOnNavigationItemSelectedListener {
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.home_screen
+        bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.settings_screen -> {
-                    val intent = Intent(this, Settings::class.java)
+                R.id.account_screen -> {
+                    val intent = Intent(this, Account::class.java)
                     startActivity(intent)
                     true
                 }
@@ -72,9 +77,9 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                 else -> false
             }
         }
-
         getData()
     }
+
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
@@ -199,5 +204,37 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
+    }
+
+    //below code is all for the action bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        //If home screen option is pressed go to home screen
+        if (id == R.id.home_screen) {
+            val intent = Intent(this, HomeScreen::class.java)
+            startActivity(intent)
+        }
+        //If write a review option is pressed go to review screen
+        if (id == R.id.write_review) {
+            val intent = Intent(this, WriteReview::class.java)
+            startActivity(intent)
+        }
+        //If contact us option is pressed go to contact us screen
+        if (id == R.id.contact) {
+            val intent = Intent(this, Account::class.java)
+            startActivity(intent)
+        }
+        //If logout option is selected then redirect user to the login screen
+        if (id == R.id.settings) {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -148,6 +148,40 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
+
+
+    //below code is all for the action bar
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+        //If home screen option is pressed go to home screen
+        if (id == R.id.home_screen) {
+            val intent = Intent(this, HomeScreen::class.java)
+            startActivity(intent)
+        }
+        //If write a review option is pressed go to review screen
+        if (id == R.id.write_review) {
+            val intent = Intent(this, WriteReview::class.java)
+            startActivity(intent)
+        }
+        //If contact us option is pressed go to contact us screen
+        if (id == R.id.contact) {
+            val intent = Intent(this, Account::class.java)
+            startActivity(intent)
+        }
+        //If logout option is selected then redirect user to the login screen
+        if (id == R.id.settings) {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
         TODO("Not yet implemented")
     }

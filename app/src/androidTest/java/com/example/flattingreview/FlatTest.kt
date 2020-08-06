@@ -10,24 +10,27 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * A class that tests the UI of the create flat screen.
+ * TODO
  *
- *@author Nikki Meadows
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
-class CreateFlatTest{
+class FlatTest{
+
     @Test
     fun test_isActivityInView() {
-        val activityScenario=ActivityScenario.launch(CreateFlat::class.java)
-        onView(ViewMatchers.withId(R.id.createFlatTag))
+        val activityScenario=ActivityScenario.launch(Flat::class.java)
+        onView(ViewMatchers.withId(R.id.flatTag))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    //A test to check the visibility of the create a flat button
+    //A test to check the visibility of the buttons on the flat screen
     @Test
-    fun test_Visibility_Create_Button() {
-        val activityScenario=ActivityScenario.launch(CreateFlat::class.java)
-        onView(ViewMatchers.withId(R.id.createButton))
+    fun test_Visibility_Review_Buttons() {
+        val activityScenario=ActivityScenario.launch(Flat::class.java)
+        onView(ViewMatchers.withId(R.id.show_reviews_button))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        onView(ViewMatchers.withId(R.id.add_review_button))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
