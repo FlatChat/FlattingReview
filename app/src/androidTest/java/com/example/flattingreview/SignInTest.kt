@@ -13,8 +13,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * TODO
+ * A class that tests the UI of the sign in screen.
  *
+ * @author Nikki Meadows
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class SignInTest{

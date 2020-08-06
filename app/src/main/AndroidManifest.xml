@@ -36,7 +36,10 @@
         <activity android:name=".SignIn" />
         <activity android:name=".HomeScreen" />
         <activity android:name=".ViewReviews"/>
-        <activity android:name=".FlatScreen" />
+        <activity android:name=".FlatScreen"/>
+        <activity android:name=".DeleteAccount" />
+
+
 
         <!--        <provider-->
         <!--            android:name="android.support.v4.content.FileProvider"-->
