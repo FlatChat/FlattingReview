@@ -48,6 +48,7 @@
     <string name="changePassButton"> Change Password </string>
     <string name="logout"> Logout </string>
     <string name="delaccount"> Delete Account</string>
+    <string name="needHelp"> Need help? </string>
 
 
     <!-- flat name for action bar Strings -->
@@ -83,5 +84,6 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="current_password">Current Password</string>
+
 
 </resources>

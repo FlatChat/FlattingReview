@@ -48,6 +48,11 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, DeleteAccount::class.java)
             startActivity(intent)
         }
+        //connecting the need help button to the account screen
+        buttonHelp.setOnClickListener{
+            val intent = Intent(this, Account::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
