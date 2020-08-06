@@ -8,6 +8,11 @@ import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_delete_account.*
 
+/**
+ * A class containing a the required methods to allow a user to permanently delete their account.
+ *
+ * @author Nikki Meadows
+ */
 class DeleteAccount : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -27,13 +32,7 @@ class DeleteAccount : AppCompatActivity() {
             deleteAccount()
         }
     }
-
-    /**
-     * A method that will allow a user to permanently delete their account. Before the user can delete their account,
-     * they will be re-authenticated by having to enter in their current email and password. Once the account
-     * has been successfully deleted, they will be logged out and re-directed to the sign in page.
-     *
-     */
+    
     private fun deleteAccount() {
         //if all of the text fields are not empty
         if (emailET.text.isNotEmpty() &&
