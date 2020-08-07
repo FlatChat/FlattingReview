@@ -18,7 +18,7 @@ jobs:
     - name: Kotlin build test
       run:
           if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
-          bash <(curl -s https://codecov.io/bash) -t CODECOV_TOKEN
+          bash <(curl -s https://codecov.io/bash)
  
       
   
