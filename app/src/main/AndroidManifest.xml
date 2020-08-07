@@ -33,7 +33,8 @@
         <activity android:name=".CreateFlat" />
         <activity android:name=".CreateAccount" />
         <activity android:name=".WriteReview" />
-        <activity android:name=".SignIn" />
+        <activity android:name=".SignIn"
+            android:theme="@style/SplashTheme"/>
         <activity android:name=".HomeScreen" />
         <activity android:name=".ViewReviews"/>
         <activity android:name=".FlatScreen"/>
