@@ -129,9 +129,7 @@ class CreateFlat : AppCompatActivity() {
                 pickImageFromGallery()
             }
         }
-
     }
-
 
 
     /**

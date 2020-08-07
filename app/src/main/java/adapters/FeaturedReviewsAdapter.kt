@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
-import models.Review
 import kotlinx.android.synthetic.main.featured_rev_layout.view.*
+import models.Review
 import java.util.*
 
 /**

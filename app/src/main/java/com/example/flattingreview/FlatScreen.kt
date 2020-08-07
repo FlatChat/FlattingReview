@@ -5,11 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.*
-import models.Flat
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_flat.*
+import models.Flat
 
 /**
  * This is the screen for a particular flat selected
@@ -26,6 +31,8 @@ class FlatScreen : AppCompatActivity() {
     private var overallRating: String? = null
     private var numberOfReviews: Int? = null
     private lateinit var flat: Flat
+    private lateinit var flatImage: ImageView
+    private lateinit var storage: FirebaseStorage
 
     /**
      * This connects a reference to flats and reviews in the database.
@@ -56,14 +63,13 @@ class FlatScreen : AppCompatActivity() {
     private fun set(){
         val addressText: TextView = findViewById(R.id.flat_address)
         val flatRating: TextView = findViewById(R.id.flat_rating)
+        flatImage = findViewById(R.id.flat_image)
         flatRating.text = "$overallRating ($numberOfReviews reviews)"
         addressText.text = address!!.split(",")[0]
     }
 
     /**
-     * This method is not yet fully functional.
-     * It will serve to load the data about the
-     * selected flat from the database.
+     * Loads the data from the intent into the layout.
      */
     public override fun onStart() {
         super.onStart()
@@ -72,6 +78,10 @@ class FlatScreen : AppCompatActivity() {
         overallRating = intent.getStringExtra("overallRating")
         numberOfReviews = intent.getIntExtra("numberOfRatings", 0)
         set()
+        val url = "https://www.critic.co.nz/files/article-7438.jpg"
+        GlideApp.with(this)
+            .load(url)
+            .into(flat_image)
     }
 
 

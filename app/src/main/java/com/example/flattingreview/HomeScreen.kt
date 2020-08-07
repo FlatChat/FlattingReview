@@ -4,19 +4,19 @@ import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
-import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlin.math.round
 
 /**
@@ -29,11 +29,11 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
+    private  var imageList: ArrayList<Image> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
-    private lateinit var toolbar: ActionBar
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -79,7 +79,6 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         }
         getData()
     }
-
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
@@ -158,7 +157,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      *
      */
     private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat, ratingList, this)
+        featured_flat_recycler.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
         featured_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)

@@ -7,10 +7,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
 import com.example.flattingreview.Search
-import models.Flat
 import kotlinx.android.synthetic.main.flat_search_layout.view.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import models.Flat
 
 /**
  * This class receives a list of Flat objects and displays them in the recycler view.

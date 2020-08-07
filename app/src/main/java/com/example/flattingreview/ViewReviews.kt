@@ -9,10 +9,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_view_reviews.*
 import models.Flat
 import models.Review
-import kotlinx.android.synthetic.main.activity_view_reviews.*
-import kotlin.collections.ArrayList
 
 /**
  * This will display all the written reviews for a particular flat. This page is navigated to

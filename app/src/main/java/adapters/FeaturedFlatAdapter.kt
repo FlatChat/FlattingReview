@@ -1,15 +1,16 @@
 package adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.flattingreview.R
-import models.Flat
 import kotlinx.android.synthetic.main.flat_layout.view.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import models.Flat
 
 /**
  * This class receives a list of Flat objects and displays them in the recycler view.
@@ -17,6 +18,7 @@ import kotlin.collections.HashMap
  * @property exampleList list of Flat objects to display
  */
 class FeaturedFlatAdapter(
+    private val context: Context,
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, ArrayList<Double>>,
     private var clickListener: OnItemClickListener
@@ -38,6 +40,7 @@ class FeaturedFlatAdapter(
         return FeaturedFlatViewHolder(itemView)
     }
 
+
     /**
      * This binds the data from the database to the textView's in the holder.
      *
@@ -46,6 +49,8 @@ class FeaturedFlatAdapter(
      */
     override fun onBindViewHolder(holder: FeaturedFlatViewHolder, position: Int) {
         val currentItem = exampleList[position]
+        val url = "https://www.critic.co.nz/files/article-7438.jpg"
+        Glide.with(context).load(url).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
         val array  = ratingList[currentItem.flatID]
         var sum = 0.0
@@ -74,6 +79,7 @@ class FeaturedFlatAdapter(
     class FeaturedFlatViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView1: TextView = itemView.flat_icon_address
         val textView2: TextView = itemView.flat_icon_rating
+        val imageView1: ImageView = itemView.flat_image
         fun initialize(item: Flat, action: OnItemClickListener) {
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
@@ -87,3 +93,7 @@ class FeaturedFlatAdapter(
     }
 
 }
+
+
+
+
