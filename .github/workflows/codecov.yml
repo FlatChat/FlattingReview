@@ -16,10 +16,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Kotlin build test
-      run: bash <(curl -s https://codecov.io/bash)
-           cat codecov.yml | curl --data-binary @- https://codecov.io/validate
-      env:
-        token: CODECOV_TOKEN
+      run: 
+          export CODECOV_TOKEN="token"
+          bash <(curl -s https://codecov.io/bash)
+ 
+      
   
 
 
