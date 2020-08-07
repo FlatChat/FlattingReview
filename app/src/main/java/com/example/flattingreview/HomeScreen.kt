@@ -2,9 +2,9 @@ package com.example.flattingreview
 
 import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
+import adapters.PopularFlatAdapter
 import android.content.Context
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -25,11 +25,10 @@ import kotlin.math.round
  * users can browse.
  * @author Ryan Cole
  */
-class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
+class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
-    private  var imageList: ArrayList<Image> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
@@ -99,6 +98,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                     val flat = Flat(id, address, beds, baths)
                     featuredFlat.add(flat)
                 }
+                createViewPopularFlats()
                 createViewFeaturedFlats()
             }
         }
@@ -156,6 +156,13 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      * the flats horizontally across the screen
      *
      */
+    private fun createViewPopularFlats() {
+        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
+        popular_flat_recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        popular_flat_recycler.setHasFixedSize(true)
+    }
+
     private fun createViewFeaturedFlats() {
         featured_flat_recycler.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
         featured_flat_recycler.layoutManager =

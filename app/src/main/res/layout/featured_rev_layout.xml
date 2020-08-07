@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:padding="10dp">
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin"
+    app:cardElevation="@dimen/elevation"
+    android:padding="@dimen/padding"
+    app:cardCornerRadius="@dimen/radius">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="@dimen/padding">
 
         <TextView
             android:id="@+id/featured_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="3dp"
+            android:padding="@dimen/padding"
             android:text="@string/card_name"
             android:textSize="18sp" />
 
@@ -23,7 +26,7 @@
             android:id="@+id/featured_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="3dp"
+            android:padding="@dimen/padding"
             android:text="@string/card_date"
             android:textColor="#BAB1B1"
             android:textSize="12sp" />
@@ -32,7 +35,7 @@
             android:id="@+id/featured_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="3dp"
+            android:padding="@dimen/padding"
             android:text="@string/comment" />
 
     </LinearLayout>
