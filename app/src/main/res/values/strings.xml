@@ -97,11 +97,10 @@
     <string name="dunedin">Dunedin</string>
     <string name="upload_image">Upload Image</string>
     <string name="upload_an_image">Upload an image</string>
-    <string name="delaccount">Delete Account</string>
+    <string name="del_account">Delete Account</string>
     <string name="needHelp">Need Help</string>
-    <string name="splashhouse">Splash House</string>
+    <string name="splash_house">Splash House</string>
     <string name="featured_flats">Featured Flats</string>
     <string name="Anonymous">Anonymous</string>
-    <string name="signUpbutton">Sign up</string>
 
 </resources>

@@ -26,9 +26,9 @@ class ChangePasswordTest{
         onView(withId(R.id.changePasswordTag)).check(matches(isDisplayed()))
     }
 
-    //a test to check the visabilty of the change password button
+    //a test to check the visibility of the change password button
     @Test
-    fun test_Visability_of_ChangePassword_Button() {
+    fun test_Visibility_of_ChangePassword_Button() {
         val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
         onView(withId(R.id.changePasBut))
             .check(matches(isDisplayed()))

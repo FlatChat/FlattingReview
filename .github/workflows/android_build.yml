@@ -51,7 +51,7 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
     
- # Check the code with Android linter UNCHECK WHEN READY TO DEBUG THE PROJECT
+ # Check the code with Android Linter UNCHECK WHEN READY TO DEBUG THE PROJECT
  #     - name: Run Android Linter
  #       run: ./gradlew lintStagingDebug
  
