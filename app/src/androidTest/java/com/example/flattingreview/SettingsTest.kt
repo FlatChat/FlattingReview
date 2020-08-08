@@ -1,3 +1,4 @@
+/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -9,10 +10,12 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+*/
 /**
  * A class that tests the UI of the settings screen.
  *
- */
+ *//*
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class SettingsTest{
 
@@ -33,4 +36,4 @@ class SettingsTest{
         onView(ViewMatchers.withId(R.id.logoutBut))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-}
+}*/

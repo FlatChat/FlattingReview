@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'org.jetbrains.dokka'
-
+apply plugin: 'jacoco'
 
 
 android {
@@ -15,7 +15,6 @@ android {
         outputFormat = 'html'
         outputDirectory = "$buildDir/dokka"
     }
-
 
     defaultConfig {
         applicationId "com.example.flattingreview"
@@ -31,6 +30,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug
+                {
+                 testCoverageEnabled true
         }
     }
 
@@ -74,8 +77,10 @@ dependencies {
 
     //unit testing dependencies
     // Required -- JUnit 4 framework
-    testImplementation 'junit:junit:4.12'
+   // testImplementation 'junit:junit:4.12'
     //Mockito framework
     testImplementation 'org.mockito:mockito-core:1.10.19'
 }
+
+
 

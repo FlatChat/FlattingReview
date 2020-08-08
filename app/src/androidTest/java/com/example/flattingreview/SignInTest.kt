@@ -1,3 +1,4 @@
+/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -12,11 +13,13 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+*/
 /**
  * A class that tests the UI of the sign in screen.
  *
  * @author Nikki Meadows
- */
+ *//*
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class SignInTest{
 
@@ -42,3 +45,4 @@ class SignInTest{
     }
 }
 
+*/
