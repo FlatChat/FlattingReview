@@ -10,30 +10,6 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "documentation"
-  documentation:
-    name: Run dokka Documentation
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-      # Decode Google services configuration file
-      - name: Decode google-services.json
-        env:
-          FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
-        run: echo $FIREBASE_CONFIG > app/google-services.json
-
-      - name: Change wrapper permissions
-        run: chmod +x ./gradlew
-
-      - name: Generate Dokka
-        run: ./gradlew dokka
-
-
   # This workflow contains a single job called "tests"
   tests:
     name: Run Tests
