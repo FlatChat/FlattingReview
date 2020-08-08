@@ -86,5 +86,9 @@
     <string name="needHelp">Need Help</string>
     <string name="splash_house">Splash House</string>
     <string name="featured_flats">Featured Flats</string>
+    <string name="value">Value</string>
+    <string name="location">Location</string>
+    <string name="landlord">Landlord</string>
+    <string name="cleanliness">Cleanliness</string>
 
 </resources>
