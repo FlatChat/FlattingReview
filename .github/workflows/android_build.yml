@@ -75,7 +75,7 @@ jobs:
         with:
           api-level: 30
           target: google_apis
-          script: ./gradlew report connectedAndroidTest
+          script: ./gradlew test createDebugAndroidTestCoverageReport 
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
 
