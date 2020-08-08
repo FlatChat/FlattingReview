@@ -1,19 +1,7 @@
 package firebase
 
-import adapters.ReviewAdapter
-import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.flattingreview.Account
-import com.example.flattingreview.HomeScreen
-import com.example.flattingreview.Settings
-import com.example.flattingreview.WriteReview
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_view_reviews.*
 import models.Flat
 import models.Review
 import kotlin.math.round

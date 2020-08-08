@@ -1,5 +1,3 @@
-@file:Suppress("SpellCheckingInspection")
-
 package com.example.flattingreview
 
 import android.annotation.SuppressLint
@@ -9,8 +7,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
@@ -73,6 +73,10 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         }
     }
 
+    /**
+     * Displays the flat address in the text box in the layout.
+     *
+     */
     private fun setDisplay(){
         val address = flat.address
         val addressText: TextView = findViewById(R.id.write_review_address)
@@ -157,34 +161,10 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        //If home screen option is pressed go to home screen
-        if (id == R.id.home_screen) {
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
-        //If write a review option is pressed go to review screen
-        if (id == R.id.write_review) {
-            val intent = Intent(this, WriteReview::class.java)
-            startActivity(intent)
-        }
-        //If contact us option is pressed go to contact us screen
-        if (id == R.id.contact) {
-            val intent = Intent(this, Account::class.java)
-            startActivity(intent)
-        }
-        //If logout option is selected then redirect user to the login screen
-        if (id == R.id.settings) {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
-        TODO("Not yet implemented")
+//        TODO("Not yet implemented")
     }
+
+
 }
 

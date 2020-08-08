@@ -18,7 +18,6 @@ import models.Users
  * they can sign in with their new credentials.
  * @author Nikki Meadows
  */
-@Suppress("NAME_SHADOWING")
 class CreateAccount : AppCompatActivity() {
 
     //global variable for firebase authentication
@@ -101,7 +100,7 @@ class CreateAccount : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     user!!.sendEmailVerification()
-                        .addOnCompleteListener { task ->
+                        .addOnCompleteListener {
                             if (task.isSuccessful) {
                                 val userID = user.uid
                                 val userReference =

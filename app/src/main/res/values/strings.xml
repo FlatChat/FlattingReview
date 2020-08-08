@@ -90,5 +90,11 @@
     <string name="location">Location</string>
     <string name="landlord">Landlord</string>
     <string name="cleanliness">Cleanliness</string>
-
+    <string name="reviews_for_flat_screen">%s (%02d reviews)</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="current_address_optional">Current Address (optional)</string>
+    <string name="tenant">Tenant</string>
+    <string name="landlord">Landlord</string>
+    <string name="i_am_a">I am a...</string>
 </resources>

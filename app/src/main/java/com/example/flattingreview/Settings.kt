@@ -73,7 +73,7 @@ class Settings : AppCompatActivity() {
         }
         //connecting the need help button to the account screen
         buttonHelp.setOnClickListener{
-            val intent = Intent(this, Account::class.java)
+            val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
 
@@ -124,7 +124,7 @@ class Settings : AppCompatActivity() {
         }
         //If contact us option is pressed go to contact us screen
         if (id == R.id.contact) {
-            val intent = Intent(this, Account::class.java)
+            val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
         //If logout option is selected then redirect user to the login screen
