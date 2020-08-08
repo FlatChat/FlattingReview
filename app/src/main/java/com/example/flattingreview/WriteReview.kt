@@ -15,10 +15,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_write_review.*
 import models.Flat
 import models.Review
-import kotlinx.android.synthetic.main.activity_write_review.*
-import java.util.Date
+import java.util.*
 
 /**
  * Class designed to collect the data inputted by the users from activity_write_review.xml

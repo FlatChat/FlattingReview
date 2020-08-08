@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
 
 
@@ -15,6 +16,7 @@ android {
         outputFormat = 'html'
         outputDirectory = "$buildDir/dokka"
     }
+
 
     defaultConfig {
         applicationId "com.example.flattingreview"
@@ -74,6 +76,10 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.firebaseui:firebase-ui-storage:6.2.0'
+// Find the latest Glide releases here: https://goo.gl/LpksbR
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //unit testing dependencies
     // Required -- JUnit 4 framework
@@ -81,6 +87,4 @@ dependencies {
     //Mockito framework
     testImplementation 'org.mockito:mockito-core:1.10.19'
 }
-
-
 

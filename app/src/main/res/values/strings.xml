@@ -100,6 +100,8 @@
     <string name="delaccount">Delete Account</string>
     <string name="needHelp">Need Help</string>
     <string name="splashhouse">Splash House</string>
+    <string name="featured_flats">Featured Flats</string>
+    <string name="Anonymous">Anonymous</string>
     <string name="signUpbutton">Sign up</string>
 
 </resources>

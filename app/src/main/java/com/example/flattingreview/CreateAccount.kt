@@ -9,8 +9,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import models.Users
 import kotlinx.android.synthetic.main.activity_create_account.*
+import models.Users
 
 /**
  * A class that allows the user to create a new account using their email address and a password.
