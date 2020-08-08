@@ -58,6 +58,24 @@ jobs:
 
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
+  instrumented-tests:
+    name: Instrumented Tests
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Run instrumented tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          script: ./gradlew jacocoTestReport connectedAndroidTest
+
+      - name: Upload coverage reports
+        run: bash <(curl -s https://codecov.io/bash)
+
   #uncomment when the ui testing is set up properly on here  
  #     - name: Run Instrumentation Tests
  #       uses: malinskiy/action-android/emulator-run-cmd@release/0.0.3
