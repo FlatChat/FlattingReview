@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_home_screen.*
 
 /**
  * A class that allows the user to find contact information for the application development team or the
@@ -24,34 +22,34 @@ class Account : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account)
 
-        // Bottom navigation
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigation.selectedItemId = R.id.account_screen
-        bottom_navigation.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.account_screen -> {
-                    val intent = Intent(this, Settings::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.home_screen -> {
-                    val intent = Intent(this, HomeScreen::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.search_screen -> {
-                    val intent = Intent(this, Search::class.java)
-                    startActivity(intent)
-                    true
-                }
-                R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
-            }
-        }
+//        // Bottom navigation
+//        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+//        bottomNavigation.selectedItemId = R.id.account_screen
+//        bottom_navigation.setOnNavigationItemSelectedListener {
+//            when (it.itemId) {
+//                R.id.account_screen -> {
+//                    val intent = Intent(this, Settings::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//                R.id.home_screen -> {
+//                    val intent = Intent(this, HomeScreen::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//                R.id.search_screen -> {
+//                    val intent = Intent(this, Search::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//                R.id.add_flat_screen -> {
+//                    val intent = Intent(this, CreateFlat::class.java)
+//                    startActivity(intent)
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
     }
 
     /**

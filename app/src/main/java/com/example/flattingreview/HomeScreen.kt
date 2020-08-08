@@ -7,8 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,9 +15,8 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
 import kotlin.math.round
+
 //import firebase.Connect
 
 /**
@@ -53,7 +50,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
 
         // Bottom navigation
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation_home)
         bottomNavigation.selectedItemId = R.id.home_screen
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {

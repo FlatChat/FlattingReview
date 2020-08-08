@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_settings.*
 
@@ -29,6 +30,33 @@ class Settings : AppCompatActivity() {
         setContentView(R.layout.activity_settings)
         super.onCreate(savedInstanceState)
 
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.account_screen
+
+        bottom_navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.search_screen -> {
+                    val intent = Intent(this, Search::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    val intent = Intent(this, CreateFlat::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
         //connecting the change password button to the change password screen
         changePassBut.setOnClickListener {
             val intent = Intent(this, ChangePassword::class.java)
@@ -48,6 +76,9 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, Account::class.java)
             startActivity(intent)
         }
+
+
+
     }
 
     /**

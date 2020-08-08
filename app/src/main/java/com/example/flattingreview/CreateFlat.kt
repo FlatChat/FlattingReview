@@ -28,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_create_new_flat.*
-import kotlinx.android.synthetic.main.activity_home_screen.bottom_navigation
 import models.Flat
 import java.io.ByteArrayOutputStream
 
