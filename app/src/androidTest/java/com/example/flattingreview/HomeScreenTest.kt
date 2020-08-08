@@ -1,4 +1,4 @@
-/*
+package com.example.flattingreview/*
 package com.example.flattingreview
 
 

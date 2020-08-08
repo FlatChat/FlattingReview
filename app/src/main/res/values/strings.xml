@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">flatchat</string>
-    <string name="contactUs">For feedback or general enquires regarding Flat Review, please contact us on flatreview@gmail.com</string>
-    <string name="findUsOn"> Or find us on Facebook: </string>
-    <string name="support"> Need tenancy advice?  </string>
-    <string name="contactTribunalEmail"> Contact www.tenancy.govt.nz</string>
     <string name="featuredReview"> Featured Reviews </string>
 
     <!-- Home Screen -->
@@ -33,9 +29,6 @@
     <!-- Review Strings -->
     <string name="overall_rating">4.65 (3 reviews)</string>
     <string name="comment">A great location. Nice and peaceful and a short walk from the center of uni. Well insulated but does get to hot.</string>
-    <string name="report">report comment</string>
-    <string name="date">28th January 2018</string>
-    <string name="reviewer">Ryan Cole</string>
     <string name="comment_hint">Write comment here</string>
 
     <!-- Create account Strings -->
@@ -65,7 +58,6 @@
     <string name="write_a_review">Write a Review</string>
     <string name="contact_us">Contact Us</string>
     <string name="settings">Settings</string>
-    <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="new_password">New Password</string>
     <string name="current_password">Current Password</string>
@@ -88,7 +80,6 @@
     <string name="featured_flats">Featured Flats</string>
     <string name="value">Value</string>
     <string name="location">Location</string>
-    <string name="landlord">Landlord</string>
     <string name="cleanliness">Cleanliness</string>
     <string name="reviews_for_flat_screen">%s (%02d reviews)</string>
     <string name="email">Email</string>
@@ -96,5 +87,5 @@
     <string name="current_address_optional">Current Address (optional)</string>
     <string name="tenant">Tenant</string>
     <string name="landlord">Landlord</string>
-    <string name="i_am_a">I am a...</string>
+    <string name="i_am_a">I am a…</string>
 </resources>
