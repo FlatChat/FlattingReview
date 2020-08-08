@@ -24,18 +24,6 @@
             android:textColor="#000000"
             android:textSize="20sp"
             android:padding="@dimen/padding"/>
-
-        <TextView
-            android:id="@+id/search_flat_rating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/margin"
-            android:gravity="end"
-            android:text="@string/flat_icon_rating"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:padding="@dimen/padding"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
