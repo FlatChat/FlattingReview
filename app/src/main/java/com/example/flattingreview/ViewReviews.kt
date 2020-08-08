@@ -98,6 +98,8 @@ class ViewReviews : AppCompatActivity() {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
+
+
     /**
      * The createView() method creates an instance of the ReviewAdapter adn sends
      * a list of the reviews to display. It also sets the layout manager and to the recycler
