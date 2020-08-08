@@ -17,9 +17,14 @@ import models.Flat
  */
 class SearchAdapter(
     private val exampleList: ArrayList<Flat>,
-    private val ratingList: HashMap<String, ArrayList<Double>>,
     private var clickListener: Search
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
+
+
+    fun clear() {
+        exampleList.removeAll(exampleList)
+    }
+
 
     /**
      * On create the layout for each flat object is created, it gets the layout from the
@@ -46,16 +51,6 @@ class SearchAdapter(
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         val currentItem = exampleList[position]
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        val array  = ratingList[currentItem.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(item in array) sum += item
-        }
-        if (array != null) {
-            holder.textView2.text = (sum / array.size).toString()
-        } else {
-            holder.textView2.text = "0"
-        }
         holder.initialize(currentItem, clickListener)
     }
 
@@ -72,13 +67,11 @@ class SearchAdapter(
      */
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView1: TextView = itemView.search_flat_address
-        val textView2: TextView = itemView.search_flat_rating
         fun initialize(item: Flat, action: Search) {
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
             }
         }
-
     }
 
     interface OnItemClickListener {

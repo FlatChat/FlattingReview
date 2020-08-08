@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_write_review.*
@@ -32,7 +33,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var landlord: RatingBar
     private lateinit var location: RatingBar
     private lateinit var value: RatingBar
-    private lateinit var anon: Switch
+    private lateinit var anon: SwitchCompat
     private var comment: Editable? = null
     private lateinit var userReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.flattingreview.HomeScreen
 import com.example.flattingreview.R
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.flat_layout.view.*
 import models.Flat
 
@@ -24,6 +25,8 @@ class FeaturedFlatAdapter(
     private val ratingList: HashMap<String, ArrayList<Double>>,
     private var clickListener: HomeScreen
 ) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
+
+    private val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
     /**
      * On create the layout for each flat object is created, it gets the layout from the
@@ -50,8 +53,9 @@ class FeaturedFlatAdapter(
      */
     override fun onBindViewHolder(holder: FeaturedFlatViewHolder, position: Int) {
         val currentItem = exampleList[position]
-        val url = "https://www.critic.co.nz/files/article-7438.jpg"
-        Glide.with(context).load(url).into(holder.imageView1)
+        val gsReference =
+            storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
+        Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
         val array  = ratingList[currentItem.flatID]
         var sum = 0.0
@@ -86,13 +90,7 @@ class FeaturedFlatAdapter(
                 action.onItemClick(item, adapterPosition)
             }
         }
-
     }
-
-    interface OnItemClickListener {
-        fun onItemClick(item: Flat, position: Int)
-    }
-
 }
 
 
