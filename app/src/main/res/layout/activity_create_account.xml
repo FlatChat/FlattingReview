@@ -7,7 +7,6 @@
     tools:context=".CreateAccount">
 
     <TextView
-        android:id="@+id/signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="147dp"
@@ -80,7 +79,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tenOrLanLo" />
 
     <CheckBox
-        android:id="@+id/checkBoxLaLo"
         android:layout_width="90dp"
         android:layout_height="30dp"
         android:layout_marginStart="160dp"
