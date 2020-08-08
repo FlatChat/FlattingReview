@@ -47,16 +47,13 @@ jobs:
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
-      
-      - name: Run unit tests
-        run: ./gradlew test
-      
+       
+      - name: Unit tests
+        run: bash ./gradlew test --stacktrace
+ 
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
 
-    
 
-   #   - name: Unit tests
-     #   run: bash ./gradlew test --stacktrace
     
 
