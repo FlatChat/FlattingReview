@@ -17,7 +17,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Kotlin build test
       run:
-          if [ -e ./gradlew ]; then ./gradlew jacocoTestReport;else gradle jacocoTestReport;fi
           bash <(curl -s https://codecov.io/bash)
  
       
