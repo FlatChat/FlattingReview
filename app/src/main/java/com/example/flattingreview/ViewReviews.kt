@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.*
+//import firebase.Connect
 import kotlinx.android.synthetic.main.activity_view_reviews.*
 import models.Flat
 import models.Review
@@ -50,6 +51,9 @@ class ViewReviews : AppCompatActivity() {
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
 
+//        val connect: Connect = Connect()
+//        connect.getReviewByFlat(flat)
+//        reviewList.addAll(connect.reviewList)
 
 
         val reviewListener: ValueEventListener = object : ValueEventListener {

@@ -9,15 +9,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_flat.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.round
+//import firebase.Connect
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -28,11 +34,13 @@ import kotlin.math.round
 class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
+    private var popularFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+//    private var connect: Connect = Connect()
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -46,9 +54,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
-
-        createViewFeaturedReviews()
-        createViewFeaturedReviews()
 
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -77,6 +82,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
         }
         getData()
+//        featuredFlat = connect.getAllFlats()
+//        connect.getAllReview()
+//        numberOfReviews = connect.numberOfReviews
+//        ratingList = connect.ratingList
+//        createViewFeaturedFlats()
+//        createViewPopularFlats()
+//        createViewFeaturedReviews()
     }
 
     /**
@@ -97,6 +109,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val baths = ds.child("bathrooms").value as String
                     val flat = Flat(id, address, beds, baths)
                     featuredFlat.add(flat)
+                    popularFlat.add(flat)
                 }
                 createViewPopularFlats()
                 createViewFeaturedFlats()
