@@ -17,8 +17,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Kotlin build test
       run:
-          bash <(curl -s https://codecov.io/bash) -f
-          app/build/reports/coverage/debug/report.xml
+          bash <(curl -s https://codecov.io/bash) -f app/build/reports/coverage/debug/report.xml
  
       
   
