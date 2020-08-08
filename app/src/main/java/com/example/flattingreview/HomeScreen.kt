@@ -2,21 +2,21 @@ package com.example.flattingreview
 
 import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
+import adapters.PopularFlatAdapter
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
-import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlin.math.round
 
 /**
@@ -25,7 +25,7 @@ import kotlin.math.round
  * users can browse.
  * @author Ryan Cole
  */
-class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener {
+class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
@@ -33,7 +33,6 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
-    private lateinit var toolbar: ActionBar
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -80,7 +79,6 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
         getData()
     }
 
-
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
      * the data for both the flats and reviews to display in the recycler views in the home screen.
@@ -100,6 +98,7 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
                     val flat = Flat(id, address, beds, baths)
                     featuredFlat.add(flat)
                 }
+                createViewPopularFlats()
                 createViewFeaturedFlats()
             }
         }
@@ -157,8 +156,15 @@ class HomeScreen : AppCompatActivity(), FeaturedFlatAdapter.OnItemClickListener 
      * the flats horizontally across the screen
      *
      */
+    private fun createViewPopularFlats() {
+        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
+        popular_flat_recycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        popular_flat_recycler.setHasFixedSize(true)
+    }
+
     private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(featuredFlat, ratingList, this)
+        featured_flat_recycler.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
         featured_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)

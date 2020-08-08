@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -23,9 +25,12 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_create_new_flat.*
 import kotlinx.android.synthetic.main.activity_home_screen.bottom_navigation
 import models.Flat
+import java.io.ByteArrayOutputStream
 
 
 /**
@@ -43,6 +48,7 @@ class CreateFlat : AppCompatActivity() {
     private lateinit var bedrooms: Editable
     private lateinit var bathrooms: Editable
     private lateinit var createButton: Button
+    private lateinit var image: Intent
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 
     /**
@@ -57,16 +63,27 @@ class CreateFlat : AppCompatActivity() {
         setContentView(R.layout.activity_create_new_flat)
         initPlaces()
         setupPlacesAutoComplete()
-
+        createButton = findViewById(R.id.create_flat)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.add_flat_screen
 
         create_flat.setOnClickListener {
             collectInput()
-            writeNewFlat()
+            if(this::address.isInitialized && this::bathrooms.isInitialized && this::bedrooms.isInitialized){
+                writeNewFlat()
+            } else {
+                if(!this::address.isInitialized){
+                    Toast.makeText(this, "Forgot to add the address", Toast.LENGTH_LONG).show()
+                }
+                if(!this::bathrooms.isInitialized){
+                    Toast.makeText(this, "Forgot to add the bathrooms", Toast.LENGTH_LONG).show()
+                }
+                if(!this::bedrooms.isInitialized){
+                    Toast.makeText(this, "Forgot to add the bedrooms", Toast.LENGTH_LONG).show()
+                }
+            }
         }
 
-        // Bottom navigation
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigation.selectedItemId = R.id.add_flat_screen
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
@@ -112,9 +129,7 @@ class CreateFlat : AppCompatActivity() {
                 pickImageFromGallery()
             }
         }
-
     }
-
 
 
     /**
@@ -163,14 +178,20 @@ class CreateFlat : AppCompatActivity() {
      *
      * @param requestCode
      * @param resultCode
-     * @param data
+     * @param data The image
      */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            upload_flat_image.setImageURI(data?.data)
+            if (data != null) {
+                image = data
+                upload_flat_image.setImageURI(image.data)
+            } else {
+                Toast.makeText(this, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
 
     /**
      * Initialise google places by using the apiKey.
@@ -232,7 +253,6 @@ class CreateFlat : AppCompatActivity() {
     private fun collectInput(){
         bedrooms = findViewById<EditText>(R.id.bedrooms).text
         bathrooms = findViewById<EditText>(R.id.bathrooms).text
-        createButton = findViewById(R.id.create_flat)
     }
 
     /**
@@ -240,23 +260,36 @@ class CreateFlat : AppCompatActivity() {
      * It then sends the user back to the HomeScreen.
      */
     private fun writeNewFlat(){
-        // Database reference
         val myRef = FirebaseDatabase.getInstance().getReference("flats")
-        // Creates the flatID
         val flatID = myRef.push().key
-        // Creates a flat object
+        val imageID = "image$flatID"
+        val storageRef = Firebase.storage.reference.child("flats/$imageID")
+
+        // Get the data from an ImageView as bytes
+//        upload_flat_image.isDrawingCacheEnabled = true
+//        upload_flat_image.buildDrawingCache()
+        val bitmap = (upload_flat_image.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
         val flat = Flat(
             flatID,
             address,
             bedrooms.toString(),
             bathrooms.toString()
         )
-        // Writes the flat to the database
         myRef.child(flatID.toString()).setValue(flat)
-        // Once a flat is created, redirect to the HomeScreen
+
+        val uploadTask = storageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Log.d("File Upload","Failure")
+        }.addOnSuccessListener {
+            Log.d("File Upload","Successful")
+        }
+
         val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
-
     }
 
     /**
@@ -306,6 +339,4 @@ class CreateFlat : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }

@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home_screen.*
 import kotlinx.android.synthetic.main.activity_search.*
-import kotlinx.android.synthetic.main.activity_search.bottom_navigation
 import models.Flat
 import models.Review
 import kotlin.math.round
