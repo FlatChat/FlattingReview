@@ -54,7 +54,9 @@ jobs:
  # Check the code with Android linter UNCHECK WHEN READY TO DEBUG THE PROJECT
  #     - name: Run Android Linter
  #       run: ./gradlew lintStagingDebug
-        
+ 
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew 
 
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
@@ -72,7 +74,8 @@ jobs:
           api-level: 30
           target: google_apis
           script: ./gradlew jacocoTestReport connectedAndroidTest
-
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
 
