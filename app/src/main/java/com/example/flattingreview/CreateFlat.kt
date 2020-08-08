@@ -263,7 +263,7 @@ class CreateFlat : AppCompatActivity() {
         val myRef = FirebaseDatabase.getInstance().getReference("flats")
         val flatID = myRef.push().key
         val imageID = "image$flatID"
-        val storageRef = Firebase.storage.reference.child("flats/$imageID")
+        val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
 
         // Get the data from an ImageView as bytes
 //        upload_flat_image.isDrawingCacheEnabled = true

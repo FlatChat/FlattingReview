@@ -9,8 +9,8 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
@@ -81,10 +81,15 @@ class FlatScreen : AppCompatActivity() {
         numberOfReviews = intent.getIntExtra("numberOfRatings", 0)
         getReview(flat.flatID)
         set()
-        val url = "https://www.critic.co.nz/files/article-7438.jpg"
+        val storage = FirebaseStorage.getInstance()
+        val gsReference =
+            storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${flat.flatID}.jpg")
         GlideApp.with(this)
-            .load(url)
+            .load(gsReference)
+            .placeholder(R.drawable.ic_baseline_image_24)
             .into(flat_image)
+
+
     }
 
     private fun getReview(id: String?) {
