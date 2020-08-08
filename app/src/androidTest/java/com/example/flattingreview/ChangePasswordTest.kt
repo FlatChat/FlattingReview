@@ -1,3 +1,4 @@
+/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -10,11 +11,13 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+*/
 /**
  * A class that tests the UI of the change password screen.
  *
  * @author Nikki Meadows
- */
+ *//*
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordTest{
 
@@ -31,4 +34,4 @@ class ChangePasswordTest{
         onView(withId(R.id.changePasBut))
             .check(matches(isDisplayed()))
     }
-}
+}*/

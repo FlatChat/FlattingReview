@@ -1,3 +1,4 @@
+/*
 package com.example.flattingreview
 
 
@@ -11,11 +12,13 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+*/
 /**
  * A class that tests the UI of the home screen.
  *
  * @author Nikki Meadows
- */
+ *//*
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class HomeScreenTest{
 
@@ -32,4 +35,4 @@ class HomeScreenTest{
         onView(withId(R.id.createFlatButton))
             .check(matches(isDisplayed()))
     }
-}
+}*/

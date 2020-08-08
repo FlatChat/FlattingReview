@@ -1,3 +1,4 @@
+/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -9,10 +10,12 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+*/
 /**
  * TODO
  *
- */
+ *//*
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class FlatTest{
 
@@ -33,4 +36,4 @@ class FlatTest{
         onView(ViewMatchers.withId(R.id.add_review_button))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-}
+}*/
