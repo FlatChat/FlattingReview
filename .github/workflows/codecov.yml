@@ -18,7 +18,7 @@ jobs:
     - name: Kotlin build test
       run:
           bash <(curl -s https://codecov.io/bash) -f
-          build/reports/coverage/debug/report.xml
+          app/build/reports/coverage/debug/report.xml
  
       
   
