@@ -47,22 +47,12 @@ class CreateAccount : AppCompatActivity() {
         }
     }
 
-    /**
-     * A method that collects the user information that has been entered into the text fields containing the users
-     * first name, last name and email address. The information is saved into new variables.
-     *
-     */
     private fun collectInput() {
         firstNameUser = findViewById<EditText>(R.id.firstNameTV).text
         lastNameUser = findViewById<EditText>(R.id.lastNameTV).text
         emailUser = findViewById<EditText>(R.id.email).text
     }
 
-    /**
-     * Method to check that the user has entered in an email and password before they are able to sign up.
-     * If any checks do not pass, then the method fails. This method also saves a user object (user ID, first name, last name and
-     * email) to the database.
-     */
     private fun signUpUser() {
         //if the first name is empty, set an error message
         if (firstNameTV.text.toString().isEmpty()) {
