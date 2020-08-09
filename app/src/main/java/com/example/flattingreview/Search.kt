@@ -126,12 +126,6 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
             })
     }
 
-    /**
-     * Creates an instance of the FeaturedFlatAdapter for the recycler and passes in
-     * a list of flats to display. The layout manager is set to horizontal to display
-     * the flats horizontally across the screen
-     *
-     */
     private fun createViewSearchFlats() {
         mAdapter = SearchAdapter(flatList, this)
         search_view_recycler.adapter = mAdapter

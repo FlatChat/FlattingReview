@@ -73,20 +73,12 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         }
     }
 
-    /**
-     * Displays the flat address in the text box in the layout.
-     *
-     */
     private fun setDisplay(){
         val address = flat.address
         val addressText: TextView = findViewById(R.id.write_review_address)
         addressText.text = address!!.split(",")[0]
     }
 
-
-    /**
-     * Will set the input elements to variables, enabling collection of the users input
-     */
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         comment = findViewById<EditText>(R.id.comment1).text
@@ -121,12 +113,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         userReference.orderByKey().addValueEventListener(userListener)
     }
 
-    /**
-     * Gets the FlatID and UserID to attach to the review. Records a time stamp of when the
-     * review was created. Get the firebase reference to save the data into. Creates a reviewID
-     * through the firebase id system. Creates a reviews object. Writes the review object into
-     * the database.
-     */
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
@@ -153,7 +139,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
-
 
     //below code is all for the action bar
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
