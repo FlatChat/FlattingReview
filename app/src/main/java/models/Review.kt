@@ -28,8 +28,8 @@ class Review(
     var name: String? = null,
     private var cleanliness: Double = 0.0,
     private var landlord: Double = 0.0,
-    var location: Double = 0.0,
-    var value: Double = 0.0,
+    private var location: Double = 0.0,
+    private var value: Double = 0.0,
     var anonymous: Boolean = false,
     var date: String? = null,
     var comment: String? = null
