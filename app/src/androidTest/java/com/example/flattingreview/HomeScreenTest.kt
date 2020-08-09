@@ -1,4 +1,4 @@
-/*
+package com.example.flattingreview/*
 package com.example.flattingreview
 
 
@@ -22,7 +22,7 @@ import org.junit.runner.RunWith
 class HomeScreenTest{
 
     @Test
-    fun test_isActivitiyInView() {
+    fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(HomeScreen::class.java)
         onView(withId(R.id.homeScreenTag)).check(matches(isDisplayed()))
 

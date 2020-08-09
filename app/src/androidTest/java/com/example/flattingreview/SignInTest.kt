@@ -1,4 +1,4 @@
-/*
+package com.example.flattingreview/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -24,14 +24,14 @@ class SignInTest{
 
     //a test to check the sign in screen opens
     @Test
-    fun test_isActivityinView() {
+    fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(SignIn::class.java)
         onView(ViewMatchers.withId(R.id.signInTag))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-    //a test to check the viability of the login, forgot password and sign up botton
+    //a test to check the viability of the login, forgot password and sign up button
     @Test
-    fun test_Signin_Button_Visability() {
+    fun test_Signin_Button_Viability() {
         val activityScenario=ActivityScenario.launch(SignIn::class.java)
         onView(withId(R.id.loginButton))
             .check(matches(isDisplayed()))

@@ -1,16 +1,13 @@
 package com.example.flattingreview
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
@@ -60,13 +57,12 @@ class FlatScreen : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun set(){
         val addressText: TextView = findViewById(R.id.flat_address)
         val flatRating: TextView = findViewById(R.id.flat_rating)
 //        val displayReview: CardView = findViewById(R.id.display_review)
         flatImage = findViewById(R.id.flat_image)
-        flatRating.text = "$overallRating ($numberOfReviews reviews)"
+        flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, numberOfReviews)
         addressText.text = address!!.split(",")[0]
     }
 
@@ -81,10 +77,15 @@ class FlatScreen : AppCompatActivity() {
         numberOfReviews = intent.getIntExtra("numberOfRatings", 0)
         getReview(flat.flatID)
         set()
-        val url = "https://www.critic.co.nz/files/article-7438.jpg"
+        val storage = FirebaseStorage.getInstance()
+        val gsReference =
+            storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${flat.flatID}.jpg")
         GlideApp.with(this)
-            .load(url)
+            .load(gsReference)
+            .placeholder(R.drawable.ic_baseline_image_24)
             .into(flat_image)
+
+
     }
 
     private fun getReview(id: String?) {
@@ -129,55 +130,5 @@ class FlatScreen : AppCompatActivity() {
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
-    }
-
-
-
-    /**
-     * The following code is for the action bar.
-     * Different options are displayed to take the
-     * user to different screens.
-     *
-     * @param menu the menu file containing the action bar options.
-     */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    /**
-     * A method that allows a user to select a specific screen from the action bar.
-     *
-     * @param item the different action bar options for the user to select.
-     * @return the option that the user has selected.
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id=item.itemId
-
-        //If home screen option is pressed go to home screen
-        if(id==R.id.home_screen)
-        {
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
-        //If write a review option is pressed go to review screen
-        if(id==R.id.write_review)
-        {
-            val intent = Intent(this, WriteReview::class.java)
-            startActivity(intent)
-        }
-        //If contact us option is pressed go to contact us screen
-        if(id==R.id.contact)
-        {
-            val intent = Intent(this, Account::class.java)
-            startActivity(intent)
-        }
-        //If logout option is selected then redirect user to the login screen
-        if(id==R.id.settings)
-        {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

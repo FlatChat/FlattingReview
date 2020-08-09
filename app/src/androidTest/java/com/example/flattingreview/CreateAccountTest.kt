@@ -1,4 +1,4 @@
-/*
+package com.example.flattingreview/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -29,9 +29,9 @@ class CreateAccountTest{
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 
-    //A test to check the visability of the sign up button
+    //A test to check the visibility of the sign up button
     @Test
-    fun test_Visability_of_Signup_Button() {
+    fun test_Visibility_of_Signup_Button() {
         val activityScenario = ActivityScenario.launch(CreateAccount::class.java)
         onView(withId(R.id.signUpButton))
             .check(matches(isDisplayed()))

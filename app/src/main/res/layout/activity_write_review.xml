@@ -4,70 +4,194 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WriteReview"
-    android:id="@+id/writeReviewTag">
+    tools:context=".WriteReview">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/write_review_address"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/flat_address" />
+            android:orientation="vertical">
 
-        <RatingBar
-            android:id="@+id/cleanliness"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/write_review_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin"
+                android:padding="@dimen/padding"
+                android:text="@string/flat_address"
+                android:textColor="@color/colorBlack"
+                android:textSize="26sp" />
 
-        <RatingBar
-            android:id="@+id/landlord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <RatingBar
-            android:id="@+id/location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <RatingBar
-            android:id="@+id/value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginBottom="23dp"
+                    android:padding="@dimen/padding"
+                    android:text="@string/location"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView"
+                    app:layout_constraintEnd_toStartOf="@+id/location"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-        <EditText
-            android:id="@+id/comment1"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:autofillHints=""
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="@string/comment_hint"
-            android:inputType="textMultiLine" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginStart="28dp"
+                    android:padding="@dimen/padding"
+                    android:text="@string/value"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/value"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-        <Switch
-            android:id="@+id/anonSwitch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/anonymous" />
+                <RatingBar
+                    android:id="@+id/landlord"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/cleanliness" />
 
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cancel" />
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginBottom="23dp"
+                    android:padding="@dimen/padding"
+                    android:text="@string/landlord"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView2"
+                    app:layout_constraintEnd_toStartOf="@+id/landlord"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <Button
-            android:id="@+id/submit_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/submit" />
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:padding="@dimen/padding"
+                    android:text="@string/cleanliness"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="22sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView3"
+                    app:layout_constraintEnd_toStartOf="@+id/cleanliness"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/cleanliness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="22dp"
+                    app:layout_constraintBottom_toTopOf="@+id/landlord"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RatingBar
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    android:layout_marginBottom="23dp"
+                    app:layout_constraintBottom_toTopOf="@+id/value"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintTop_toBottomOf="@+id/landlord" />
+
+                <RatingBar
+                    android:id="@+id/value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="@dimen/margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/textView"
+                    app:layout_constraintTop_toBottomOf="@+id/location" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/comment1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="@dimen/margin"
+                android:autofillHints=""
+                android:background="@drawable/button_style"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/comment_hint"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/padding" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/anonSwitch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:padding="@dimen/padding"
+                android:text="@string/anonymous"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:background="@drawable/button_style"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin"
+                android:background="@drawable/button_style"
+                android:text="@string/submit" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

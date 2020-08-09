@@ -7,8 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +17,8 @@ import models.Flat
 import models.Review
 import kotlin.math.round
 
+//import firebase.Connect
+
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
  * displays a search bar (still to be implemented) and a selection of flats and reviews that
@@ -28,11 +28,13 @@ import kotlin.math.round
 class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
+    private var popularFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+//    private var connect: Connect = Connect()
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -47,11 +49,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
 
-        createViewFeaturedReviews()
-        createViewFeaturedReviews()
-
         // Bottom navigation
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation_home)
         bottomNavigation.selectedItemId = R.id.home_screen
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -77,6 +76,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
         }
         getData()
+//        featuredFlat = connect.getAllFlats()
+//        connect.getAllReview()
+//        numberOfReviews = connect.numberOfReviews
+//        ratingList = connect.ratingList
+//        createViewFeaturedFlats()
+//        createViewPopularFlats()
+//        createViewFeaturedReviews()
     }
 
     /**
@@ -97,6 +103,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val baths = ds.child("bathrooms").value as String
                     val flat = Flat(id, address, beds, baths)
                     featuredFlat.add(flat)
+                    popularFlat.add(flat)
                 }
                 createViewPopularFlats()
                 createViewFeaturedFlats()
@@ -210,37 +217,5 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         MultiDex.install(this)
-    }
-
-    //below code is all for the action bar
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-        //If home screen option is pressed go to home screen
-        if (id == R.id.home_screen) {
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
-        //If write a review option is pressed go to review screen
-        if (id == R.id.write_review) {
-            val intent = Intent(this, WriteReview::class.java)
-            startActivity(intent)
-        }
-        //If contact us option is pressed go to contact us screen
-        if (id == R.id.contact) {
-            val intent = Intent(this, Account::class.java)
-            startActivity(intent)
-        }
-        //If logout option is selected then redirect user to the login screen
-        if (id == R.id.settings) {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

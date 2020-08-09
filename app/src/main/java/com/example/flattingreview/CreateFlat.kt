@@ -10,8 +10,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -28,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_create_new_flat.*
-import kotlinx.android.synthetic.main.activity_home_screen.bottom_navigation
 import models.Flat
 import java.io.ByteArrayOutputStream
 
@@ -263,7 +260,7 @@ class CreateFlat : AppCompatActivity() {
         val myRef = FirebaseDatabase.getInstance().getReference("flats")
         val flatID = myRef.push().key
         val imageID = "image$flatID"
-        val storageRef = Firebase.storage.reference.child("flats/$imageID")
+        val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
 
         // Get the data from an ImageView as bytes
 //        upload_flat_image.isDrawingCacheEnabled = true
@@ -290,53 +287,5 @@ class CreateFlat : AppCompatActivity() {
 
         val intent = Intent(this, HomeScreen::class.java)
         startActivity(intent)
-    }
-
-    /**
-     * The following code is for the action bar.
-     * Different options are displayed to take the
-     * user to different screens.
-     *
-     * @param menu the menu file containing the action bar options.
-     */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    /**
-     * A method that allows a user to select a specific screen from the action bar.
-     *
-     * @param item the different action bar options for the user to select.
-     * @return the option that the user has selected.
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id=item.itemId
-
-        //If home screen option is pressed go to home screen
-        if(id==R.id.home_screen)
-        {
-            val intent = Intent(this, HomeScreen::class.java)
-            startActivity(intent)
-        }
-        //If write a review option is pressed go to review screen
-        if(id==R.id.write_review)
-        {
-            val intent = Intent(this, WriteReview::class.java)
-            startActivity(intent)
-        }
-        //If contact us option is pressed go to contact us screen
-        if(id==R.id.contact)
-        {
-            val intent = Intent(this, Account::class.java)
-            startActivity(intent)
-        }
-        //If logout option is selected then redirect user to the login screen
-        if(id==R.id.settings)
-        {
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        }
-        return super.onOptionsItemSelected(item)
     }
 }
