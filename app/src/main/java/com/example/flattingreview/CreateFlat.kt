@@ -128,11 +128,6 @@ class CreateFlat : AppCompatActivity() {
         }
     }
 
-
-    /**
-     * Will select the selected image from the users gallery.
-     *
-     */
     private fun pickImageFromGallery() {
         //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
@@ -189,22 +184,12 @@ class CreateFlat : AppCompatActivity() {
         }
     }
 
-
-    /**
-     * Initialise google places by using the apiKey.
-     * Creates a places client.
-     */
     private fun initPlaces(){
         val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
         Places.initialize(this, apiKey)
         placesClient = Places.createClient(this)
     }
 
-    /**
-     * Implements a google places autocomplete into a fragment.
-     * The listener is for when a location is selected, and you use it to
-     * pull the data from the fragment.
-     */
     private fun setupPlacesAutoComplete(){
         val autocompleteFragment = supportFragmentManager
             .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
@@ -223,12 +208,6 @@ class CreateFlat : AppCompatActivity() {
         })
     }
 
-    /**
-     * If the user uses the google maps search to select an address then this method is called
-     * and will fill the address box's on the user screen
-     *
-     * @param address the users selected address
-     */
     private fun fillAddressBoxes(address: String){
         val list = address.split(",")
         val street = list[0]
@@ -242,20 +221,11 @@ class CreateFlat : AppCompatActivity() {
         cityText.text = city[1]
     }
 
-    /**
-     * This function takes user input from the
-     * "Create Flat" screen, and stores
-     * it into variables.
-     */
     private fun collectInput(){
         bedrooms = findViewById<EditText>(R.id.bedrooms).text
         bathrooms = findViewById<EditText>(R.id.bathrooms).text
     }
 
-    /**
-     * This function writes the new flat to the database.
-     * It then sends the user back to the HomeScreen.
-     */
     private fun writeNewFlat(){
         val myRef = FirebaseDatabase.getInstance().getReference("flats")
         val flatID = myRef.push().key
