@@ -1,4 +1,3 @@
-package com.example.flattingreview/*
 package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
@@ -10,20 +9,22 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
-*/
 /**
  * A class that tests the UI of the splash screen.
  *
  *@author Nikki Meadows
- *//*
+ */
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class SplashScreenTest{
 
-    //checks if the activity is launched
+    /**
+     * A test to check that the visibility of the splash screen.
+     *
+     */
     @Test
     fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(SplashScreen::class.java)
-        onView(withId(R.id.splashTag)).check(matches(isDisplayed()))
+        onView(withId(R.id.splash_screen_id)).check(matches(isDisplayed()))
     }
-}*/
+}
