@@ -1,4 +1,3 @@
-/*
 package com.example.flattingreview
 
 import org.junit.jupiter.api.AfterEach
