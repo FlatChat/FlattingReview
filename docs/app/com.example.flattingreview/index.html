@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>com.example.flattingreview - app</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">app</a>&nbsp;/&nbsp;<a href="./index.html">com.example.flattingreview</a><br/>
+<br/>
+<h2>Package com.example.flattingreview</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-change-password/index.html">ChangePassword</a></h4>
+</td>
+<td>
+<p>A class to allow the user to change their password. Once the password has been changed successfully, the user
+will be redirected to the sign in screen where they will then need to sign in with their new password.</p>
+<code><span class="keyword">class </span><span class="identifier">ChangePassword</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-create-account/index.html">CreateAccount</a></h4>
+</td>
+<td>
+<p>A class that allows the user to create a new account using their email address and a password.
+Once the user has successfully created a new account they will be redirected to the sign in page where
+they can sign in with their new credentials.</p>
+<code><span class="keyword">class </span><span class="identifier">CreateAccount</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-create-flat/index.html">CreateFlat</a></h4>
+</td>
+<td>
+<p>This class creates new flat objects and saves them to the database.
+It also incorporates google places so that a user can look up the
+address they are entering, and the address may be auto-filled.</p>
+<code><span class="keyword">class </span><span class="identifier">CreateFlat</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-delete-account/index.html">DeleteAccount</a></h4>
+</td>
+<td>
+<p>A class containing a the required methods to allow a user to permanently delete their account.</p>
+<code><span class="keyword">class </span><span class="identifier">DeleteAccount</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-flat-screen/index.html">FlatScreen</a></h4>
+</td>
+<td>
+<p>This is the screen for a particular flat selected
+by a user (when clicked on from the HomeScreen).
+It is yet to be connected to the database, but
+when fully functional will show reviews, images,
+ratings and comments about a flat.</p>
+<code><span class="keyword">class </span><span class="identifier">FlatScreen</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-home-screen/index.html">HomeScreen</a></h4>
+</td>
+<td>
+<p>The first screen the user will see when opening the app (after the splash screen). This screen
+displays a search bar (still to be implemented) and a selection of flats and reviews that
+users can browse.</p>
+<code><span class="keyword">class </span><span class="identifier">HomeScreen</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><span class="identifier">OnItemClickListener</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-my-app-glide-module/index.html">MyAppGlideModule</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">MyAppGlideModule</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppGlideModule</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-search/index.html">Search</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Search</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><span class="identifier">OnItemClickListener</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-settings/index.html">Settings</a></h4>
+</td>
+<td>
+<p>A class designed to allow the user to logout and be redirected to the sign in screen. This class also
+allows the user to access another screen where they are able to change their password.</p>
+<code><span class="keyword">class </span><span class="identifier">Settings</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-sign-in/index.html">SignIn</a></h4>
+</td>
+<td>
+<p>A class that allows the user to sign in to their account, or alternatively access the create account page
+if the user does not have an existing account. If the user has forgotten their password, they will be able to
+reset their password from this activity.</p>
+<code><span class="keyword">class </span><span class="identifier">SignIn</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-splash-screen/index.html">SplashScreen</a></h4>
+</td>
+<td>
+<p>A class that displays a temporary splash screen when the user opens the app for the first time.
+The name of the application will fade in using an application. The splash screen will show for 400milliseconds
+and then the user will be directed to the sign in page.</p>
+<code><span class="keyword">class </span><span class="identifier">SplashScreen</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-view-reviews/index.html">ViewReviews</a></h4>
+</td>
+<td>
+<p>This will display all the written reviews for a particular flat. This page is navigated to
+by clicking 'show all reviews' form the Flat.kt screen.</p>
+<code><span class="keyword">class </span><span class="identifier">ViewReviews</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-write-review/index.html">WriteReview</a></h4>
+</td>
+<td>
+<p>Class designed to collect the data inputted by the users from activity_write_review.xml
+and write the data into the database.</p>
+<code><span class="keyword">class </span><span class="identifier">WriteReview</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span><span class="symbol">, </span><a href="https://developer.android.com/reference/android/widget/RatingBar/OnRatingBarChangeListener.html"><span class="identifier">OnRatingBarChangeListener</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
