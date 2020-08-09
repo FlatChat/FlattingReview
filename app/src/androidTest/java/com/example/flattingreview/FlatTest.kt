@@ -1,6 +1,8 @@
+/*
+
 
 package com.example.flattingreview
-/*
+
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -10,6 +12,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 */
 /**
  *  A class that tests the UI of the change password screen.
@@ -18,30 +21,35 @@ import org.junit.runner.RunWith
  *//*
 
 
+
+
 @RunWith(AndroidJUnit4ClassRunner::class)
 class FlatTest{
 
-    */
+
+
+*/
 /**
      *  A test to check that the visibility of the flat screen.
      *
      *//*
 
-*/
-/*    @Test
+    @Test
     fun test_isActivityInView() {
         val activityScenario=ActivityScenario.launch(FlatScreen::class.java)
         onView(withId(R.id.flat_screen_id))
             .check(matches(isDisplayed()))
-    }*//*
+    }
 
-    */
+*/
 /**
      *  A test to check that visibility of the buttons on the flat screen.
      *
      *//*
 
-    @Test
+
+
+   @Test
     fun test_Visibility_Review_Buttons() {
         val activityScenario=ActivityScenario.launch(FlatScreen::class.java)
         onView(withId(R.id.show_reviews_button))
@@ -49,6 +57,7 @@ class FlatTest{
 
         onView(withId(R.id.add_review_button))
             .check(matches(isDisplayed()))
+
     }
 }
-*/
+  */
