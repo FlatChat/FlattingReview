@@ -15,6 +15,7 @@ android {
     dokka {
         outputFormat = 'html'
         outputDirectory = "$buildDir/dokka"
+        //outputDirectory= "docs/dokka"
     }
 
 
