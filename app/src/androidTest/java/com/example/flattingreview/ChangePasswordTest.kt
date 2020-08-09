@@ -13,22 +13,25 @@ import org.junit.runner.RunWith
  * A class that tests the UI of the change password screen.
  *
  * @author Nikki Meadows
-
  */
-
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ChangePasswordTest{
-
+    /**
+     * A test to check that the visibility of the change password screen.
+     *
+     */
     @Test
     fun test_isActivityInView() {
-       // val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
-        onView(withId(R.id.changePasswordTag)).check(matches(isDisplayed()))
+        val activityScenario= ActivityScenario.launch(ChangePassword::class.java)
+        onView(withId(R.id.change_password_id)).check(matches(isDisplayed()))
     }
-
-    //a test to check the visabilty of the change password button
+    /**
+     * A test to check that visibility of the buttons on the change password screen.
+     *
+     */
     @Test
-    fun test_Visability_of_ChangePassword_Button() {
+    fun test_Visibility_of_ChangePassword_Button() {
         val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
         onView(withId(R.id.changePasBut))
             .check(matches(isDisplayed()))
