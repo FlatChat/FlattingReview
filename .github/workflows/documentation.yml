@@ -33,7 +33,9 @@ jobs:
         git config --local user.email "56782677+meadows115@users.noreply.github.com"
         git config --local user.name "Nikki Meadows"
         git merge origin/master
-
+        
+    - name: Change wrapper permissions
+      run: chmod +x ./gradlew 
     - name: Run dokka
       run: |
         rm -rf dokka
