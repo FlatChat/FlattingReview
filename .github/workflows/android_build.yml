@@ -60,12 +60,3 @@ jobs:
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
 
-  #uncomment when the ui testing is set up properly on here  
- #     - name: Run Instrumentation Tests
- #       uses: malinskiy/action-android/emulator-run-cmd@release/0.0.3
- #       with:
- #         cmd: ./gradlew connectedCheck --stacktrace
- #         api: 23
- #         tag: default
- #         abi: x86
-

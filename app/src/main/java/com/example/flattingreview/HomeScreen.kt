@@ -10,6 +10,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
@@ -85,6 +86,10 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 //        createViewFeaturedReviews()
     }
 
+    /**
+     * On start it will connect to the database under the reference reviews and flats. And collect all
+     * the data for both the flats and reviews to display in the recycler views in the home screen.
+     */
     private fun getData() {
         val flatListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
@@ -153,6 +158,12 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
+    /**
+     * Creates an instance of the FeaturedFlatAdapter for the recycler and passes in
+     * a list of flats to display. The layout manager is set to horizontal to display
+     * the flats horizontally across the screen
+     *
+     */
     private fun createViewPopularFlats() {
         popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
         popular_flat_recycler.layoutManager =
@@ -167,6 +178,12 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         featured_flat_recycler.setHasFixedSize(true)
     }
 
+    /**
+     * Creates an instance of the FeaturedReviewAdapter for the recycler and passes in
+     * a list of reviews to display. The layout manager is set to horizontal to display
+     * the reviews horizontally across the screen
+     *
+     */
     private fun createViewFeaturedReviews() {
         featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
         featured_reviews_recycler.layoutManager =
@@ -180,8 +197,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         val array = ratingList[item.flatID]
         var sum = 0.0
         if(!array.isNullOrEmpty()){
-            for(@Suppress("NAME_SHADOWING") item in array) {
-                sum += item
+            for(i in array) {
+                sum += i
             }
         }
         if (array != null) {
