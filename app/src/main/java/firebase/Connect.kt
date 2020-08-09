@@ -1,6 +1,7 @@
 package firebase
 
 import android.util.Log
+import com.example.flattingreview.HomeScreen
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
@@ -12,14 +13,13 @@ class Connect {
     var reviewList: ArrayList<Review> = ArrayList()
     var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     var numberOfReviews: HashMap<String, Int> = HashMap()
-    private val flatReference: DatabaseReference =
-        FirebaseDatabase.getInstance().getReference("flats")
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
      * the data for both the flats and reviews to display in the recycler views in the home screen.
      */
     fun getAllFlats(): ArrayList<Flat> {
+        val flatReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("flats")
         val flatListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -33,6 +33,7 @@ class Connect {
                     val baths = ds.child("bathrooms").value as String
                     val flat = Flat(id, address, beds, baths)
                     flats.add(flat)
+
                 }
             }
         }
@@ -83,6 +84,7 @@ class Connect {
                         reviewList.add(rev)
                     }
                 }
+
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
@@ -127,6 +129,8 @@ class Connect {
                         if (comment != "") {
                             reviewList.add(rev)
                         }
+                        Log.d("Review:", rev.toString())
+                        Log.d("ReviewList:", reviewList.toString())
                     }
                 }
 

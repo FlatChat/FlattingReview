@@ -10,14 +10,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
 import kotlin.math.round
-
-//import firebase.Connect
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -30,11 +28,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private var featuredFlat: ArrayList<Flat> = ArrayList()
     private var popularFlat: ArrayList<Flat> = ArrayList()
     private var reviewList: ArrayList<Review> = ArrayList()
-    private lateinit var flatReference: DatabaseReference
-    private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
-//    private var connect: Connect = Connect()
+    private lateinit var flatReference: DatabaseReference
+    private lateinit var reviewReference: DatabaseReference
+    private lateinit var rvFeaturedFlats: RecyclerView
+    private lateinit var rvPopularFlats: RecyclerView
+    private lateinit var rvReviews: RecyclerView
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -48,6 +48,10 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
+
+        setUpRecyclerViews()
+        getData()
+        fillRecyclerViews()
 
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation_home)
@@ -75,14 +79,46 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                 else -> false
             }
         }
-        getData()
-//        featuredFlat = connect.getAllFlats()
-//        connect.getAllReview()
+    }
+
+    /**
+     * This method is called to set up the layout of the recycler views, this has to be done
+     * separately to the loading of the data because of the latency to get data from firebase.
+     */
+    private fun setUpRecyclerViews(){
+        rvFeaturedFlats = findViewById(R.id.featured_flat_recycler)
+        rvPopularFlats = findViewById(R.id.popular_flat_recycler)
+        rvReviews = findViewById(R.id.featured_reviews_recycler)
+        rvFeaturedFlats.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvPopularFlats.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvReviews.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        rvFeaturedFlats.setHasFixedSize(true)
+        rvPopularFlats.setHasFixedSize(true)
+        rvReviews.setHasFixedSize(true)
+    }
+
+//    fun fetchData(){
+//        val connect = Connect()
+//        reviewList = connect.reviewList
 //        numberOfReviews = connect.numberOfReviews
 //        ratingList = connect.ratingList
-//        createViewFeaturedFlats()
-//        createViewPopularFlats()
-//        createViewFeaturedReviews()
+//        featuredFlat = connect.flats
+//        popularFlat = connect.flats
+//    }
+//
+
+    /**
+     * When the data has been retrieved from firebase, this method will be called to load the
+     * the data into the recycler views. Each recycler view is called and the appropriate list
+     * is feed in.
+     */
+    private fun fillRecyclerViews(){
+        rvFeaturedFlats.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
+        rvPopularFlats.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
+        rvReviews.adapter = FeaturedReviewsAdapter(reviewList)
     }
 
     /**
@@ -105,8 +141,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     featuredFlat.add(flat)
                     popularFlat.add(flat)
                 }
-                createViewPopularFlats()
-                createViewFeaturedFlats()
+                fillRecyclerViews()
             }
         }
 
@@ -150,44 +185,11 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                         reviewList.add(rev)
                     }
                 }
-                createViewFeaturedReviews()
+                fillRecyclerViews()
             }
         }
         flatReference.orderByKey().addValueEventListener(flatListener)
         reviewReference.orderByKey().addValueEventListener(reviewListener)
-    }
-
-    /**
-     * Creates an instance of the FeaturedFlatAdapter for the recycler and passes in
-     * a list of flats to display. The layout manager is set to horizontal to display
-     * the flats horizontally across the screen
-     *
-     */
-    private fun createViewPopularFlats() {
-        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
-        popular_flat_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        popular_flat_recycler.setHasFixedSize(true)
-    }
-
-    private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
-        featured_flat_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        featured_flat_recycler.setHasFixedSize(true)
-    }
-
-    /**
-     * Creates an instance of the FeaturedReviewAdapter for the recycler and passes in
-     * a list of reviews to display. The layout manager is set to horizontal to display
-     * the reviews horizontally across the screen
-     *
-     */
-    private fun createViewFeaturedReviews() {
-        featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
-        featured_reviews_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        featured_reviews_recycler.setHasFixedSize(true)
     }
 
     override fun onItemClick(item: Flat, position: Int){
@@ -196,8 +198,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         val array = ratingList[item.flatID]
         var sum = 0.0
         if(!array.isNullOrEmpty()){
-            for(@Suppress("NAME_SHADOWING") item in array) {
-                sum += item
+            for(i in array) {
+                sum += i
             }
         }
         if (array != null) {
