@@ -34,12 +34,6 @@ class ChangePassword : AppCompatActivity() {
         }
     }
 
-    /**
-     * A method to change the users current password to a new password. The method checks that the user has
-     * filled in the required text fields. If all of the fields have been filled in, the method checks that the
-     * new password and confirm password match. If all checks pass, the user redirected to the sign in screen.
-     * If not, a toast pop up will inform the user of what they have done wrong.
-     */
     private fun changePassword() {
         //if all of the text fields are not empty, then we need to change the password
         if (currentPassET.text.isNotEmpty() &&
