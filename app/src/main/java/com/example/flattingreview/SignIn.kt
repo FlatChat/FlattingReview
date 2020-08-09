@@ -62,13 +62,6 @@ class SignIn  : AppCompatActivity() {
         }
     }
 
-    /**
-     * A method that allows the user to reset their password by sending a link to the users email address.
-     * Once the user has successfully changed their password using this link, they will be re-directed to the login
-     * page where they will be able to login with their new credentials.
-     *
-     * @param username from the dialog for validation.
-     */
     private fun forgotPassword(username:EditText){
 
         if(username.text.toString().isEmpty()){
@@ -86,9 +79,6 @@ class SignIn  : AppCompatActivity() {
             }
     }
 
-    /**
-     * A method to check that the email and password that has been entered and belong in an existing user.
-     */
     private fun doLogin() {
        //if the email address is empty, set an error message
         if(enter_email.text.toString().isEmpty()){
@@ -132,11 +122,7 @@ class SignIn  : AppCompatActivity() {
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }
-    /**
-     * UpdateUI method to check if the user is null. If they are not null, then sign in is successful.
-     *
-     * @param currentUser a null firebase user that is not already signed in to the application.
-     */
+
     private fun updateUI(currentUser: FirebaseUser?){
        if(currentUser!=null){
            //check if the user email is verified

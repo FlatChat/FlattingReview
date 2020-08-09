@@ -76,14 +76,8 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
-
-
-
     }
 
-    /**
-     * A method that will logout the current user and re-direct the user to the login screen.
-     */
     private fun logout() {
         auth.signOut()
         finish()
