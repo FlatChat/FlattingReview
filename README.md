@@ -8,4 +8,5 @@
 ![CI](https://github.com/FlatChat/FlattingReview/workflows/CI/badge.svg)
 
 
-![documentation](https://flatchat.github.io/FlattingReview/docs/app/index.html)
+![Documentation](https://flatchat.github.io/FlattingReview/docs/app/index.html)
+
