@@ -8,3 +8,5 @@
 ![CI](https://github.com/FlatChat/FlattingReview/workflows/CI/badge.svg)
 
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
+
+[![Known Vulnerabilities](https://snyk.io/test/github/{meadows115}/{FlattingReview}/badge.svg)](https://snyk.io/test/github/{meadows115}/{FlattingReview})
