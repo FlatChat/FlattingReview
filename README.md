@@ -9,4 +9,4 @@
 
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
-[![Known Vulnerabilities](https://snyk.io/test/github/{meadows115}/{FlattingReview}/badge.svg)](https://snyk.io/test/github/{meadows115}/{FlattingReview})
+<a href="https://snyk.io/test/github/FlatChat/FlattingReview?targetFile=app/build.gradle"><img src="https://snyk.io/test/github/FlatChat/FlattingReview/badge.svg?targetFile=app/build.gradle" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/FlatChat/FlattingReview?targetFile=app/build.gradle" style="max-width:100%;"></a>
