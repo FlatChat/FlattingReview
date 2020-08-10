@@ -10,15 +10,12 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
 import kotlin.math.round
-
-//import firebase.Connect
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
