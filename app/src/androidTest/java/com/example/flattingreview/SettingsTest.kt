@@ -46,6 +46,10 @@ class SettingsTest{
             .check(matches(isDisplayed()))
     }
 
+    /**
+     * A test to check the buttons navigate to the correct activities.
+     *
+     */
     @Test
     fun test_Buttons_Function() {
         val activityScenario=ActivityScenario.launch(Settings::class.java)
