@@ -139,17 +139,8 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
-
-    //below code is all for the action bar
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
     override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
 //        TODO("Not yet implemented")
     }
-
-
 }
 
