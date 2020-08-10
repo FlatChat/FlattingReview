@@ -32,7 +32,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
-//    private var connect: Connect = Connect()
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
