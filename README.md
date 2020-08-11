@@ -1,4 +1,6 @@
 # FlattingReview
+
+Welcome to flatchat, the latest Android application allowing users to rate and review their flat.
 Codecov report: 
 <a href="https://codecov.io/gh/FlatChat/FlattingReview">
   <img src="https://codecov.io/gh/FlatChat/FlattingReview/branch/master/graph/badge.svg" />
@@ -9,7 +11,6 @@ Codeacy report:
 
 Testing: 
 ![CI](https://github.com/FlatChat/FlattingReview/workflows/CI/badge.svg)
-
 
 Our documentation for flatchat:
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
