@@ -71,4 +71,16 @@ class SignInTest{
         onView(withId(R.id.sign_in_id))
             .check(matches(isDisplayed()))
     }
+
+    /**
+     * A test to check that the sign up button takes the user to the create account screen.
+     *
+     */
+    @Test
+    fun test_Check_Button_Takes_User_SignUp_Screen() {
+        val activityScenario=ActivityScenario.launch(SignIn::class.java)
+        onView(withId(R.id.signUpButton)).perform(click())
+        onView(withId(R.id.create_account_id))
+            .check(matches(isDisplayed()))
+    }
 }
