@@ -5,8 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -82,5 +81,18 @@ class SignInTest{
         onView(withId(R.id.signUpButton)).perform(click())
         onView(withId(R.id.create_account_id))
             .check(matches(isDisplayed()))
+    }
+
+    /**
+     * A test to check that the forgot password dialog pops up for the user.
+     *
+     */
+    @Test
+    fun test_Check_ForgotPassword_Dialog() {
+        val activityScenario=ActivityScenario.launch(SignIn::class.java)
+        onView(withId(R.id.forget_password_button)).perform(click())
+        onView(withId(R.id.et_username))
+            .check(matches(isDisplayed()))
+
     }
 }
