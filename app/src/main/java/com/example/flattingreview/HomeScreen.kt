@@ -47,7 +47,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
 
         // Bottom navigation
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation_home)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.home_screen
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
