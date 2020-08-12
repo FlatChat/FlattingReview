@@ -1,5 +1,6 @@
-package com.example.flattingreview
 
+package com.example.flattingreview
+/*
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions
@@ -9,10 +10,12 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 
+*/
 /**
  * TODO
  *
- */
+ *//*
+
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class ViewReviewsTest{
@@ -23,3 +26,4 @@ class ViewReviewsTest{
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
+*/
