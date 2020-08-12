@@ -36,4 +36,29 @@ class CreateAccountTest{
         onView(withId(R.id.signUpButton))
             .check(matches(isDisplayed()))
     }
+
+    /**
+     * A test to check the visibility of the text fields on the create account screen.
+     *
+     */
+    @Test
+    fun test_Check_Visibility_Text_Fields() {
+        val activityScenario = ActivityScenario.launch(CreateAccount::class.java)
+        onView(withId(R.id.firstNameTV))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.lastNameTV))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.email))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.enterPass1))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.Address))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.check_box_landlord))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.checkBoxTenant))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.tenOrLanLo))
+            .check(matches(isDisplayed()))
+    }
 }
