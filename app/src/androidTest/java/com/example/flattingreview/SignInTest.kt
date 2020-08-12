@@ -3,6 +3,7 @@ package com.example.flattingreview
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -43,4 +44,31 @@ class SignInTest{
             .check(matches(isDisplayed()))
     }
 
+    /**
+     * A test to check the visibility of the text fields on the sign in screen.
+     *
+     */
+    @Test
+    fun test_Check_Text_Fields() {
+        val activityScenario = ActivityScenario.launch(SignIn::class.java)
+        onView(withId(R.id.enter_email))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.enter_password))
+            .check(matches(isDisplayed()))
+
+    }
+
+    /**
+     * A test to check that a user cannot login without an existing account.
+     *
+     */
+    @Test
+    fun test_Check_Input() {
+        val activityScenario=ActivityScenario.launch(SignIn::class.java)
+        onView(withId(R.id.enter_email)).perform(typeText("testing3456@gmail.com"))
+        onView(withId(R.id.enter_password)).perform(typeText("0123"))
+        onView(withId(R.id.loginButton)).perform(click())
+        onView(withId(R.id.sign_in_id))
+            .check(matches(isDisplayed()))
+    }
 }
