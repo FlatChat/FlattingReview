@@ -28,10 +28,10 @@ jobs:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
 
-   #   - name: Merge changes
-   #     run: |
-   #       git config --local user.email "56782677+meadows115@users.noreply.github.com"
-    #      git config --local user.name "Nikki Meadows"
+      - name: Merge changes
+        run: |
+          git config --local user.email "56782677+meadows115@users.noreply.github.com"
+          git config --local user.name "Nikki Meadows"
     #      git merge origin/master
 
       - name: Change wrapper permissions
