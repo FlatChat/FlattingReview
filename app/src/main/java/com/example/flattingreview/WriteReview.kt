@@ -91,12 +91,20 @@ class WriteReview : AppCompatActivity() {
         }
     }
 
+    /**
+     * Sets the flats address at the top of the page.
+     *
+     */
     private fun setDisplay(){
         val address = flat.address
         val addressText: TextView = findViewById(R.id.write_review_address)
         addressText.text = address!!.split(",")[0]
     }
 
+    /**
+     * Finds and sets all the input fields.
+     *
+     */
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         comment = findViewById<EditText>(R.id.comment1).text
@@ -107,6 +115,10 @@ class WriteReview : AppCompatActivity() {
         anon = findViewById(R.id.anonSwitch)
     }
 
+    /**
+     * Uses all the collected data to create a Review object, then writes that
+     * object to firebase.
+     */
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
@@ -133,9 +145,5 @@ class WriteReview : AppCompatActivity() {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
-
-//    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
-//        // Need to implement this but it has no rob
-//    }
 }
 
