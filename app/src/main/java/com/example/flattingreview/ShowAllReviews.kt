@@ -12,6 +12,7 @@ class ShowAllReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_all_reviews)
 
+        @Suppress("UNCHECKED_CAST")
         val list = intent.getSerializableExtra("list") as ArrayList<Review>
 
         review_recycler_view.adapter = ReviewAdapter(list)
