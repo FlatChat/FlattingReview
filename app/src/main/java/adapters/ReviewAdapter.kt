@@ -16,7 +16,8 @@ import java.util.*
  *
  * @property exampleList list of Review objects to display
  */
-class ReviewAdapter(private val exampleList: ArrayList<Review>) :
+class ReviewAdapter(
+    private val exampleList: ArrayList<Review>):
     RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
 
     /**
@@ -47,12 +48,11 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) :
         val currentItem = exampleList[position]
         if(!currentItem.anonymous){
             holder.textView1.text = currentItem.name
-        } else {
-            holder.textView1.text = "Anonymous"
-        }
+        } else holder.textView1.text = "Anonymous"
         holder.textView2.text = currentItem.comment
         holder.textView3.text = currentItem.date
     }
+
 
     /**
      * Returns the size of the list of Reviews as an int.
@@ -70,5 +70,4 @@ class ReviewAdapter(private val exampleList: ArrayList<Review>) :
         val textView2: TextView = itemView.comment
         var textView3: TextView = itemView.date
     }
-
 }

@@ -22,7 +22,8 @@ class PopularFlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, ArrayList<Double>>,
-    private var clickListener: OnItemClickListener
+    private var clickListener: OnItemClickListener,
+    private var layout: String
 ) : RecyclerView.Adapter<PopularFlatAdapter.PopularFlatViewHolder>() {
 
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -37,7 +38,11 @@ class PopularFlatAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularFlatViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.flat_layout,
+            if(layout == "flat_layout"){
+                R.layout.flat_layout
+            } else {
+                R.layout.flat_layout_fill_width
+            },
             parent, false
         )
         return PopularFlatViewHolder(itemView)

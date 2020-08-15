@@ -129,16 +129,13 @@ class CreateFlat : AppCompatActivity() {
     }
 
     private fun pickImageFromGallery() {
-        //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     companion object {
-        //image pick code
         private const val IMAGE_PICK_CODE = 1000
-        //Permission code
         private const val PERMISSION_CODE = 1001
     }
 
@@ -154,11 +151,9 @@ class CreateFlat : AppCompatActivity() {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
-                    //permission from popup granted
                     pickImageFromGallery()
                 }
                 else{
-                    //permission from popup denied
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -231,10 +226,6 @@ class CreateFlat : AppCompatActivity() {
         val flatID = myRef.push().key
         val imageID = "image$flatID"
         val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
-
-        // Get the data from an ImageView as bytes
-//        upload_flat_image.isDrawingCacheEnabled = true
-//        upload_flat_image.buildDrawingCache()
         val bitmap = (upload_flat_image.drawable as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
