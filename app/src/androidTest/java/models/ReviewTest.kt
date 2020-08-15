@@ -75,4 +75,88 @@ class ReviewTest {
         rev.comment = "Hello World"
         assertEquals("Hello World", rev.comment)
     }
+
+    @Test
+    fun getReviewID() {
+        val rev = Review()
+        rev.reviewID = "-M983R9UH"
+        assertEquals("-M983R9UH", rev.reviewID)
+    }
+
+    @Test
+    fun setReviewID() {
+        val rev = Review()
+        rev.reviewID = "-M983R9UH"
+        assertEquals("-M983R9UH", rev.reviewID)
+    }
+
+    @Test
+    fun getUserID() {
+        val rev = Review()
+        rev.userID = "-M983R9UH"
+        assertEquals("-M983R9UH", rev.userID)
+    }
+
+    @Test
+    fun setUserID() {
+        val rev = Review()
+        rev.userID = "-M983R9UH"
+        assertEquals("-M983R9UH", rev.userID)
+    }
+
+    @Test
+    fun getCleanliness() {
+        val rev = Review()
+        rev.cleanliness = 0.1
+        assertEquals(0.1, rev.cleanliness)
+    }
+
+    @Test
+    fun setCleanliness() {
+        val rev = Review()
+        rev.cleanliness = 0.1
+        assertEquals(0.1, rev.cleanliness)
+    }
+
+    @Test
+    fun getLandlord() {
+        val rev = Review()
+        rev.cleanliness = 0.1
+        assertEquals(0.1, rev.cleanliness)
+    }
+
+    @Test
+    fun setLandlord() {
+        val rev = Review()
+        rev.landlord = 0.1
+        assertEquals(0.1, rev.landlord)
+    }
+
+    @Test
+    fun getLocation() {
+        val rev = Review()
+        rev.location = 0.1
+        assertEquals(0.1, rev.location)
+    }
+
+    @Test
+    fun setLocation() {
+        val rev = Review()
+        rev.location = 0.1
+        assertEquals(0.1, rev.location)
+    }
+
+    @Test
+    fun getValue() {
+        val rev = Review()
+        rev.value = 0.1
+        assertEquals(0.1, rev.value)
+    }
+
+    @Test
+    fun setValue() {
+        val rev = Review()
+        rev.value = 0.1
+        assertEquals(0.1, rev.value)
+    }
 }
