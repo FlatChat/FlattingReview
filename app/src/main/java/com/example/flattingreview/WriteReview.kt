@@ -25,7 +25,7 @@ import java.util.*
  * and write the data into the database.
  * @author Ryan
  */
-class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
+class WriteReview : AppCompatActivity() {
 
     private lateinit var submitButton: Button
     private lateinit var cleanliness: RatingBar
@@ -33,12 +33,13 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var location: RatingBar
     private lateinit var value: RatingBar
     private lateinit var anon: SwitchCompat
-    private var comment: Editable? = null
+    private lateinit var flat: Flat
     private lateinit var userReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var name: String? = null
+    private var comment: Editable? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
-    private lateinit var flat: Flat
+
 
     /**
      * The onCreate method calls the setInputs() method which sets all the
@@ -59,6 +60,24 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         flat = intent.getSerializableExtra("flat") as Flat
         setDisplay()
         setInput()
+
+        flat.flatID
+        val userListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.w("WriteReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val u = ds.child("userID").value as String
+                    if (u == userID) {
+                        name = ds.child("firstNameUsers").value as String
+                    }
+                }
+            }
+        }
+        userReference.orderByKey().addValueEventListener(userListener)
+
         submitButton.setOnClickListener {
             saveObject()
             val intent = Intent(this, FlatScreen::class.java)
@@ -88,30 +107,6 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         anon = findViewById(R.id.anonSwitch)
     }
 
-    /**
-     * On start will connect to the database under the 'users' path and collect the first name
-     * of the currently signed in user. In stores the first name in the variable name.
-     */
-    public override fun onStart() {
-        super.onStart()
-        flat.flatID
-        val userListener: ValueEventListener = object : ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Log.w("WriteReview", "loadItem:onCancelled")
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (ds in dataSnapshot.children) {
-                    val u = ds.child("userID").value as String
-                    if (u == userID) {
-                        name = ds.child("firstNameUsers").value as String
-                    }
-                }
-            }
-        }
-        userReference.orderByKey().addValueEventListener(userListener)
-    }
-
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
@@ -138,8 +133,9 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
-    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
-//        TODO("Not yet implemented")
-    }
+
+//    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
+//        // Need to implement this but it has no rob
+//    }
 }
 

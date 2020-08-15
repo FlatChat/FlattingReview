@@ -1,20 +1,15 @@
 package adapters
 
-import android.app.Application
-import android.content.Context
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.ViewMatchers
 import com.example.flattingreview.HomeScreen
 import com.example.flattingreview.R
-import com.example.flattingreview.SplashScreen
 import models.Flat
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import kotlin.coroutines.coroutineContext
 
 
 class FeaturedFlatAdapterTest {
