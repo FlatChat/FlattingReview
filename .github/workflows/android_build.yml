@@ -59,4 +59,3 @@ jobs:
           script: ./gradlew test createDebugAndroidTestCoverageReport
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
-
