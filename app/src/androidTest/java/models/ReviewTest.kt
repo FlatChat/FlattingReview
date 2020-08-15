@@ -104,59 +104,59 @@ class ReviewTest {
         assertEquals("-M983R9UH", rev.userID)
     }
 
-    @Test
-    fun getCleanliness() {
-        val rev = Review()
-        rev.cleanliness = 0.1
-        assertEquals(0.1, rev.cleanliness)
-    }
-
-    @Test
-    fun setCleanliness() {
-        val rev = Review()
-        rev.cleanliness = 0.1
-        assertEquals(0.1, rev.cleanliness)
-    }
-
-    @Test
-    fun getLandlord() {
-        val rev = Review()
-        rev.cleanliness = 0.1
-        assertEquals(0.1, rev.cleanliness)
-    }
-
-    @Test
-    fun setLandlord() {
-        val rev = Review()
-        rev.landlord = 0.1
-        assertEquals(0.1, rev.landlord)
-    }
-
-    @Test
-    fun getLocation() {
-        val rev = Review()
-        rev.location = 0.1
-        assertEquals(0.1, rev.location)
-    }
-
-    @Test
-    fun setLocation() {
-        val rev = Review()
-        rev.location = 0.1
-        assertEquals(0.1, rev.location)
-    }
-
-    @Test
-    fun getValue() {
-        val rev = Review()
-        rev.value = 0.1
-        assertEquals(0.1, rev.value)
-    }
-
-    @Test
-    fun setValue() {
-        val rev = Review()
-        rev.value = 0.1
-        assertEquals(0.1, rev.value)
-    }
+//    @Test
+//    fun getCleanliness() {
+//        val rev = Review()
+//        rev.cleanliness = 0.1
+//        assertEquals(0.1, rev.cleanliness)
+//    }
+//
+//    @Test
+//    fun setCleanliness() {
+//        val rev = Review()
+//        rev.cleanliness = 0.1
+//        assertEquals(0.1, rev.cleanliness)
+//    }
+//
+//    @Test
+//    fun getLandlord() {
+//        val rev = Review()
+//        rev.cleanliness = 0.1
+//        assertEquals(0.1, rev.cleanliness)
+//    }
+//
+//    @Test
+//    fun setLandlord() {
+//        val rev = Review()
+//        rev.landlord = 0.1
+//        assertEquals(0.1, rev.landlord)
+//    }
+//
+//    @Test
+//    fun getLocation() {
+//        val rev = Review()
+//        rev.location = 0.1
+//        assertEquals(0.1, rev.location)
+//    }
+//
+//    @Test
+//    fun setLocation() {
+//        val rev = Review()
+//        rev.location = 0.1
+//        assertEquals(0.1, rev.location)
+//    }
+//
+//    @Test
+//    fun getValue() {
+//        val rev = Review()
+//        rev.value = 0.1
+//        assertEquals(0.1, rev.value)
+//    }
+//
+//    @Test
+//    fun setValue() {
+//        val rev = Review()
+//        rev.value = 0.1
+//        assertEquals(0.1, rev.value)
+//    }
 }
