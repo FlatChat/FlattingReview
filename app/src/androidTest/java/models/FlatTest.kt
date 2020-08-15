@@ -17,6 +17,10 @@ class FlatTest {
         assertEquals("-M8DFB82RND0DIO", flat.flatID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getAddress() {
         val flat = Flat()
@@ -24,7 +28,10 @@ class FlatTest {
         assertEquals("606 Union Street, North Dunedin, Dunedin", flat.address)
     }
 
-
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getBedrooms() {
         val flat = Flat()
@@ -32,7 +39,10 @@ class FlatTest {
         assertEquals("5", flat.bedrooms)
     }
 
-
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getBathrooms() {
         val flat = Flat()
@@ -40,6 +50,10 @@ class FlatTest {
         assertEquals("3", flat.bathrooms)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setFlatID() {
         val flat = Flat()
@@ -47,6 +61,10 @@ class FlatTest {
         assertEquals("-M8DFB82RND0DIO", flat.flatID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setAddress() {
         val flat = Flat()
@@ -54,6 +72,10 @@ class FlatTest {
         assertEquals("606 Union Street, North Dunedin, Dunedin", flat.address)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setBedrooms() {
         val flat = Flat()
@@ -61,6 +83,10 @@ class FlatTest {
         assertEquals("5", flat.bedrooms)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setBathrooms() {
         val flat = Flat()
