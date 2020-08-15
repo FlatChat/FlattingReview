@@ -11,7 +11,7 @@ class WriteReviewTest {
     @Test
     fun onCreate() {
         ActivityScenario.launch(WriteReview::class.java)
-        Espresso.onView(ViewMatchers.withId(R.id.write_review))
+        Espresso.onView(ViewMatchers.withId(R.id.comment1))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }

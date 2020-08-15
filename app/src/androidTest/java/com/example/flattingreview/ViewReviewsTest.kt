@@ -10,8 +10,8 @@ class ViewReviewsTest {
 
     @Test
     fun onCreate() {
-        ActivityScenario.launch(WriteReview::class.java)
-        Espresso.onView(ViewMatchers.withId(R.id.write_review))
+        ActivityScenario.launch(ViewReviews::class.java)
+        Espresso.onView(ViewMatchers.withId(R.id.recycler_view))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
