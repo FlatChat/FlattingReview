@@ -21,9 +21,11 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4ClassRunner::class)
 class HomeScreenTest{
 
+    private lateinit var flat: Flat
+
     @Before
     fun setup(){
-        var flat: Flat = Flat("-M78YEF09V","12 Union St, North Dunedin, Dunedin", "3", "5")
+        flat = Flat("-M78YEF09V","12 Union St, North Dunedin, Dunedin", "3", "5")
     }
 
     /**

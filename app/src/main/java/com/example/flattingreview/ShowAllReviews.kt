@@ -1,13 +1,10 @@
 package com.example.flattingreview
 
-import adapters.PopularFlatAdapter
 import adapters.ReviewAdapter
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_show_all_flats.*
 import kotlinx.android.synthetic.main.activity_show_all_reviews.*
-import models.Flat
 import models.Review
 
 class ShowAllReviews : AppCompatActivity() {
@@ -15,6 +12,7 @@ class ShowAllReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_all_reviews)
 
+        @Suppress("UNCHECKED_CAST")
         val list = intent.getSerializableExtra("list") as ArrayList<Review>
 
         review_recycler_view.adapter = ReviewAdapter(list)
