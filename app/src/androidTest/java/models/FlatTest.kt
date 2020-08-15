@@ -6,6 +6,10 @@ import org.junit.Assert.*
 
 class FlatTest {
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getFlatID() {
         val flat = Flat()
