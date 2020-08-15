@@ -32,6 +32,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+    private var layout = "flat_layout"
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -45,6 +46,26 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
+
+        show_all_button_popular.setOnClickListener {
+            val intent = Intent(this, ShowAllFlats::class.java)
+            intent.putExtra("list", popularFlat)
+            intent.putExtra("ratingList", ratingList)
+            startActivity(intent)
+        }
+
+        show_all_button_featured.setOnClickListener {
+            val intent = Intent(this, ShowAllFlats::class.java)
+            intent.putParcelableArrayListExtra("list", featuredFlat)
+            intent.putExtra("ratingList", ratingList)
+            startActivity(intent)
+        }
+
+        show_all_reviews.setOnClickListener {
+            val intent = Intent(this, ShowAllReviews::class.java)
+            intent.putExtra("list", reviewList)
+            startActivity(intent)
+        }
 
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -73,13 +94,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
         }
         getData()
-//        featuredFlat = connect.getAllFlats()
-//        connect.getAllReview()
-//        numberOfReviews = connect.numberOfReviews
-//        ratingList = connect.ratingList
-//        createViewFeaturedFlats()
-//        createViewPopularFlats()
-//        createViewFeaturedReviews()
     }
 
     /**
@@ -161,7 +175,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
      *
      */
     private fun createViewPopularFlats() {
-        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
+        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
         popular_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         popular_flat_recycler.setHasFixedSize(true)

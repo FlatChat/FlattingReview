@@ -40,7 +40,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/show_all_button"
+                        android:id="@+id/show_all_button_popular"
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -81,6 +81,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/show_all_button_featured"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -121,6 +122,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/show_all_reviews"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

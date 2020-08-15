@@ -34,10 +34,10 @@ class HomeScreenTest{
      * A test to check that visibility of the buttons on the home screen.
      *
      */
-    @Test
-    fun test_Visibility_CreateFlat_Button() {
-        val activityScenario=ActivityScenario.launch(HomeScreen::class.java)
-        onView(withId(R.id.show_all_button))
-            .check(matches(isDisplayed()))
-    }
+//    @Test
+//    fun test_Visibility_CreateFlat_Button() {
+//        val activityScenario=ActivityScenario.launch(HomeScreen::class.java)
+//        onView(withId(R.id.show_all_button))
+//            .check(matches(isDisplayed()))
+//    }
 }
