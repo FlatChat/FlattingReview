@@ -21,18 +21,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
- # Decode Google services configuration file
+      # Decode Google services configuration file
       - name: Decode google-services.json
         env:
           FIREBASE_CONFIG: ${{ secrets.FIREBASE_CONFIG }}
         run: echo $FIREBASE_CONFIG > app/google-services.json
-    
- # Check the code with Android Linter UNCHECK WHEN READY TO DEBUG THE PROJECT
- #     - name: Run Android Linter
- #       run: ./gradlew lintStagingDebug
- 
+
+      # Check the code with Android Linter UNCHECK WHEN READY TO DEBUG THE PROJECT
+      #     - name: Run Android Linter
+      #       run: ./gradlew lintStagingDebug
+
       - name: Change wrapper permissions
-        run: chmod +x ./gradlew 
+        run: chmod +x ./gradlew
 
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
@@ -56,7 +56,7 @@ jobs:
         with:
           api-level: 30
           target: google_apis
-          script: ./gradlew test createDebugAndroidTestCoverageReport 
+          script: ./gradlew test createDebugAndroidTestCoverageReport
       - name: Upload coverage reports
         run: bash <(curl -s https://codecov.io/bash)
 
