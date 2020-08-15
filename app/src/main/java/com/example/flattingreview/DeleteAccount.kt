@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_delete_account.*
  * @author Nikki Meadows
  */
 class DeleteAccount : AppCompatActivity() {
-
+//Testing something
     private lateinit var auth: FirebaseAuth
 
     /**
