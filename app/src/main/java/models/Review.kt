@@ -22,14 +22,14 @@ import java.io.Serializable
  */
 @IgnoreExtraProperties
 class Review(
-    private var reviewID: String? = null,
-    private var userID: String? = null,
+    var reviewID: String? = null,
+    var userID: String? = null,
     var flatID: String? = null,
     var name: String? = null,
-    private var cleanliness: Double = 0.0,
-    private var landlord: Double = 0.0,
-    private var location: Double = 0.0,
-    private var value: Double = 0.0,
+    var cleanliness: Double = 0.0,
+    var landlord: Double = 0.0,
+    var location: Double = 0.0,
+    var value: Double = 0.0,
     var anonymous: Boolean = false,
     var date: String? = null,
     var comment: String? = null
