@@ -3,12 +3,10 @@ package com.example.flattingreview
 import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
 import adapters.PopularFlatAdapter
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.multidex.MultiDex
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
@@ -30,8 +28,9 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
-    private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
+    var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     private var numberOfReviews: HashMap<String, Int> = HashMap()
+    private var layout = "flat_layout"
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -45,6 +44,26 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
         flatReference = FirebaseDatabase.getInstance().getReference("flats")
+
+        show_all_button_popular.setOnClickListener {
+            val intent = Intent(this, ShowAllFlats::class.java)
+            intent.putExtra("list", popularFlat)
+            intent.putExtra("ratingList", ratingList)
+            startActivity(intent)
+        }
+
+        show_all_button_featured.setOnClickListener {
+            val intent = Intent(this, ShowAllFlats::class.java)
+            intent.putExtra("list", featuredFlat)
+            intent.putExtra("ratingList", ratingList)
+            startActivity(intent)
+        }
+
+        show_all_reviews.setOnClickListener {
+            val intent = Intent(this, ShowAllReviews::class.java)
+            intent.putExtra("list", reviewList)
+            startActivity(intent)
+        }
 
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
@@ -73,13 +92,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
         }
         getData()
-//        featuredFlat = connect.getAllFlats()
-//        connect.getAllReview()
-//        numberOfReviews = connect.numberOfReviews
-//        ratingList = connect.ratingList
-//        createViewFeaturedFlats()
-//        createViewPopularFlats()
-//        createViewFeaturedReviews()
     }
 
     /**
@@ -140,7 +152,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                         comment
                     )
                     val ratings: ArrayList<Double> = ArrayList()
-                    ratings.add(round((clean + lord + location + value - 0.4) / 4))
+                    ratings.add(round((clean + lord + location + value) / 4))
                     ratingList[flatID] = ratings
                     numberOfReviews[flatID] =+ 1
                     if (comment != "") {
@@ -161,7 +173,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
      *
      */
     private fun createViewPopularFlats() {
-        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this)
+        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
         popular_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         popular_flat_recycler.setHasFixedSize(true)
@@ -204,15 +216,5 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         }
         intent.putExtra("numberOfRatings", numberOfReviews[item.flatID])
         startActivity(intent)
-    }
-
-    /**
-     * To allow the project to increase its size over 64kb when its built.
-     *
-     * @param base
-     */
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
     }
 }

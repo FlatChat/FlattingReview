@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.Menu
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar

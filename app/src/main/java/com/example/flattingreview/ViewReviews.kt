@@ -1,6 +1,5 @@
 package com.example.flattingreview
 
-//import firebase.Connect
 import adapters.ReviewAdapter
 import android.os.Bundle
 import android.util.Log
@@ -46,10 +45,6 @@ class ViewReviews : AppCompatActivity() {
 
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
-
-//        val connect: Connect = Connect()
-//        connect.getReviewByFlat(flat)
-//        reviewList.addAll(connect.reviewList)
 
 
         val reviewListener: ValueEventListener = object : ValueEventListener {
