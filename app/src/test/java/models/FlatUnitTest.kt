@@ -4,6 +4,10 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Tests the flat model class.
+ * @author Ryan
+ */
 class FlatUnitTest {
 
     /**

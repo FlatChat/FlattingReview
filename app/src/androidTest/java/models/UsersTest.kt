@@ -4,6 +4,10 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Tests the user model class.
+ * @author Ryan
+ */
 class UsersTest {
 
     /**
