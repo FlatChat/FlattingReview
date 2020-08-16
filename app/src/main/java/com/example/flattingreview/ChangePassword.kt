@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_change_password.*
  * @author Nikki Meadows
  */
 class ChangePassword : AppCompatActivity() {
-
+    //firebase authentication
     private lateinit var auth: FirebaseAuth
 
     /**
