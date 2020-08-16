@@ -14,7 +14,7 @@ import models.Users
 
 /**
  * A class that allows the user to create a new account using their email address and a password.
- * Once the user has successfully created a new account they will be redirected to the sign in page where
+ * Once the user has successfully created a new account they will be redirected to the sign up page where
  * they can sign in with their new credentials.
  * @author Nikki Meadows
  */
