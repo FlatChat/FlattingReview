@@ -21,6 +21,10 @@ class SearchAdapter(
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
 
+    /**
+     * Clears the list of flats so they don't double up in the results.
+     *
+     */
     fun clear() {
         exampleList.removeAll(exampleList)
     }
@@ -67,6 +71,13 @@ class SearchAdapter(
      */
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView1: TextView = itemView.search_flat_address
+
+        /**
+         * Initializes the click function.
+         *
+         * @param item
+         * @param action
+         */
         fun initialize(item: Flat, action: Search) {
             itemView.setOnClickListener {
                 action.onItemClick(item, adapterPosition)
@@ -74,7 +85,17 @@ class SearchAdapter(
         }
     }
 
+    /**
+     * The interface for the click function.
+     *
+     */
     interface OnItemClickListener {
+        /**
+         * Click function.
+         *
+         * @param item the flat object
+         * @param position the position of the object in the list
+         */
         fun onItemClick(item: Flat, position: Int)
     }
 

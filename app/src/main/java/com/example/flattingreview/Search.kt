@@ -15,6 +15,11 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
 import models.Flat
 
+/**
+ * This is the search classes that receives queries from the user and relays them to firebase, to
+ * fetch search results, it uses the Search Adapter class to display the query results.
+ * @author Ryan
+ */
 class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
 
     private lateinit var mSearchText : EditText
@@ -63,9 +68,11 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
 
         mSearchText.addTextChangedListener(object  : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
+                // Doesn't need to do anything
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Doesn't need to do anything
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -75,7 +82,12 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
         })
     }
 
-
+    /**
+     * This function search the flats in the database using the text phrase input by the
+     * user, every time the text is changed by the user the function is called again to
+     * do a new query.
+     * @param searchText the user input
+     */
     private fun firebaseSearch(searchText : String) {
         mAdapter.clear()
             val query: Query = flatReference.orderByChild("address").startAt(searchText).endAt(searchText + "\uf8ff")
@@ -126,6 +138,11 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
             })
     }
 
+    /**
+     * Creates an instance of the search adapter, is then sets the layout and inputs the list
+     * of flats to display that is returned by the firebase query.
+     *
+     */
     private fun createViewSearchFlats() {
         mAdapter = SearchAdapter(flatList, this)
         search_view_recycler.adapter = mAdapter
@@ -134,6 +151,13 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
         search_view_recycler.setHasFixedSize(true)
     }
 
+    /**
+     * Implements the click interface so a user can click on a search result and be taken
+     * to that flats page.
+     *
+     * @param item the flat
+     * @param position the flats position in the list
+     */
      override fun onItemClick(item: Flat, position: Int){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)

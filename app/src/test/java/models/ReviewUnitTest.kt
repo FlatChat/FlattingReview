@@ -4,6 +4,10 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Tests the Review model class.
+ * @author Ryan
+ */
 class ReviewUnitTest {
 
     /**

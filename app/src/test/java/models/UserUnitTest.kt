@@ -4,6 +4,10 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Tests the user model class.
+ * @author Ryan
+ */
 class UserUnitTest {
 
     /**
@@ -12,9 +16,10 @@ class UserUnitTest {
      */
     @Test
     fun getUserID() {
+        val id = "-M8DFB82RND0DIO"
         val user = Users()
-        user.userID = "-M8DFB82RND0DIO"
-        assertEquals("-M8DFB82RND0DIO", user.userID)
+        user.userID = id
+        assertEquals(id, user.userID)
     }
 
     /**
@@ -23,9 +28,10 @@ class UserUnitTest {
      */
     @Test
     fun setUserID() {
+        val id = "-M8DFB82RND0DIO"
         val user = Users()
-        user.userID = "-M8DFB82RND0DIO"
-        assertEquals("-M8DFB82RND0DIO", user.userID)
+        user.userID = id
+        assertEquals(id, user.userID)
     }
 
     /**
