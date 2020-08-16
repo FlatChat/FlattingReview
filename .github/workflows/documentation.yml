@@ -42,7 +42,7 @@ jobs:
           ./gradlew dokka
       - name: Commit files
         run: |
-          git commit -A docs
+          git add -f docs
           git diff-index --quiet HEAD || git commit -m "Automatically update docs"
       - name: Push changes
         run: git push
