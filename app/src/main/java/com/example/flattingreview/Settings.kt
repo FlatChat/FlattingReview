@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 /**
  * A class designed to allow the user to logout and be redirected to the sign in screen. This class also
- * allows the user to access another screen where they are able to change their password.
+ * allows the user to access another screen where they are able to change password.
  * @author Nikki Meadows
  */
 class Settings : AppCompatActivity() {
@@ -19,7 +19,7 @@ class Settings : AppCompatActivity() {
     /**
      * A method that gets the current firebase user authentication instance. This method also contains a click listener
      * that will call the logout method when the user clicks the logout button. Additionally, this method contains a click listener
-     * that will redirect the user to the change password screen when the user clicks the change password button.
+     * that will redirect the user to the change password screen when the user clicks a change password button.
      *
      * @param savedInstanceState the most recent state of the application.
      */
@@ -67,11 +67,6 @@ class Settings : AppCompatActivity() {
         //connecting the delete account button to the delete account screen
         deleteAccountButton.setOnClickListener{
             val intent = Intent(this, DeleteAccount::class.java)
-            startActivity(intent)
-        }
-        //connecting the need help button to the account screen
-        buttonHelp.setOnClickListener{
-            val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
     }

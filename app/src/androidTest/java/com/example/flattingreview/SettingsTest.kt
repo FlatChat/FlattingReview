@@ -42,8 +42,6 @@ class SettingsTest{
             .check(matches(isDisplayed()))
         onView(withId(R.id.logoutBut))
             .check(matches(isDisplayed()))
-        onView(withId(R.id.buttonHelp))
-            .check(matches(isDisplayed()))
     }
 
     /**
