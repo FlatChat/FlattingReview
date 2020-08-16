@@ -91,12 +91,20 @@ class WriteReview : AppCompatActivity() {
         }
     }
 
+    /**
+     * Displays the address in the header on the screen.
+     *
+     */
     private fun setDisplay(){
         val address = flat.address
         val addressText: TextView = findViewById(R.id.write_review_address)
         addressText.text = address!!.split(",")[0]
     }
 
+    /**
+     * Sets all the input fields to variables.
+     *
+     */
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         comment = findViewById<EditText>(R.id.comment1).text
@@ -107,6 +115,10 @@ class WriteReview : AppCompatActivity() {
         anon = findViewById(R.id.anonSwitch)
     }
 
+    /**
+     * Saves the object (review) to firebase.
+     *
+     */
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
