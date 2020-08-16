@@ -13,7 +13,7 @@ android {
     buildToolsVersion "29.0.3"
 
     testOptions {
-        // unitTests.returnDefaultValues = true
+        //unitTests.returnDefaultValues = true
         unitTests {
             includeAndroidResources = true
         }
