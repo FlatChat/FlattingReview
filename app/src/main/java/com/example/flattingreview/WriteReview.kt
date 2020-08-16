@@ -106,7 +106,7 @@ class WriteReview : AppCompatActivity() {
         value = findViewById(R.id.value)
         anon = findViewById(R.id.anonSwitch)
     }
-    
+
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
