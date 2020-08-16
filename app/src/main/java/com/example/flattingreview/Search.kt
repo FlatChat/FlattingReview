@@ -131,7 +131,7 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
                 }
             })
     }
-    
+
     private fun createViewSearchFlats() {
         mAdapter = SearchAdapter(flatList, this)
         search_view_recycler.adapter = mAdapter

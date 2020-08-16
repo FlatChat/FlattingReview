@@ -85,6 +85,13 @@ class FeaturedFlatAdapter(
         val textView1: TextView = itemView.flat_icon_address
         val textView2: TextView = itemView.flat_icon_rating
         val imageView1: ImageView = itemView.flat_image
+
+        /**
+         * A method containing a click listener for users to view a featured flat.
+         *
+         * @param item the item being selected
+         * @param action the action to take place after the button has been pressed.
+         */
         fun initialize(item: Flat, action: HomeScreen) {
             itemView.setOnClickListener {
                 action.onItemClick(item)

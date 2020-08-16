@@ -23,6 +23,10 @@ class HomeScreenTest{
 
     private lateinit var flat: Flat
 
+    /**
+     * A method that is executed prior to the tests for the home screen test class.
+     *
+     */
     @Before
     fun setup(){
         flat = Flat("-M78YEF09V","12 Union St, North Dunedin, Dunedin", "3", "5")
