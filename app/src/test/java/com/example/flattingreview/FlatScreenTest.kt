@@ -1,5 +1,6 @@
-package com.example.flattingreview
 
+package com.example.flattingreview
+/*
 import org.junit.jupiter.api.Test
 
 internal class FlatScreenTest {
@@ -13,4 +14,4 @@ internal class FlatScreenTest {
     @Test
     fun onStart() {
     }
-}
+}*/
