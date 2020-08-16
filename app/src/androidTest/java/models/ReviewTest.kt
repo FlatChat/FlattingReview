@@ -4,6 +4,10 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
+/**
+ * Tests the Review model class.
+ * @author Ryan
+ */
 class ReviewTest {
 
     /**
@@ -12,9 +16,10 @@ class ReviewTest {
      */
     @Test
     fun getFlatID() {
+        val id = "-M8DFB82RND0DIO"
         val rev = Review()
-        rev.flatID = "-M8DFB82RND0DIO"
-        assertEquals("-M8DFB82RND0DIO", rev.flatID)
+        rev.flatID = id
+        assertEquals(id, rev.flatID)
     }
 
     /**
@@ -23,9 +28,10 @@ class ReviewTest {
      */
     @Test
     fun setFlatID() {
+        val id = "-M8DFB82RND0DIO"
         val rev = Review()
-        rev.flatID = "-M8DFB82RND0DIO"
-        assertEquals("-M8DFB82RND0DIO", rev.flatID)
+        rev.flatID = id
+        assertEquals(id, rev.flatID)
     }
 
     /**
@@ -78,9 +84,10 @@ class ReviewTest {
      */
     @Test
     fun getDate() {
+        val date = "12/03/2020"
         val rev = Review()
-        rev.date = "12/03/2020"
-        assertEquals("12/03/2020", rev.date)
+        rev.date = date
+        assertEquals(date, rev.date)
     }
 
     /**
@@ -89,9 +96,10 @@ class ReviewTest {
      */
     @Test
     fun setDate() {
+        val date = "12/03/2020"
         val rev = Review()
-        rev.date = "12/03/2020"
-        assertEquals("12/03/2020", rev.date)
+        rev.date = date
+        assertEquals(date, rev.date)
     }
 
     /**
@@ -100,9 +108,10 @@ class ReviewTest {
      */
     @Test
     fun getComment() {
+        val comment = "Hello World!"
         val rev = Review()
-        rev.comment = "Hello World"
-        assertEquals("Hello World", rev.comment)
+        rev.comment = comment
+        assertEquals(comment, rev.comment)
     }
 
     /**
@@ -122,9 +131,10 @@ class ReviewTest {
      */
     @Test
     fun getReviewID() {
+        val id = "-M983R9UH"
         val rev = Review()
-        rev.reviewID = "-M983R9UH"
-        assertEquals("-M983R9UH", rev.reviewID)
+        rev.reviewID = id
+        assertEquals(id, rev.reviewID)
     }
 
     /**
@@ -133,9 +143,10 @@ class ReviewTest {
      */
     @Test
     fun setReviewID() {
+        val id = "-M983R9UH"
         val rev = Review()
-        rev.reviewID = "-M983R9UH"
-        assertEquals("-M983R9UH", rev.reviewID)
+        rev.reviewID = id
+        assertEquals(id, rev.reviewID)
     }
 
     /**
