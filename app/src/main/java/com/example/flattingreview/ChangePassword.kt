@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_change_password.*
 
 /**
  * A class to allow the user to change their password. Once the password has been changed successfully, the user
- * will be redirected to the sign in screen where they will then need to sign in with their new password and re-login.
+ * will be redirected to the sign in screen where they will then need to sign in with their new password.
  *
  * @author Nikki Meadows
  */
