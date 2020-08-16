@@ -6,6 +6,10 @@ import org.junit.Assert.*
 
 class ReviewUnitTest {
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getFlatID() {
         val rev = Review()
@@ -13,6 +17,10 @@ class ReviewUnitTest {
         assertEquals("-M8DFB82RND0DIO", rev.flatID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setFlatID() {
         val rev = Review()
@@ -20,6 +28,10 @@ class ReviewUnitTest {
         assertEquals("-M8DFB82RND0DIO", rev.flatID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getName() {
         val rev = Review()
@@ -27,6 +39,10 @@ class ReviewUnitTest {
         assertEquals("John", rev.name)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setName() {
         val rev = Review()
@@ -34,6 +50,10 @@ class ReviewUnitTest {
         assertEquals("John", rev.name)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getAnonymous() {
         val rev = Review()
@@ -41,6 +61,10 @@ class ReviewUnitTest {
         assertEquals(false, rev.anonymous)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setAnonymous() {
         val rev = Review()
@@ -48,6 +72,10 @@ class ReviewUnitTest {
         assertEquals(false, rev.anonymous)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getDate() {
         val rev = Review()
@@ -55,6 +83,10 @@ class ReviewUnitTest {
         assertEquals("12/03/2020", rev.date)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setDate() {
         val rev = Review()
@@ -62,6 +94,10 @@ class ReviewUnitTest {
         assertEquals("12/03/2020", rev.date)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getComment() {
         val rev = Review()
@@ -69,6 +105,10 @@ class ReviewUnitTest {
         assertEquals("Hello World", rev.comment)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setComment() {
         val rev = Review()

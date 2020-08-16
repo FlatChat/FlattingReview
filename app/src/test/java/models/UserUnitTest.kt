@@ -6,6 +6,10 @@ import org.junit.Assert.*
 
 class UserUnitTest {
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getUserID() {
         val user = Users()
@@ -13,6 +17,10 @@ class UserUnitTest {
         assertEquals("-M8DFB82RND0DIO", user.userID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setUserID() {
         val user = Users()
@@ -20,6 +28,10 @@ class UserUnitTest {
         assertEquals("-M8DFB82RND0DIO", user.userID)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getFirstNameUsers() {
         val user = Users()
@@ -27,6 +39,10 @@ class UserUnitTest {
         assertEquals("John", user.firstNameUsers)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setFirstNameUsers() {
         val user = Users()
@@ -34,6 +50,10 @@ class UserUnitTest {
         assertEquals("John", user.firstNameUsers)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getLastNameUsers() {
         val user = Users()
@@ -41,6 +61,10 @@ class UserUnitTest {
         assertEquals("Smith", user.lastNameUsers)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setLastNameUsers() {
         val user = Users()
@@ -48,6 +72,10 @@ class UserUnitTest {
         assertEquals("Smith", user.lastNameUsers)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun getEmailUsers() {
         val user = Users()
@@ -55,6 +83,10 @@ class UserUnitTest {
         assertEquals("john@gmail.com", user.emailUsers)
     }
 
+    /**
+     * Tests the getters and setters.
+     *
+     */
     @Test
     fun setEmailUsers() {
         val user = Users()
