@@ -87,7 +87,7 @@ class FeaturedFlatAdapter(
         val imageView1: ImageView = itemView.flat_image
         fun initialize(item: Flat, action: HomeScreen) {
             itemView.setOnClickListener {
-                action.onItemClick(item, adapterPosition)
+                action.onItemClick(item)
             }
         }
     }

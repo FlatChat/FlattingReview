@@ -156,9 +156,8 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
      * to that flats page.
      *
      * @param item the flat
-     * @param position the flats position in the list
      */
-     override fun onItemClick(item: Flat, position: Int){
+     override fun onItemClick(item: Flat){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
         startActivity(intent)

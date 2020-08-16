@@ -8,7 +8,11 @@ import com.firebase.ui.storage.images.FirebaseImageLoader
 import com.google.firebase.storage.StorageReference
 import java.io.InputStream
 
-
+/**
+ * Copied this function off the internet to use the Glide library to display images. I have no
+ * idea how it works.
+ * @author Ryan
+ */
 @GlideModule
 class MyAppGlideModule: AppGlideModule(){
 

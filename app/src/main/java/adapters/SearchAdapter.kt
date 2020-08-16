@@ -80,7 +80,7 @@ class SearchAdapter(
          */
         fun initialize(item: Flat, action: Search) {
             itemView.setOnClickListener {
-                action.onItemClick(item, adapterPosition)
+                action.onItemClick(item)
             }
         }
     }
@@ -94,9 +94,8 @@ class SearchAdapter(
          * Click function.
          *
          * @param item the flat object
-         * @param position the position of the object in the list
          */
-        fun onItemClick(item: Flat, position: Int)
+        fun onItemClick(item: Flat)
     }
 
 }

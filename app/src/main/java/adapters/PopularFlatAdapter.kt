@@ -91,14 +91,14 @@ class PopularFlatAdapter(
         val imageView1: ImageView = itemView.flat_image
         fun initialize(item: Flat, action: OnItemClickListener) {
             itemView.setOnClickListener {
-                action.onItemClick(item, adapterPosition)
+                action.onItemClick(item)
             }
         }
 
     }
 
     interface OnItemClickListener {
-        fun onItemClick(item: Flat, position: Int)
+        fun onItemClick(item: Flat)
     }
 }
 
