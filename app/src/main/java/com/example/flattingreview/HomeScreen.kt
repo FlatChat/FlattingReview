@@ -19,7 +19,7 @@ import kotlin.math.round
  * The first screen the user will see when opening the app (after the splash screen). This screen
  * displays a search bar (still to be implemented) and a selection of flats and reviews that
  * users can browse.
- * @author Ryan Cole
+ * @author Ryan
  */
 class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
@@ -95,8 +95,9 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     }
 
     /**
-     * On start it will connect to the database under the reference reviews and flats. And collect all
-     * the data for both the flats and reviews to display in the recycler views in the home screen.
+     * On start it will connect to the database under the reference reviews and flats. And collect
+     * all the data for both the flats and reviews to display in the recycler views
+     * in the home screen.
      */
     private fun getData() {
         val flatListener: ValueEventListener = object : ValueEventListener {
@@ -173,14 +174,16 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
      *
      */
     private fun createViewPopularFlats() {
-        popular_flat_recycler.adapter = PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
+        popular_flat_recycler.adapter =
+            PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
         popular_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         popular_flat_recycler.setHasFixedSize(true)
     }
 
     private fun createViewFeaturedFlats() {
-        featured_flat_recycler.adapter = FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
+        featured_flat_recycler.adapter =
+            FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
         featured_flat_recycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)
@@ -199,7 +202,14 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         featured_reviews_recycler.setHasFixedSize(true)
     }
 
-    override fun onItemClick(item: Flat, position: Int){
+    /**
+     * Receives the flat the user has clicked on in the recycler view and opens the
+     * flat screen activity, it puts the flat and the rating/review details into the intent
+     * for the other activity.
+     *
+     * @param item the flat that the user has clicked on
+     */
+    override fun onItemClick(item: Flat){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
         val array = ratingList[item.flatID]

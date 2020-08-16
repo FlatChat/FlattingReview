@@ -7,6 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_show_all_reviews.*
 import models.Review
 
+/**
+ * Gets sent a list of reviews and forwards them on into a recycler adapter for them
+ * to be displayed.
+ * @author Ryan
+ */
 class ShowAllReviews : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
