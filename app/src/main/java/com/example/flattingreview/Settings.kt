@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 
 /**
  * A class designed to allow the user to logout and be redirected to the sign in screen. This class also
- * allows the user to access another screen where they are able to change their password.
+ * allows the user to access another screen where they are able to change password.
  * @author Nikki Meadows
  */
 class Settings : AppCompatActivity() {
