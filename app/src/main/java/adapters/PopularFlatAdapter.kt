@@ -104,7 +104,16 @@ class PopularFlatAdapter(
 
     }
 
+    /**
+     * An interface that containing a onItemClick function for a flat.
+     *
+     */
     interface OnItemClickListener {
+        /**
+         * A method that relates to the a particular flat a user has selected.
+         *
+         * @param item the flat that has been selected
+         */
         fun onItemClick(item: Flat)
     }
 }
