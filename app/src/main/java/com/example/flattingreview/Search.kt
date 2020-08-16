@@ -82,12 +82,6 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
         })
     }
 
-    /**
-     * Searches firebase with the user inputted string and returns a list of flats that matches
-     * the search.
-     *
-     * @param searchText
-     */
     private fun firebaseSearch(searchText : String) {
         mAdapter.clear()
             val query: Query = flatReference.orderByChild("address").startAt(searchText).endAt(searchText + "\uf8ff")
@@ -138,10 +132,6 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
             })
     }
 
-    /**
-     * Creates an instance of the search adapter and passes in a list of flats.
-     *
-     */
     private fun createViewSearchFlats() {
         mAdapter = SearchAdapter(flatList, this)
         search_view_recycler.adapter = mAdapter
