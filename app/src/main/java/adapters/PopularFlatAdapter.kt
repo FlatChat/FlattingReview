@@ -89,6 +89,13 @@ class PopularFlatAdapter(
         val textView1: TextView = itemView.flat_icon_address
         val textView2: TextView = itemView.flat_icon_rating
         val imageView1: ImageView = itemView.flat_image
+
+        /**
+         * A method to containing a click listener so users can view popular flats.
+         *
+         * @param item the flat being selected
+         * @param action the action to take place after the button has been pressed.
+         */
         fun initialize(item: Flat, action: OnItemClickListener) {
             itemView.setOnClickListener {
                 action.onItemClick(item)
