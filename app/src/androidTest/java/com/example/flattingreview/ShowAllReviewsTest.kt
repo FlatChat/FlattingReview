@@ -1,5 +1,6 @@
-package com.example.flattingreview
 
+package com.example.flattingreview
+/*
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
@@ -14,4 +15,4 @@ class ShowAllReviewsTest {
 //        Espresso.onView(ViewMatchers.withId(R.id.review_recycler_view))
 //            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
-}
+}*/

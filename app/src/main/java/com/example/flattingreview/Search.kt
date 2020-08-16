@@ -82,12 +82,6 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
         })
     }
 
-    /**
-     * This function search the flats in the database using the text phrase input by the
-     * user, every time the text is changed by the user the function is called again to
-     * do a new query.
-     * @param searchText the user input
-     */
     private fun firebaseSearch(searchText : String) {
         mAdapter.clear()
             val query: Query = flatReference.orderByChild("address").startAt(searchText).endAt(searchText + "\uf8ff")
@@ -137,12 +131,7 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
                 }
             })
     }
-
-    /**
-     * Creates an instance of the search adapter, is then sets the layout and inputs the list
-     * of flats to display that is returned by the firebase query.
-     *
-     */
+    
     private fun createViewSearchFlats() {
         mAdapter = SearchAdapter(flatList, this)
         search_view_recycler.adapter = mAdapter
