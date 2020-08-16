@@ -8,6 +8,10 @@ import org.junit.Test
 
 class ViewReviewsTest {
 
+    /**
+     * Tests to see if the View Reviews screen displays correctly.
+     *
+     */
     @Test
     fun onCreate() {
 //        ActivityScenario.launch(ViewReviews::class.java)
