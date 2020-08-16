@@ -3,5 +3,4 @@ $dokka.linkExtension:html
 
 adapters
 com.example.flattingreview
-firebase
 models
