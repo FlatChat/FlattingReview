@@ -177,7 +177,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featured_flat_recycler.setHasFixedSize(true)
     }
-    
+
     private fun createViewFeaturedReviews() {
         featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
         featured_reviews_recycler.layoutManager =
