@@ -90,7 +90,7 @@ class Connect {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
-    fun getReviewByFlat(flat: Flat) {
+    fun getReviewByFlat(flat: Flat): ArrayList<Review> {
         reviewList.removeAll(reviewList)
         val reviewReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("reviews")
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -137,5 +137,6 @@ class Connect {
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
+        return reviewList
     }
 }
