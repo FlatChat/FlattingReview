@@ -91,42 +91,34 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
                 }
 
                 override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                    val id = snapshot.child("flatID").value as String
-                    val address = snapshot.child("address").value as String
-                    val beds = snapshot.child("bedrooms").value as String
-                    val baths = snapshot.child("bathrooms").value as String
-                    val flat = Flat(id, address, beds, baths)
-                    flatList.add(flat)
+                    val flat = snapshot.getValue(Flat::class.java)
+                    if (flat != null) {
+                        flatList.add(flat)
+                    }
                     createViewSearchFlats()
                 }
 
                 override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                    val id = snapshot.child("flatID").value as String
-                    val address = snapshot.child("address").value as String
-                    val beds = snapshot.child("bedrooms").value as String
-                    val baths = snapshot.child("bathrooms").value as String
-                    val flat = Flat(id, address, beds, baths)
-                    flatList.add(flat)
+                    val flat = snapshot.getValue(Flat::class.java)
+                    if (flat != null) {
+                        flatList.add(flat)
+                    }
                     createViewSearchFlats()
                 }
 
                 override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    val id = snapshot.child("flatID").value as String
-                    val address = snapshot.child("address").value as String
-                    val beds = snapshot.child("bedrooms").value as String
-                    val baths = snapshot.child("bathrooms").value as String
-                    val flat = Flat(id, address, beds, baths)
-                    flatList.add(flat)
+                    val flat = snapshot.getValue(Flat::class.java)
+                    if (flat != null) {
+                        flatList.add(flat)
+                    }
                     createViewSearchFlats()
                 }
 
                 override fun onChildRemoved(snapshot: DataSnapshot) {
-                    val id = snapshot.child("flatID").value as String
-                    val address = snapshot.child("address").value as String
-                    val beds = snapshot.child("bedrooms").value as String
-                    val baths = snapshot.child("bathrooms").value as String
-                    val flat = Flat(id, address, beds, baths)
-                    flatList.add(flat)
+                    val flat = snapshot.getValue(Flat::class.java)
+                    if (flat != null) {
+                        flatList.add(flat)
+                    }
                     createViewSearchFlats()
                 }
             })
