@@ -106,13 +106,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
-                    val id = ds.child("flatID").value as String
-                    val address = ds.child("address").value as String
-                    val beds = ds.child("bedrooms").value as String
-                    val baths = ds.child("bathrooms").value as String
-                    val flat = Flat(id, address, beds, baths)
-                    featuredFlat.add(flat)
-                    popularFlat.add(flat)
+                    val flat = ds.getValue(Flat::class.java)
+                    if (flat != null) {
+                        featuredFlat.add(flat)
+                    }
+                    if (flat != null) {
+                        popularFlat.add(flat)
+                    }
                 }
                 createViewPopularFlats()
                 createViewFeaturedFlats()
@@ -126,37 +126,15 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
-                    val reviewID = ds.child("reviewID").value as String
-                    val userID = ds.child("userID").value as String
-                    val flatID = ds.child("flatID").value as String
-                    val name = ds.child("name").value as String
-                    val clean = ds.child("cleanliness").value as Double
-                    val lord = ds.child("landlord").value as Double
-                    val location = ds.child("location").value as Double
-                    val value = ds.child("value").value as Double
-                    val anon = ds.child("anonymous").value as Boolean
-                    val date = ds.child("date").value as String
-                    val comment = ds.child("comment").value as String
-
-                    val rev = Review(
-                        reviewID,
-                        userID,
-                        flatID,
-                        name,
-                        clean - 0.1,
-                        lord - 0.1,
-                        location - 0.1,
-                        value - 0.1,
-                        anon,
-                        date,
-                        comment
-                    )
+                    val rev = ds.getValue(Review::class.java)
                     val ratings: ArrayList<Double> = ArrayList()
-                    ratings.add(round((clean + lord + location + value) / 4))
-                    ratingList[flatID] = ratings
-                    numberOfReviews[flatID] =+ 1
-                    if (comment != "") {
-                        reviewList.add(rev)
+                    if (rev != null) {
+                        ratings.add(round((rev.cleanliness + rev.landlord + rev.location + rev.value) / 4))
+                        ratingList[rev.flatID.toString()] = ratings
+                        numberOfReviews[rev.flatID.toString()] = +1
+                        if (rev.comment != "") {
+                            reviewList.add(rev)
+                        }
                     }
                 }
                 createViewFeaturedReviews()

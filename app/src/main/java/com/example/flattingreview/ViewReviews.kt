@@ -51,33 +51,11 @@ class ViewReviews : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
                     if (flatID == ds.child("flatID").value as String) {
-                        val reviewID = ds.child("reviewID").value as String
-                        val userID = ds.child("userID").value as String
-                        val id = ds.child("flatID").value as String
-                        val name = ds.child("name").value as String
-                        val clean = ds.child("cleanliness").value as Double
-                        val lord = ds.child("landlord").value as Double
-                        val location = ds.child("location").value as Double
-                        val value = ds.child("value").value as Double
-                        val anon = ds.child("anonymous").value as Boolean
-                        val date = ds.child("date").value as String
-                        val comment = ds.child("comment").value as String
-
-                        val rev = Review(
-                            reviewID,
-                            userID,
-                            id,
-                            name,
-                            clean - 0.1,
-                            lord - 0.1,
-                            location - 0.1,
-                            value - 0.1,
-                            anon,
-                            date,
-                            comment
-                        )
-                        if (comment != "") {
-                            reviewList.add(rev)
+                        val rev = ds.getValue(Review::class.java)
+                        if (rev != null) {
+                            if (rev.comment != "") {
+                                reviewList.add(rev)
+                            }
                         }
                     }
                 }
