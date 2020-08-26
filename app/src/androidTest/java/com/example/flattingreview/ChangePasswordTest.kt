@@ -36,4 +36,19 @@ class ChangePasswordTest{
         onView(withId(R.id.changePasBut))
             .check(matches(isDisplayed()))
     }
+
+    /**
+     * A test to check the visibility of the text fields on the change password screen.
+     *
+     */
+    @Test
+    fun test_Check_Text_Fields() {
+        val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
+        onView(withId(R.id.currentPassET))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.newPassET))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.confirmPassET))
+            .check(matches(isDisplayed()))
+    }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_view_reviews.*
 import models.Flat
@@ -16,22 +17,10 @@ import models.Review
  * by clicking 'show all reviews' form the Flat.kt screen.
  * @author Ryan
  */
-class ViewReviews : AppCompatActivity() {
+class ViewReviews : AppCompatActivity(), Connect.Callback {
 
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
-
-    /**
-     * Sets the database reference and collects the path to which the reviews and read from.
-     *
-     * @param savedInstanceState
-     */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_reviews)
-        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-
-    }
 
     /**
      * On start this method will connect to the database under the 'reviews' path and
@@ -41,14 +30,25 @@ class ViewReviews : AppCompatActivity() {
      * method.
      *
      */
-    public override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_view_reviews)
+        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
 
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
 
         val connect = Connect()
-        reviewList.addAll(connect.getReviewByFlat(flat))
+
+        connect.getReviewByFlat(flat, Connect.Callback)
+
+
+//        Log.d("OUTPUT", connect.getAllReview().toString())
+//        val mCallback = Connect.Callback
+//        connect.getReviewByFlat(, flat)
 
 //        val reviewListener: ValueEventListener = object : ValueEventListener {
 //            override fun onCancelled(dataSnapshot: DatabaseError) {
@@ -95,9 +95,14 @@ class ViewReviews : AppCompatActivity() {
 //        }
 //        reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
-    private fun createView() {
-        recycler_view.adapter = ReviewAdapter(reviewList)
+
+    private fun createView(list: ArrayList<Review>) {
+        recycler_view.adapter = ReviewAdapter(list)
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.setHasFixedSize(true)
+    }
+
+    override fun onCallBack(list: ArrayList<Review>) {
+        createView(list)
     }
 }

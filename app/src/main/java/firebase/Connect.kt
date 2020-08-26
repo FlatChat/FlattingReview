@@ -1,7 +1,6 @@
 package firebase
 
 import android.util.Log
-import com.example.flattingreview.HomeScreen
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
@@ -13,6 +12,7 @@ class Connect {
     var reviewList: ArrayList<Review> = ArrayList()
     var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
     var numberOfReviews: HashMap<String, Int> = HashMap()
+
 
     /**
      * On start it will connect to the database under the reference reviews and flats. And collect all
@@ -41,7 +41,7 @@ class Connect {
         return flats
     }
 
-    fun getAllReview() {
+    fun getAllReview(): ArrayList<Review> {
         val reviewReference: DatabaseReference =
             FirebaseDatabase.getInstance().getReference("reviews")
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -88,14 +88,16 @@ class Connect {
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
+        Log.d("List returned", reviewList.toString())
+        return reviewList
     }
 
-    fun getReviewByFlat(flat: Flat): ArrayList<Review> {
+    fun getReviewByFlat(flat: Flat, myCallback: Callback) {
         reviewList.removeAll(reviewList)
         val reviewReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("reviews")
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
-                Log.w("ViewReview", "loadItem:onCancelled")
+                Log.w("Database Error", "loadItem:onCancelled")
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -129,14 +131,20 @@ class Connect {
                         if (comment != "") {
                             reviewList.add(rev)
                         }
-                        Log.d("Review:", rev.toString())
-                        Log.d("ReviewList:", reviewList.toString())
                     }
                 }
-
+                myCallback.onCallBack(reviewList)
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
-        return reviewList
     }
+
+    fun initialize(list: ArrayList<Review>, myCallback: Callback){
+        myCallback.onCallBack(list)
+    }
+
+    interface Callback {
+        fun onCallBack(list: ArrayList<Review>)
+    }
+
 }

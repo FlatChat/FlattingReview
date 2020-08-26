@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
-import android.view.Menu
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
@@ -26,7 +25,7 @@ import java.util.*
  * and write the data into the database.
  * @author Ryan
  */
-class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
+class WriteReview : AppCompatActivity() {
 
     private lateinit var submitButton: Button
     private lateinit var cleanliness: RatingBar
@@ -34,12 +33,13 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
     private lateinit var location: RatingBar
     private lateinit var value: RatingBar
     private lateinit var anon: SwitchCompat
-    private var comment: Editable? = null
+    private lateinit var flat: Flat
     private lateinit var userReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var name: String? = null
+    private var comment: Editable? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
-    private lateinit var flat: Flat
+
 
     /**
      * The onCreate method calls the setInputs() method which sets all the
@@ -60,41 +60,7 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         flat = intent.getSerializableExtra("flat") as Flat
         setDisplay()
         setInput()
-        submitButton.setOnClickListener {
-            saveObject()
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
-            startActivity(intent)
-        }
-        cancel.setOnClickListener {
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
-            startActivity(intent)
-        }
-    }
 
-    private fun setDisplay(){
-        val address = flat.address
-        val addressText: TextView = findViewById(R.id.write_review_address)
-        addressText.text = address!!.split(",")[0]
-    }
-
-    private fun setInput() {
-        submitButton = findViewById(R.id.submit_button)
-        comment = findViewById<EditText>(R.id.comment1).text
-        cleanliness = findViewById(R.id.cleanliness)
-        landlord = findViewById(R.id.landlord)
-        location = findViewById(R.id.location)
-        value = findViewById(R.id.value)
-        anon = findViewById(R.id.anonSwitch)
-    }
-
-    /**
-     * On start will connect to the database under the 'users' path and collect the first name
-     * of the currently signed in user. In stores the first name in the variable name.
-     */
-    public override fun onStart() {
-        super.onStart()
         flat.flatID
         val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -111,8 +77,48 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
             }
         }
         userReference.orderByKey().addValueEventListener(userListener)
+
+        submitButton.setOnClickListener {
+            saveObject()
+            val intent = Intent(this, FlatScreen::class.java)
+            intent.putExtra("flat", flat)
+            startActivity(intent)
+        }
+        cancel.setOnClickListener {
+            val intent = Intent(this, FlatScreen::class.java)
+            intent.putExtra("flat", flat)
+            startActivity(intent)
+        }
     }
 
+    /**
+     * Displays the address in the header on the screen.
+     *
+     */
+    private fun setDisplay(){
+        val address = flat.address
+        val addressText: TextView = findViewById(R.id.write_review_address)
+        addressText.text = address!!.split(",")[0]
+    }
+
+    /**
+     * Sets all the input fields to variables.
+     *
+     */
+    private fun setInput() {
+        submitButton = findViewById(R.id.submit_button)
+        comment = findViewById<EditText>(R.id.comment1).text
+        cleanliness = findViewById(R.id.cleanliness)
+        landlord = findViewById(R.id.landlord)
+        location = findViewById(R.id.location)
+        value = findViewById(R.id.value)
+        anon = findViewById(R.id.anonSwitch)
+    }
+
+    /**
+     * Saves the object (review) to firebase.
+     *
+     */
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
@@ -122,10 +128,12 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         val currentDate = sdf.format(Date())
         // Creates reviewID
         val reviewID = reviewReference.push().key
+        Log.d("REVIEW_ID", reviewID.toString())
+        Log.d("USER_ID", userID.toString())
         // Create a review object
         val rev = Review(
-            reviewID,
-            userID,
+            reviewID.toString(),
+            userID.toString(),
             flatID,
             name.toString(),
             cleanliness.rating + 0.1,
@@ -139,17 +147,5 @@ class WriteReview : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
         // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
-
-    //below code is all for the action bar
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
-//        TODO("Not yet implemented")
-    }
-
-
 }
 

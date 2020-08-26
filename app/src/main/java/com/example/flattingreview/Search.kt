@@ -15,6 +15,11 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
 import models.Flat
 
+/**
+ * This is the search classes that receives queries from the user and relays them to firebase, to
+ * fetch search results, it uses the Search Adapter class to display the query results.
+ * @author Ryan
+ */
 class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
 
     private lateinit var mSearchText : EditText
@@ -63,9 +68,11 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
 
         mSearchText.addTextChangedListener(object  : TextWatcher{
             override fun afterTextChanged(s: Editable?) {
+                // Doesn't need to do anything
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Doesn't need to do anything
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -74,7 +81,6 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
             }
         })
     }
-
 
     private fun firebaseSearch(searchText : String) {
         mAdapter.clear()
@@ -134,20 +140,15 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
         search_view_recycler.setHasFixedSize(true)
     }
 
-     override fun onItemClick(item: Flat, position: Int){
+    /**
+     * Implements the click interface so a user can click on a search result and be taken
+     * to that flats page.
+     *
+     * @param item the flat
+     */
+     override fun onItemClick(item: Flat){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
-//        val array = ratingList[item.flatID]
-//        var sum = 0.0
-//        if(!array.isNullOrEmpty()){
-//            for(i in array) sum += i
-//        }
-//        if (array != null) {
-//            intent.putExtra("overallRating", (sum / array.size).toString())
-//        } else {
-//            intent.putExtra("overallRating", "0")
-//        }
-//        intent.putExtra("numberOfRatings", numberOfReviews[item.flatID])
         startActivity(intent)
     }
 }

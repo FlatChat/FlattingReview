@@ -2,6 +2,8 @@ package com.example.flattingreview
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -40,7 +42,29 @@ class SettingsTest{
             .check(matches(isDisplayed()))
         onView(withId(R.id.logoutBut))
             .check(matches(isDisplayed()))
-        onView(withId(R.id.buttonHelp))
+    }
+
+    /**
+     * A test to check the buttons navigate to the correct activities.
+     *
+     */
+    @Test
+    fun test_Buttons_Function() {
+        val activityScenario=ActivityScenario.launch(Settings::class.java)
+        onView(withId(R.id.changePassBut)).perform(click())
+        onView(withId(R.id.change_password_id))
             .check(matches(isDisplayed()))
+
+         pressBack()
+
+        onView(withId(R.id.deleteAccountButton)).perform(click())
+        onView(withId(R.id.delete_account_id))
+            .check(matches(isDisplayed()))
+
+        pressBack()
+        onView(withId(R.id.logoutBut)).perform(click())
+        onView(withId(R.id.sign_in_id))
+            .check(matches(isDisplayed()))
+
     }
 }

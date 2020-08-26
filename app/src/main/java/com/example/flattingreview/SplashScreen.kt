@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_splash_screen.*
+import java.io.IOException
 
 /**
  * A class that displays a temporary splash screen when the user opens the app for the first time.
@@ -37,7 +38,7 @@ class SplashScreen : AppCompatActivity() {
                     sleep(4000)
                     val intent = Intent(baseContext, SignIn::class.java)
                     startActivity(intent)
-                } catch (e: Exception) {
+                } catch (e: IOException) {
                     e.printStackTrace()
                 }
             }
