@@ -110,7 +110,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                         popularFlat.add(flat)
                     }
                 }
-                createViewPopularFlats()
                 createViewFeaturedFlats()
             }
         }
@@ -134,6 +133,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     }
                 }
                 createViewFeaturedReviews()
+                createViewPopularFlats()
             }
         }
         flatReference.orderByKey().addValueEventListener(flatListener)

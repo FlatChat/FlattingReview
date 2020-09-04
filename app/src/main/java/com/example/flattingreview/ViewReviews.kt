@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
+import kotlin.collections.ArrayList
 
 /**
  * This will display all the written reviews for a particular flat. This page is navigated to
@@ -19,6 +20,7 @@ class ViewReviews : AppCompatActivity() {
 
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
+//    private lateinit var recyclerView: RecyclerView
 
     /**
      * Sets the database reference and collects the path to which the reviews and read from.
@@ -35,12 +37,13 @@ class ViewReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+//        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.setHasFixedSize(true)
 
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
+
 
 
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -60,10 +63,18 @@ class ViewReviews : AppCompatActivity() {
                     }
                 }
                 if(reviewList.size != 0) {
-                    recyclerView.adapter = ReviewAdapter(reviewList)
+                    createView()
                 }
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
+
+    }
+
+    private fun createView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = ReviewAdapter(this, reviewList)
     }
 }
