@@ -1,3 +1,5 @@
+@file:Suppress("SpellCheckingInspection")
+
 package com.example.flattingreview
 
 import android.annotation.SuppressLint
@@ -33,13 +35,12 @@ class WriteReview : AppCompatActivity() {
     private lateinit var location: RatingBar
     private lateinit var value: RatingBar
     private lateinit var anon: SwitchCompat
-    private lateinit var flat: Flat
+    private var comment: Editable? = null
     private lateinit var userReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
     private var name: String? = null
-    private var comment: Editable? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
-
+    private lateinit var flat: Flat
 
     /**
      * The onCreate method calls the setInputs() method which sets all the
@@ -91,20 +92,13 @@ class WriteReview : AppCompatActivity() {
         }
     }
 
-    /**
-     * Displays the address in the header on the screen.
-     *
-     */
     private fun setDisplay(){
         val address = flat.address
         val addressText: TextView = findViewById(R.id.write_review_address)
         addressText.text = address!!.split(",")[0]
     }
 
-    /**
-     * Sets all the input fields to variables.
-     *
-     */
+
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         comment = findViewById<EditText>(R.id.comment1).text

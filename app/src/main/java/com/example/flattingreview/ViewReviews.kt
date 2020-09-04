@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
+import kotlin.collections.ArrayList
 
 /**
  * This will display all the written reviews for a particular flat. This page is navigated to
@@ -19,6 +20,7 @@ class ViewReviews : AppCompatActivity() {
 
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
+//    private lateinit var recyclerView: RecyclerView
 
     /**
      * Sets the database reference and collects the path to which the reviews and read from.
@@ -35,12 +37,13 @@ class ViewReviews : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_reviews)
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+//        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.setHasFixedSize(true)
 
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
+
 
 
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -51,41 +54,27 @@ class ViewReviews : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
                     if (flatID == ds.child("flatID").value as String) {
-                        val reviewID = ds.child("reviewID").value as String
-                        val userID = ds.child("userID").value as String
-                        val id = ds.child("flatID").value as String
-                        val name = ds.child("name").value as String
-                        val clean = ds.child("cleanliness").value as Double
-                        val lord = ds.child("landlord").value as Double
-                        val location = ds.child("location").value as Double
-                        val value = ds.child("value").value as Double
-                        val anon = ds.child("anonymous").value as Boolean
-                        val date = ds.child("date").value as String
-                        val comment = ds.child("comment").value as String
-
-                        val rev = Review(
-                            reviewID,
-                            userID,
-                            id,
-                            name,
-                            clean - 0.1,
-                            lord - 0.1,
-                            location - 0.1,
-                            value - 0.1,
-                            anon,
-                            date,
-                            comment
-                        )
-                        if (comment != "") {
-                            reviewList.add(rev)
+                        val rev = ds.getValue(Review::class.java)
+                        if (rev != null) {
+                            if (rev.comment != "") {
+                                reviewList.add(rev)
+                            }
                         }
                     }
                 }
                 if(reviewList.size != 0) {
-                    recyclerView.adapter = ReviewAdapter(reviewList)
+                    createView()
                 }
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)
+
+    }
+
+    private fun createView() {
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.adapter = ReviewAdapter(this, reviewList)
     }
 }

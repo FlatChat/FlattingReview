@@ -10,6 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.android.synthetic.main.activity_create_new_flat.*
+import kotlinx.android.synthetic.main.activity_home_screen.bottom_navigation
 import models.Flat
 import java.io.ByteArrayOutputStream
 
@@ -81,6 +84,8 @@ class CreateFlat : AppCompatActivity() {
             }
         }
 
+        // Bottom navigation
+        bottomNavigation.selectedItemId = R.id.add_flat_screen
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {
@@ -126,16 +131,22 @@ class CreateFlat : AppCompatActivity() {
                 pickImageFromGallery()
             }
         }
+
     }
 
+
+
     private fun pickImageFromGallery() {
+        //Intent to pick image
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         startActivityForResult(intent, IMAGE_PICK_CODE)
     }
 
     companion object {
+        //image pick code
         private const val IMAGE_PICK_CODE = 1000
+        //Permission code
         private const val PERMISSION_CODE = 1001
     }
 
@@ -151,9 +162,11 @@ class CreateFlat : AppCompatActivity() {
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED){
+                    //permission from popup granted
                     pickImageFromGallery()
                 }
                 else{
+                    //permission from popup denied
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }

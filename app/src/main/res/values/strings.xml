@@ -29,7 +29,14 @@
     <!-- Review Strings -->
     <string name="overall_rating">4.65 (3 reviews)</string>
     <string name="comment">A great location. Nice and peaceful and a short walk from the center of uni. Well insulated but does get to hot.</string>
+    <string name="report">report comment</string>
+    <string name="date">28th January 2018</string>
+    <string name="reviewer">Ryan Cole</string>
     <string name="comment_hint">Write comment here</string>
+    <string name="delreview">Delete Review</string>
+    <string name="report_rev">Report</string>
+    <string name="delete_confirmation">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
 
     <!-- Create account Strings -->
     <string name="sign_up_button"> Sign Up  </string>
@@ -83,10 +90,13 @@
     <string name="password">Password</string>
     <string name="current_address_optional">Current Address (optional)</string>
     <string name="tenant">Tenant</string>
-    <string name="landlord">Landlord</string>
     <string name="i_am_a">I am a…</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
+    <string name="splashhouse">Splash House</string>
+    <string name="landlord">Landlord</string>
+
+
 </resources>
