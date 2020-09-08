@@ -1,9 +1,11 @@
 package com.example.flattingreview
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.*
@@ -24,10 +26,9 @@ class FlatScreen : AppCompatActivity() {
 
     private lateinit var flatRef: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
-    private lateinit var review: Review
+    private var reviewList: ArrayList<Review> = ArrayList()
     private var address: String? = null
     private var overallRating: String? = null
-    private var numberOfReviews: Int? = null
     private lateinit var flat: Flat
     private lateinit var flatImage: ImageView
 
@@ -44,6 +45,18 @@ class FlatScreen : AppCompatActivity() {
         flatRef = FirebaseDatabase.getInstance().getReference("flats")
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
 
+        flat = intent.getSerializableExtra("flat") as Flat
+        getReview(flat.flatID)
+        address = flat.address
+
+        val storage = FirebaseStorage.getInstance()
+        val gsReference =
+            storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${flat.flatID}.jpg")
+        GlideApp.with(this)
+            .load(gsReference)
+            .placeholder(R.drawable.ic_baseline_image_24)
+            .into(flat_image)
+
         show_reviews_button.setOnClickListener {
             val intent = Intent(this, ViewReviews::class.java)
             intent.putExtra("flat", flat)
@@ -57,35 +70,50 @@ class FlatScreen : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed();
+        reviewList.clear()
+        getReview(flat.flatID)
+    }
+
     private fun set(){
         val addressText: TextView = findViewById(R.id.flat_address)
         val flatRating: TextView = findViewById(R.id.flat_rating)
+
+        val cleanlinessBar: ProgressBar = findViewById(R.id.cleanliness_bar)
+        val landlordBar: ProgressBar = findViewById(R.id.landlord_bar)
+        val locationBar: ProgressBar = findViewById(R.id.location_bar)
+        val valueBar: ProgressBar = findViewById(R.id.value_bar)
+        cleanlinessBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        landlordBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        locationBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        valueBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        val list = calculateRating()
+        cleanlinessBar.progress = (list[0] * 10).toInt()
+        landlordBar.progress = (list[1] * 10).toInt()
+        locationBar.progress = (list[2] * 10).toInt()
+        valueBar.progress = (list[3] * 10).toInt()
 //        val displayReview: CardView = findViewById(R.id.display_review)
         flatImage = findViewById(R.id.flat_image)
-        flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, numberOfReviews)
+        overallRating = "%.1f".format((list[0] + list[1] + list[2] + list[3]) / 4)
+        flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, reviewList.size)
         addressText.text = address!!.split(",")[0]
     }
 
-    /**
-     * Loads the data from the intent into the layout.
-     */
-    public override fun onStart() {
-        super.onStart()
-        flat = intent.getSerializableExtra("flat") as Flat
-        address = flat.address
-        overallRating = intent.getStringExtra("overallRating")
-        numberOfReviews = intent.getIntExtra("numberOfRatings", 0)
-        getReview(flat.flatID)
-        set()
-        val storage = FirebaseStorage.getInstance()
-        val gsReference =
-            storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${flat.flatID}.jpg")
-        GlideApp.with(this)
-            .load(gsReference)
-            .placeholder(R.drawable.ic_baseline_image_24)
-            .into(flat_image)
-
-
+    private fun calculateRating(): MutableList<Double> {
+        var count = 0
+        val list = mutableListOf(0.0, 0.0, 0.0, 0.0)
+        for(rev in reviewList){
+            list[0] += (rev.cleanliness - 0.1)
+            list[1] += (rev.landlord  - 0.1)
+            list[2] += (rev.location - 0.1)
+            list[3] += (rev.value - 0.1)
+            count++
+        }
+        for(i in 0 until 4){
+            list[i] = list[i] / count
+        }
+        return list
     }
 
     private fun getReview(id: String?) {
@@ -99,12 +127,15 @@ class FlatScreen : AppCompatActivity() {
                     if (id == ds.child("flatID").value as String) {
                         val rev = ds.getValue(Review::class.java)
                         if (rev != null) {
-                            if (rev.comment != "") {
-                                review = rev
-                            }
+                            Log.d("GET:" , rev.reviewID.toString())
+                        }
+                        if (rev != null) {
+                            reviewList.add(rev)
                         }
                     }
                 }
+                Log.d("GET:" , reviewList.toString())
+                set()
             }
         }
         reviewReference.orderByKey().addValueEventListener(reviewListener)

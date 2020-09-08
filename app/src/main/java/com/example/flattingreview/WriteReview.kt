@@ -81,15 +81,17 @@ class WriteReview : AppCompatActivity() {
 
         submitButton.setOnClickListener {
             saveObject()
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
-            startActivity(intent)
+            action()
         }
         cancel.setOnClickListener {
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
-            startActivity(intent)
+            action()
         }
+    }
+
+    private fun action(){
+        val intent = Intent(this, FlatScreen::class.java)
+        intent.putExtra("flat", flat)
+        startActivity(intent)
     }
 
     private fun setDisplay(){
@@ -117,12 +119,9 @@ class WriteReview : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
         val flatID = flat.flatID
-        // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
-        // Creates reviewID
         val reviewID = reviewReference.push().key
-        // Create a review object
         val rev = Review(
             reviewID,
             userID,
@@ -136,7 +135,6 @@ class WriteReview : AppCompatActivity() {
             currentDate,
             comment.toString()
         )
-        // Writes into database
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
 }

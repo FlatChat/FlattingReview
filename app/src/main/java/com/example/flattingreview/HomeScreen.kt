@@ -173,19 +173,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     override fun onItemClick(item: Flat){
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
-        val array = ratingList[item.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(i in array) {
-                sum += i
-            }
-        }
-        if (array != null) {
-            intent.putExtra("overallRating", (sum / array.size).toString())
-        } else {
-            intent.putExtra("overallRating", "0")
-        }
-        intent.putExtra("numberOfRatings", numberOfReviews[item.flatID])
         startActivity(intent)
     }
 }
