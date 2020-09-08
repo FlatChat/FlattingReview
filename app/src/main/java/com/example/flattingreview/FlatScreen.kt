@@ -71,7 +71,7 @@ class FlatScreen : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed();
+        super.onBackPressed()
         reviewList.clear()
         getReview(flat.flatID)
     }
