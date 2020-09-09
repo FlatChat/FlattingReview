@@ -13,7 +13,6 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
-import kotlin.math.round
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -28,8 +27,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var flatReference: DatabaseReference
     private lateinit var reviewReference: DatabaseReference
-    var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
-    private var numberOfReviews: HashMap<String, Int> = HashMap()
+    private var ratingList: HashMap<String, Double> = HashMap()
     private var layout = "flat_layout"
 
     /**
@@ -105,14 +103,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {
                         featuredFlat.add(flat)
-                    }
-                    if (flat != null) {
                         popularFlat.add(flat)
                     }
                 }
                 createViewFeaturedFlats()
             }
         }
+
 
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
@@ -122,14 +119,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
                     val rev = ds.getValue(Review::class.java)
-                    val ratings: ArrayList<Double> = ArrayList()
                     if (rev != null) {
-                        ratings.add(round((rev.cleanliness + rev.landlord + rev.location + rev.value) / 4))
-                        ratingList[rev.flatID.toString()] = ratings
-                        numberOfReviews[rev.flatID.toString()] = +1
-                        if (rev.comment != "") {
-                            reviewList.add(rev)
-                        }
+                        reviewList.add(rev)
                     }
                 }
                 createViewFeaturedReviews()
