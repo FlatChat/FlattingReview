@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
@@ -63,6 +64,19 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             startActivity(intent)
         }
 
+        val popularFlatRecycler: RecyclerView = findViewById(R.id.popular_flat_recycler)
+        popularFlatRecycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        popularFlatRecycler.setHasFixedSize(true)
+        val featuredFlatRecycler: RecyclerView = findViewById(R.id.featured_flat_recycler)
+        featuredFlatRecycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        featuredFlatRecycler.setHasFixedSize(true)
+        val reviewRecycler: RecyclerView = findViewById(R.id.featured_reviews_recycler)
+        reviewRecycler.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        reviewRecycler.setHasFixedSize(true)
+
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.home_screen
@@ -106,7 +120,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                         popularFlat.add(flat)
                     }
                 }
-                createViewFeaturedFlats()
+                createViewFlats()
             }
         }
 
@@ -119,40 +133,29 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for (ds in dataSnapshot.children) {
                     val rev = ds.getValue(Review::class.java)
-                    if (rev != null) {
+                    if (rev != null && rev.comment != "") {
                         reviewList.add(rev)
                     }
                 }
-                createViewFeaturedReviews()
-                createViewPopularFlats()
+                createViewReviews()
+
             }
         }
         flatReference.orderByKey().addValueEventListener(flatListener)
         reviewReference.orderByKey().addValueEventListener(reviewListener)
     }
 
-    private fun createViewPopularFlats() {
+    private fun createViewFlats() {
         popular_flat_recycler.adapter =
             PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
-        popular_flat_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        popular_flat_recycler.setHasFixedSize(true)
-    }
-
-    private fun createViewFeaturedFlats() {
         featured_flat_recycler.adapter =
             FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
-        featured_flat_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        featured_flat_recycler.setHasFixedSize(true)
     }
 
-    private fun createViewFeaturedReviews() {
+    private fun createViewReviews() {
         featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
-        featured_reviews_recycler.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        featured_reviews_recycler.setHasFixedSize(true)
     }
+
 
     /**
      * Receives the flat the user has clicked on in the recycler view and opens the
