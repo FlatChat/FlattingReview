@@ -15,8 +15,6 @@ import models.Flat
  */
 class ShowAllFlats : AppCompatActivity(),  PopularFlatAdapter.OnItemClickListener{
 
-    private var ratingList: HashMap<String, ArrayList<Double>> = HashMap()
-    private var numberOfReviews: HashMap<String, Int> = HashMap()
     private var layout = "flat_layout_fill_width"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +25,7 @@ class ShowAllFlats : AppCompatActivity(),  PopularFlatAdapter.OnItemClickListene
         val list = intent.getSerializableExtra("list") as ArrayList<Flat>
         @Suppress("UNCHECKED_CAST")
         val ratingList =
-            intent.getSerializableExtra("ratingList") as HashMap<String, ArrayList<Double>>
+            intent.getSerializableExtra("ratingList") as HashMap<String, Double>
 
         show_all_flats.adapter =
             PopularFlatAdapter(this, list, ratingList, this, layout)
@@ -47,19 +45,6 @@ class ShowAllFlats : AppCompatActivity(),  PopularFlatAdapter.OnItemClickListene
     override fun onItemClick(item: Flat) {
         val intent = Intent(this, FlatScreen::class.java)
         intent.putExtra("flat", item)
-        val array = ratingList[item.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(i in array) {
-                sum += i
-            }
-        }
-        if (array != null) {
-            intent.putExtra("overallRating", (sum / array.size).toString())
-        } else {
-            intent.putExtra("overallRating", "0")
-        }
-        intent.putExtra("numberOfRatings", numberOfReviews[item.flatID])
         startActivity(intent)
     }
 }

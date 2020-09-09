@@ -22,7 +22,7 @@ import models.Flat
 class FeaturedFlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
-    private val ratingList: HashMap<String, ArrayList<Double>>,
+    private val ratingList: HashMap<String, Double>,
     private var clickListener: HomeScreen
 ) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
 
@@ -57,16 +57,7 @@ class FeaturedFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        val array  = ratingList[currentItem.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(item in array) sum += item
-        }
-        if (array != null) {
-            holder.textView2.text = (sum / array.size).toString()
-        } else {
-            holder.textView2.text = "0"
-        }
+        holder.textView2.text  = ratingList[currentItem.flatID].toString()
         holder.initialize(currentItem, clickListener)
     }
 

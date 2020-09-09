@@ -127,14 +127,10 @@ class FlatScreen : AppCompatActivity() {
                     if (id == ds.child("flatID").value as String) {
                         val rev = ds.getValue(Review::class.java)
                         if (rev != null) {
-                            Log.d("GET:" , rev.reviewID.toString())
-                        }
-                        if (rev != null) {
                             reviewList.add(rev)
                         }
                     }
                 }
-                Log.d("GET:" , reviewList.toString())
                 set()
             }
         }
