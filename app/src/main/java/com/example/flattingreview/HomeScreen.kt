@@ -103,8 +103,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {
                         featuredFlat.add(flat)
-                    }
-                    if (flat != null) {
                         popularFlat.add(flat)
                     }
                 }
