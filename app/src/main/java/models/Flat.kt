@@ -18,5 +18,6 @@ data class Flat(
     var flatID: String? = null,
     var address: String? = "",
     var bedrooms: String? = "",
-    var bathrooms: String? = ""
+    var bathrooms: String? = "",
+    var views: Int = 0
 ) : Serializable

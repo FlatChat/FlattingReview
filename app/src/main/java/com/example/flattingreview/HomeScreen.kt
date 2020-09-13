@@ -30,6 +30,10 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private lateinit var reviewReference: DatabaseReference
     private var ratingList: HashMap<String, Double> = HashMap()
     private var layout = "flat_layout"
+    private val limit: Int = 20
+    private lateinit var popularFlatRecycler: RecyclerView
+    private lateinit var featuredFlatRecycler: RecyclerView
+    private lateinit var reviewRecycler: RecyclerView
 
     /**
      * Creates the references to the database for 'reviews' and 'flats'.
@@ -41,8 +45,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_screen)
-        reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
-        flatReference = FirebaseDatabase.getInstance().getReference("flats")
+        reviewReference = FirebaseDatabase.getInstance().reference
+        flatReference = FirebaseDatabase.getInstance().reference
 
         show_all_button_popular.setOnClickListener {
             val intent = Intent(this, ShowAllFlats::class.java)
@@ -64,15 +68,15 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             startActivity(intent)
         }
 
-        val popularFlatRecycler: RecyclerView = findViewById(R.id.popular_flat_recycler)
+        popularFlatRecycler = findViewById(R.id.popular_flat_recycler)
         popularFlatRecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         popularFlatRecycler.setHasFixedSize(true)
-        val featuredFlatRecycler: RecyclerView = findViewById(R.id.featured_flat_recycler)
+        featuredFlatRecycler = findViewById(R.id.featured_flat_recycler)
         featuredFlatRecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         featuredFlatRecycler.setHasFixedSize(true)
-        val reviewRecycler: RecyclerView = findViewById(R.id.featured_reviews_recycler)
+        reviewRecycler = findViewById(R.id.featured_reviews_recycler)
         reviewRecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         reviewRecycler.setHasFixedSize(true)
@@ -117,7 +121,22 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {
                         featuredFlat.add(flat)
+                    }
+                }
+            }
+        }
+
+        val popListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+                Log.w("ViewReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val flat = ds.getValue(Flat::class.java)
+                    if (flat != null) {
                         popularFlat.add(flat)
+                        Log.d("Flat Views:", flat.views.toString())
                     }
                 }
                 createViewFlats()
@@ -141,19 +160,31 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
 
             }
         }
-        flatReference.orderByKey().addValueEventListener(flatListener)
-        reviewReference.orderByKey().addValueEventListener(reviewListener)
+        flatReference
+            .child("flats")
+            .orderByChild("views")
+            .limitToFirst(limit)
+            .addValueEventListener(popListener)
+        flatReference
+            .child("flats")
+            .orderByKey()
+            .addValueEventListener(flatListener)
+        reviewReference
+            .child("reviews")
+            .orderByKey()
+            .addValueEventListener(reviewListener)
     }
 
     private fun createViewFlats() {
-        popular_flat_recycler.adapter =
-            PopularFlatAdapter(this, featuredFlat, ratingList, this, layout)
-        featured_flat_recycler.adapter =
+        popularFlat = popularFlat.reversed() as ArrayList<Flat>
+        popularFlatRecycler.adapter =
+            PopularFlatAdapter(this, popularFlat, ratingList, this, layout)
+        featuredFlatRecycler.adapter =
             FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
     }
 
     private fun createViewReviews() {
-        featured_reviews_recycler.adapter = FeaturedReviewsAdapter(reviewList)
+        reviewRecycler.adapter = FeaturedReviewsAdapter(reviewList)
     }
 
 

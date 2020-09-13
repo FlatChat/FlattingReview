@@ -68,6 +68,9 @@ class FlatScreen : AppCompatActivity() {
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
+
+        flatRef.child(flat.flatID.toString()).child("views").setValue(flat.views + 1)
+
     }
 
     override fun onBackPressed() {

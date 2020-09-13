@@ -248,7 +248,8 @@ class CreateFlat : AppCompatActivity() {
             flatID,
             address,
             bedrooms.toString(),
-            bathrooms.toString()
+            bathrooms.toString(),
+            0
         )
         myRef.child(flatID.toString()).setValue(flat)
 
