@@ -6,12 +6,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -49,6 +49,7 @@ class CreateFlat : AppCompatActivity() {
     private lateinit var bathrooms: Editable
     private lateinit var createButton: Button
     private lateinit var image: Intent
+    private val REQUEST_IMAGE_CAPTURE = 1
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 
     /**
@@ -132,6 +133,10 @@ class CreateFlat : AppCompatActivity() {
             }
         }
 
+        camera_button.setOnClickListener {
+            dispatchTakePictureIntent()
+        }
+
     }
 
 
@@ -157,15 +162,19 @@ class CreateFlat : AppCompatActivity() {
      * @param permissions
      * @param grantResults
      */
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         when(requestCode){
             PERMISSION_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] ==
-                    PackageManager.PERMISSION_GRANTED){
+                    PackageManager.PERMISSION_GRANTED
+                ) {
                     //permission from popup granted
                     pickImageFromGallery()
-                }
-                else{
+                } else {
                     //permission from popup denied
                     Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
@@ -184,13 +193,26 @@ class CreateFlat : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             if (data != null) {
-                image = data
-                upload_flat_image.setImageURI(image.data)
+                upload_flat_image.setImageURI(data.data)
             } else {
                 Toast.makeText(this, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
             }
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+            upload_flat_image.setImageBitmap(imageBitmap)
+        } else {
+            Toast.makeText(this, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
         }
     }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
 
     private fun initPlaces(){
         val apiKey = "AIzaSyBBEQrOBoJ_4UW_E_XOq-8rE-UgoLIlNfo"
@@ -202,16 +224,16 @@ class CreateFlat : AppCompatActivity() {
         val autocompleteFragment = supportFragmentManager
             .findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteFragment.setPlaceFields(placeFields)
-        autocompleteFragment.setOnPlaceSelectedListener(object:PlaceSelectionListener {
+        autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
-                Toast.makeText(this@CreateFlat, ""+ p0.address, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CreateFlat, "" + p0.address, Toast.LENGTH_SHORT).show()
                 Log.d("CreateFlat", "" + p0.address)
                 address = p0.address.toString()
                 fillAddressBoxes(address)
             }
 
             override fun onError(p0: Status) {
-                Toast.makeText(this@CreateFlat, ""+ p0.statusCode, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@CreateFlat, "" + p0.statusCode, Toast.LENGTH_SHORT).show()
             }
         })
     }
@@ -255,9 +277,9 @@ class CreateFlat : AppCompatActivity() {
 
         val uploadTask = storageRef.putBytes(data)
         uploadTask.addOnFailureListener {
-            Log.d("File Upload","Failure")
+            Log.d("File Upload", "Failure")
         }.addOnSuccessListener {
-            Log.d("File Upload","Successful")
+            Log.d("File Upload", "Successful")
         }
 
         val intent = Intent(this, HomeScreen::class.java)
