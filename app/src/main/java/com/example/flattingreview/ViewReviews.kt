@@ -20,7 +20,7 @@ class ViewReviews : AppCompatActivity() {
 
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
-//    private lateinit var recyclerView: RecyclerView
+
 
     /**
      * Sets the database reference and collects the path to which the reviews and read from.
@@ -70,6 +70,7 @@ class ViewReviews : AppCompatActivity() {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
 
     }
+
 
     private fun createView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)

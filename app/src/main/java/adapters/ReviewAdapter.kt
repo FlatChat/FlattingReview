@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.flattingreview.R
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
@@ -33,7 +35,7 @@ class ReviewAdapter(
 
     private lateinit var reviewReference: DatabaseReference
     private val _result = MutableLiveData<Exception?>()
-
+    
     /**
      * Clears the current list so that duplicate reviews
      * are not printed.
@@ -126,6 +128,7 @@ class ReviewAdapter(
                     _result.value = it.exception
                 }
             }
+        notifyDataSetChanged()
     }
 
     /**
