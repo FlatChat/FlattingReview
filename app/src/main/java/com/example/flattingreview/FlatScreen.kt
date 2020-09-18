@@ -6,9 +6,11 @@ import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
+import kotlinx.android.synthetic.main.activity_settings.*
 import models.Flat
 import models.Review
 
@@ -55,6 +57,36 @@ class FlatScreen : AppCompatActivity() {
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
+
+        // Bottom navigation
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        bottomNavigation.selectedItemId = R.id.home_screen
+        bottomNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.account_screen -> {
+                    val intent = Intent(this, Settings::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.home_screen -> {
+                    val intent = Intent(this, HomeScreen::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.search_screen -> {
+                    val intent = Intent(this, Search::class.java)
+                    startActivity(intent)
+                    true
+                }
+                R.id.add_flat_screen -> {
+                    val intent = Intent(this, CreateFlat::class.java)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
     private fun set(){
