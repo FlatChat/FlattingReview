@@ -7,6 +7,12 @@ In order to contribute to this project, please create a new project on firebase 
 Our developer documentation for flatchat (documentation is continuously updated with the master branch):
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
+## Maintenance Documentation:
+* link to be inserted here
+
+## User Documentation:
+* link to be inserted here
+
 ### Codecov report: 
 <a href="https://codecov.io/gh/FlatChat/FlattingReview">
   <img src="https://codecov.io/gh/FlatChat/FlattingReview/branch/master/graph/badge.svg" />
