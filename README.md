@@ -1,6 +1,6 @@
 # FlattingReview
 
-# Developer Documentation:
+## Developer Documentation:
 Our developer documentation for flatchat (documentation is continuously updated with the master branch):
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
