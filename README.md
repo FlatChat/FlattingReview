@@ -1,5 +1,9 @@
 # FlattingReview
 
+# Developer Documentation:
+Our developer documentation for flatchat (documentation is continuously updated with the master branch):
+[![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
+
 Welcome to flatchat, an Android application built using Kotlin allowing users to rate and review their flat.
 
 Codecov report: 
@@ -13,7 +17,7 @@ Codeacy report:
 Testing (all user interface tests are performed on the master branch): 
 [![CI](https://github.com/FlatChat/FlattingReview/workflows/CI/badge.svg)](https://github.com/FlatChat/FlattingReview/actions)
 
-Our documentation for flatchat (documentation is continuously updated with the master branch):
+Our developer documentation for flatchat (documentation is continuously updated with the master branch):
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
 Vulnerability report through snyk:
