@@ -110,6 +110,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         getData()
     }
 
+
     private fun getData() {
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
@@ -134,6 +135,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                featuredFlat.clear()
                 for (ds in dataSnapshot.children) {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {
@@ -149,6 +151,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                popularFlat.clear()
                 for (ds in dataSnapshot.children) {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {

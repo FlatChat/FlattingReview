@@ -50,6 +50,14 @@ class FeaturedFlatAdapter(
         return FeaturedFlatViewHolder(itemView)
     }
 
+    /**
+     * Clears the current list so that duplicate reviews
+     * are not printed.
+     */
+    private fun clear() {
+        exampleList.removeAll(exampleList)
+    }
+
 
     /**
      * This binds the data from the database to the textView's in the holder.

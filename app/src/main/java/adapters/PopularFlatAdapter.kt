@@ -48,6 +48,13 @@ class PopularFlatAdapter(
         return PopularFlatViewHolder(itemView)
     }
 
+    /**
+     * Clears the current list so that duplicate reviews
+     * are not printed.
+     */
+    fun clear() {
+        exampleList.removeAll(exampleList)
+    }
 
     /**
      * This binds the data from the database to the textView's in the holder.
@@ -70,6 +77,10 @@ class PopularFlatAdapter(
      *
      */
     override fun getItemCount() = exampleList.size
+
+    interface Clear {
+        fun clear()
+    }
 
     /**
      * Sets the text in the layout cardView.
