@@ -2,19 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_screen_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-    tools:context=".SplashScreen"
-    android:id="@+id/splash_screen_id">
+    tools:context=".SplashScreen">
 
 
     <TextView
         android:id="@+id/splashFlatTV"
-        android:layout_width="281dp"
-        android:layout_height="71dp"
-        android:layout_marginBottom="287dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:fontFamily="@font/permanent_marker"
+        android:padding="@dimen/padding"
         android:text="@string/flatchat"
         android:textColor="@color/colorWhite"
         android:textSize="60sp"
@@ -23,18 +24,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/house" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/house"
         android:layout_width="137dp"
         android:layout_height="94dp"
-        android:layout_marginTop="279dp"
+        android:padding="@dimen/padding"
         android:contentDescription="@string/splash_house"
         android:src="@drawable/white_cartoon_house"
+        app:layout_constraintBottom_toTopOf="@+id/splashFlatTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
