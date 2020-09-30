@@ -61,7 +61,7 @@ class PopularFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        holder.textView2.text  = ratingList[currentItem.flatID].toString()
+        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
         holder.initialize(currentItem, clickListener)
     }
 

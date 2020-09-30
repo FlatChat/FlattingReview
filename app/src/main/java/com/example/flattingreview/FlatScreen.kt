@@ -1,10 +1,8 @@
 package com.example.flattingreview
 
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -98,7 +96,6 @@ class FlatScreen : AppCompatActivity() {
         landlordBar.progress = (list[1] * 10).toInt()
         locationBar.progress = (list[2] * 10).toInt()
         valueBar.progress = (list[3] * 10).toInt()
-//        val displayReview: CardView = findViewById(R.id.display_review)
         flatImage = findViewById(R.id.flat_image)
         overallRating = "%.1f".format((list[0] + list[1] + list[2] + list[3]) / 4)
         flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, reviewList.size)

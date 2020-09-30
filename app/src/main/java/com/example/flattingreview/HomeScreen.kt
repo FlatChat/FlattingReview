@@ -111,6 +111,23 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     }
 
     private fun getData() {
+        val reviewListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(dataSnapshot: DatabaseError) {
+                Log.w("ViewReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val rev = ds.getValue(Review::class.java)
+                    if (rev != null) {
+                        reviewList.add(rev)
+                    }
+                }
+                createViewReviews()
+
+            }
+        }
+
         val flatListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {
                 Log.w("ViewReview", "loadItem:onCancelled")
@@ -136,30 +153,14 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     val flat = ds.getValue(Flat::class.java)
                     if (flat != null) {
                         popularFlat.add(flat)
-                        Log.d("Flat Views:", flat.views.toString())
                     }
                 }
+                calculateRating(popularFlat)
+                calculateRating(featuredFlat)
                 createViewFlats()
             }
         }
 
-
-        val reviewListener: ValueEventListener = object : ValueEventListener {
-            override fun onCancelled(dataSnapshot: DatabaseError) {
-                Log.w("ViewReview", "loadItem:onCancelled")
-            }
-
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (ds in dataSnapshot.children) {
-                    val rev = ds.getValue(Review::class.java)
-                    if (rev != null && rev.comment != "") {
-                        reviewList.add(rev)
-                    }
-                }
-                createViewReviews()
-
-            }
-        }
         flatReference
             .child("flats")
             .orderByChild("views")
@@ -180,11 +181,38 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         popularFlatRecycler.adapter =
             PopularFlatAdapter(this, popularFlat, ratingList, this, layout)
         featuredFlatRecycler.adapter =
-            FeaturedFlatAdapter(this, featuredFlat, ratingList, this)
+            FeaturedFlatAdapter(this, featuredFlat, ratingList, this, layout)
+    }
+
+    private fun calculateRating(flatList: ArrayList<Flat>) {
+        for(flat in flatList){
+            var count = 0
+            val list = mutableListOf(0.0, 0.0, 0.0, 0.0)
+            for(rev in reviewList){
+                if(flat.flatID == rev.flatID){
+                    list[0] += (rev.cleanliness - 0.1)
+                    list[1] += (rev.landlord  - 0.1)
+                    list[2] += (rev.location - 0.1)
+                    list[3] += (rev.value - 0.1)
+                    count++
+                }
+            }
+            for(i in 0 until 4){
+                list[i] = list[i] / count
+            }
+            val overallRating = ((list[0] + list[1] + list[2] + list[3]) / 4)
+            ratingList[flat.flatID.toString()] = overallRating
+        }
     }
 
     private fun createViewReviews() {
-        reviewRecycler.adapter = FeaturedReviewsAdapter(reviewList)
+        val tempArray = ArrayList<Review>()
+        for(rev in reviewList){
+            if(rev.comment != ""){
+                tempArray.add(rev)
+            }
+        }
+        reviewRecycler.adapter = FeaturedReviewsAdapter(tempArray)
     }
 
 

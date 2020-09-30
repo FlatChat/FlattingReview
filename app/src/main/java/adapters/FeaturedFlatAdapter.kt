@@ -1,5 +1,6 @@
 package adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,8 @@ class FeaturedFlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, Double>,
-    private var clickListener: HomeScreen
+    private var clickListener: HomeScreen,
+    private var layout: String
 ) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
 
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -38,7 +40,11 @@ class FeaturedFlatAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedFlatViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.flat_layout,
+            if(layout == "flat_layout"){
+                R.layout.flat_layout
+            } else {
+                R.layout.flat_layout_fill_width
+            },
             parent, false
         )
         return FeaturedFlatViewHolder(itemView)
@@ -57,7 +63,7 @@ class FeaturedFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        holder.textView2.text  = ratingList[currentItem.flatID].toString()
+        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
         holder.initialize(currentItem, clickListener)
     }
 

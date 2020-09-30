@@ -98,6 +98,7 @@
     <string name="splashhouse">Splash House</string>
     <string name="landlord">Landlord</string>
     <string name="camera">Camera</string>
+    <string name="one_decimal">%.1f</string>
 
 
 </resources>
