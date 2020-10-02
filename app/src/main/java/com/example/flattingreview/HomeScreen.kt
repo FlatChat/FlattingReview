@@ -110,7 +110,6 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         getData()
     }
 
-
     private fun getData() {
         val reviewListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(dataSnapshot: DatabaseError) {

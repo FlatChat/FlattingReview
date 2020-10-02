@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateAccount"
-    android:id="@+id/create_account_id">
+    android:id="@+id/create_account_id"
+    android:background="@drawable/gradient_background">
 
 
     <TextView
@@ -13,10 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
+        android:textColor="@color/colorWhite"
+        android:textSize="45sp"
         android:layout_marginTop="40dp"
         android:text="@string/sign_up_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/firstNameTV"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -123,6 +125,7 @@
         android:layout_margin="@dimen/margin"
         android:padding="@dimen/padding"
         android:text="@string/tenant"
+        android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -136,6 +139,8 @@
         android:layout_margin="@dimen/margin"
         android:padding="@dimen/padding"
         android:text="@string/landlord"
+        android:textColor="@color/colorWhite"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/signUpButton"
         app:layout_constraintEnd_toStartOf="@+id/checkBoxTenant"
         app:layout_constraintHorizontal_bias="0.5"
@@ -153,7 +158,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Address" />
+        app:layout_constraintTop_toBottomOf="@+id/Address"
+        android:textColor="@color/colorWhite"/>
 
     <Button
         android:id="@+id/signUpButton"
