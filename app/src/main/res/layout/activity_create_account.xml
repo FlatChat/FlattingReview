@@ -15,7 +15,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/cabin_bold"
         android:text="@string/sign_up_button"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorWhite"
