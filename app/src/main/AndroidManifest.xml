@@ -39,7 +39,7 @@
         <activity android:name=".CreateFlat" />
         <activity
             android:name=".CreateAccount"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/MaterialTheme" />
         <activity android:name=".WriteReview" />
         <activity
             android:name=".SignIn"
