@@ -23,11 +23,13 @@ import models.Review
 import java.util.*
 
 /**
- * Class designed to collect the data inputted by the users from activity_write_review.xml
- * and write the data into the database.
+ * Class to edit written reviews and save the updated version
+ * to the database.
  * @author Ryan
+ * @author Meggie
  */
-class WriteReview : AppCompatActivity() {
+
+class EditReview : AppCompatActivity () {
 
     private lateinit var submitButton: Button
     private lateinit var cleanliness: RatingBar
@@ -41,6 +43,7 @@ class WriteReview : AppCompatActivity() {
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
     private lateinit var flat: Flat
+    private lateinit var review: Review
 
     /**
      * The onCreate method calls the setInputs() method which sets all the
@@ -53,14 +56,18 @@ class WriteReview : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write_review)
+        setContentView(R.layout.activity_edit_review)
 
         userReference = FirebaseDatabase.getInstance().getReference("users")
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
 
         flat = intent.getSerializableExtra("flat") as Flat
+
+        // ***** mEggie added in! ******
+        review = intent.getSerializableExtra("review") as Review
         setDisplay()
         setInput()
+
 
         // what is this doing?
         flat.flatID
@@ -102,7 +109,12 @@ class WriteReview : AppCompatActivity() {
 
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
-        comment = findViewById<EditText>(R.id.comment1).text
+        // edit here??
+        // make a new pop up ?? ... 6.18 in video
+        //comment = findViewById<EditText>(R.id.comment1).text
+        val comment = review.comment
+        val commentBox: EditText = findViewById(R.id.comment1)
+        commentBox.setText(comment)
         cleanliness = findViewById(R.id.cleanliness)
         landlord = findViewById(R.id.landlord)
         location = findViewById(R.id.location)
@@ -141,4 +153,3 @@ class WriteReview : AppCompatActivity() {
         reviewReference.child(reviewID.toString()).setValue(rev)
     }
 }
-

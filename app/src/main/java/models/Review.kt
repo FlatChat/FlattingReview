@@ -32,6 +32,6 @@ class Review(
     var value: Double = 0.0,
     var anonymous: Boolean = false,
     var date: String? = null,
-    var comment: String? = null,
-    var isDeleted: Boolean = false
+    var comment: String? = null
+    //var isReported: String = "false"
 ) : Serializable
