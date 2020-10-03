@@ -109,9 +109,6 @@ class EditReview : AppCompatActivity () {
 
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
-        // edit here??
-        // make a new pop up ?? ... 6.18 in video
-        //comment = findViewById<EditText>(R.id.comment1).text
         val comment = review.comment
         val commentBox: EditText = findViewById(R.id.comment1)
         commentBox.setText(comment)

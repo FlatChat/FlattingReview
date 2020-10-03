@@ -42,7 +42,6 @@ class ReviewAdapter(
     private lateinit var reviewReference: DatabaseReference
     private val _result = MutableLiveData<Exception?>()
     private var listener: OnItemClickListener? = null
-    private lateinit var flat: Flat
     private lateinit var review: Review
     
     /**
@@ -99,8 +98,7 @@ class ReviewAdapter(
                     R.id.edit -> {
                         val intent = Intent(context, EditReview::class.java)
                         val bundle = Bundle()
-                        bundle.putSerializable("flat", flat)
-                        bundle.putSerializable("review", review)
+                        bundle.putSerializable("review", exampleList[position])
                         intent.putExtras(bundle)
                         startActivity(context, intent, bundle)
                         true
