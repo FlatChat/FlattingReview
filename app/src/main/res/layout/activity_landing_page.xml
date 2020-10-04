@@ -11,8 +11,7 @@
         android:id="@+id/loginView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="81dp"
-        android:padding="@dimen/padding"
+        android:layout_marginEnd="113dp"
         android:text="@string/flatchat"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/colorWhite"
@@ -21,21 +20,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/house"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"/>
+        app:layout_constraintVertical_bias="0.393" />
 
     <ImageView
         android:id="@+id/house"
         android:layout_width="0dp"
-        android:layout_height="62.6dp"
-        android:layout_marginStart="87dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="90dp"
         android:contentDescription="@string/splash_house"
-        android:padding="@dimen/padding"
+        android:padding="4dp"
         android:src="@drawable/white_cartoon_house"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/loginView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"/>
+        app:layout_constraintVertical_bias="0.388" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -57,7 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        android:textSize="15sp"/>
 
     <Button
         android:id="@+id/login_button"
@@ -73,7 +73,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_account_button" />
+        app:layout_constraintTop_toBottomOf="@+id/create_account_button"
+        android:textSize="15sp"/>
 
     <TextView
         android:id="@+id/textView5"

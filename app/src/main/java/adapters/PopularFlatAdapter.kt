@@ -1,6 +1,7 @@
 package adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,14 +50,6 @@ class PopularFlatAdapter(
     }
 
     /**
-     * Clears the current list so that duplicate reviews
-     * are not printed.
-     */
-    fun clear() {
-        exampleList.removeAll(exampleList)
-    }
-
-    /**
      * This binds the data from the database to the textView's in the holder.
      *
      * @param holder The holder that holds a single Flat object to display
@@ -78,9 +71,6 @@ class PopularFlatAdapter(
      */
     override fun getItemCount() = exampleList.size
 
-    interface Clear {
-        fun clear()
-    }
 
     /**
      * Sets the text in the layout cardView.

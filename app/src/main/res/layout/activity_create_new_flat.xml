@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/places_autocomplete_item_powered_by_google" />
+            <!--   This gives an error but still works???? -ryan     -->
     </androidx.cardview.widget.CardView>
 
 
@@ -173,7 +174,7 @@
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin"
-                    android:background="@drawable/button_style"
+                    android:background="@drawable/button_fill"
                     android:padding="@dimen/padding"
                     android:text="@string/upload_image" />
 
@@ -182,7 +183,7 @@
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin"
-                    android:background="@drawable/button_style"
+                    android:background="@drawable/button_fill"
                     android:padding="@dimen/padding"
                     android:text="@string/camera" />
             </LinearLayout>
@@ -195,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/create"
-            android:background="@drawable/button_style"
+            android:background="@drawable/button_fill"
             android:padding="@dimen/padding"/>
 
     </LinearLayout>

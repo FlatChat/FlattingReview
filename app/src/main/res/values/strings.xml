@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">flatchat</string>
+    <string name="app_name">Flatchat</string>
     <string name="featuredReview"> Featured Reviews </string>
 
     <!-- Home Screen -->
@@ -102,6 +102,7 @@
     <string name="create_account">Create Account</string>
     <string name="trouble_signing_in"> <u>Trouble signing in?</u></string>
     <string name="recent_reviews">Recent Reviews</string>
+    <string name="r">R</string>
 
 
 </resources>
