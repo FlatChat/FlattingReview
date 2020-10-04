@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/person_letter"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/circle"

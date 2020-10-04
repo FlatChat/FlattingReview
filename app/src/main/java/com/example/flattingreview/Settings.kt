@@ -2,9 +2,11 @@ package com.example.flattingreview
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_settings.*
 
 /**
@@ -13,8 +15,11 @@ import kotlinx.android.synthetic.main.activity_settings.*
  * @author Nikki Meadows
  */
 class Settings : AppCompatActivity() {
-    //global variable for firebase authentication
+
     private lateinit var auth: FirebaseAuth
+    private var name: String? = null
+    private var userID = FirebaseAuth.getInstance().currentUser?.uid
+    private lateinit var userReference: DatabaseReference
 
     /**
      * A method that gets the current firebase user authentication instance. This method also contains a click listener
@@ -27,6 +32,8 @@ class Settings : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_settings)
         super.onCreate(savedInstanceState)
+
+        userReference = FirebaseDatabase.getInstance().getReference("users")
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigation.selectedItemId = R.id.account_screen
@@ -54,6 +61,23 @@ class Settings : AppCompatActivity() {
                 else -> false
             }
         }
+
+        val userListener: ValueEventListener = object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                Log.w("WriteReview", "loadItem:onCancelled")
+            }
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (ds in dataSnapshot.children) {
+                    val u = ds.child("userID").value as String
+                    if (u == userID) {
+                        name = ds.child("firstNameUsers").value as String
+                    }
+                }
+                person_letter.text = name?.substring(0,1)
+            }
+        }
+        userReference.orderByKey().addValueEventListener(userListener)
 
         //connecting the change password button to the change password screen
         changePassBut.setOnClickListener {
