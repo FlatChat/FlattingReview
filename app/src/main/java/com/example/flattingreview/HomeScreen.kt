@@ -6,6 +6,7 @@ import adapters.PopularFlatAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,9 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         setContentView(R.layout.activity_home_screen)
         reviewReference = FirebaseDatabase.getInstance().reference
         flatReference = FirebaseDatabase.getInstance().reference
+
+        view2.bringToFront()
+        progressBar.bringToFront()
 
         show_all_button_popular.setOnClickListener {
             val intent = Intent(this, ShowAllFlats::class.java)
@@ -160,6 +164,8 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                 calculateRating(popularFlat)
                 calculateRating(featuredFlat)
                 createViewFlats()
+                view2.visibility = View.INVISIBLE
+                progressBar.visibility = View.INVISIBLE
             }
         }
 
