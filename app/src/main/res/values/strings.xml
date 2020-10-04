@@ -56,7 +56,7 @@
     <string name="password_hint"> Password </string>
     <string name="email_hint"> Email </string>
     <string name="SignUp"> Sign Up </string>
-    <string name="enter_password_here">Enter Password here</string>
+    <string name="enter_your_email">Enter Email here</string>
     <string name="account">Account</string>
     <string name="add_flat">Add Flat</string>
     <string name="create">CREATE</string>
@@ -97,6 +97,11 @@
     -->
     <string name="splashhouse">Splash House</string>
     <string name="landlord">Landlord</string>
+    <string name="camera">Camera</string>
+    <string name="one_decimal">%.1f</string>
+    <string name="create_account">Create Account</string>
+    <string name="trouble_signing_in"> <u>Trouble signing in?</u></string>
+    <string name="recent_reviews">Recent Reviews</string>
 
 
 </resources>

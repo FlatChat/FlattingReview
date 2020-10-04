@@ -36,7 +36,7 @@ class SplashScreen : AppCompatActivity() {
             override fun run() {
                 try {
                     sleep(4000)
-                    val intent = Intent(baseContext, SignIn::class.java)
+                    val intent = Intent(baseContext, LandingPage::class.java)
                     startActivity(intent)
                 } catch (e: IOException) {
                     e.printStackTrace()

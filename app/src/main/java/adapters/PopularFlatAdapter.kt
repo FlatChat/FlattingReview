@@ -48,6 +48,13 @@ class PopularFlatAdapter(
         return PopularFlatViewHolder(itemView)
     }
 
+    /**
+     * Clears the current list so that duplicate reviews
+     * are not printed.
+     */
+    fun clear() {
+        exampleList.removeAll(exampleList)
+    }
 
     /**
      * This binds the data from the database to the textView's in the holder.
@@ -61,7 +68,7 @@ class PopularFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        holder.textView2.text  = ratingList[currentItem.flatID].toString()
+        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
         holder.initialize(currentItem, clickListener)
     }
 
@@ -70,6 +77,10 @@ class PopularFlatAdapter(
      *
      */
     override fun getItemCount() = exampleList.size
+
+    interface Clear {
+        fun clear()
+    }
 
     /**
      * Sets the text in the layout cardView.

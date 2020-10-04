@@ -68,6 +68,9 @@ class FlatScreen : AppCompatActivity() {
             intent.putExtra("flat", flat)
             startActivity(intent)
         }
+
+        flatRef.child(flat.flatID.toString()).child("views").setValue(flat.views + 1)
+
     }
 
     override fun onBackPressed() {
@@ -93,7 +96,6 @@ class FlatScreen : AppCompatActivity() {
         landlordBar.progress = (list[1] * 10).toInt()
         locationBar.progress = (list[2] * 10).toInt()
         valueBar.progress = (list[3] * 10).toInt()
-//        val displayReview: CardView = findViewById(R.id.display_review)
         flatImage = findViewById(R.id.flat_image)
         overallRating = "%.1f".format((list[0] + list[1] + list[2] + list[3]) / 4)
         flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, reviewList.size)
