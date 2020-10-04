@@ -37,7 +37,7 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="120dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_margin="@dimen/margin"
                     android:layout_marginBottom="23dp"
@@ -54,7 +54,7 @@
 
                 <TextView
                     android:id="@+id/textView"
-                    android:layout_width="120dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_margin="@dimen/margin"
                     android:layout_marginStart="28dp"
@@ -84,7 +84,7 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="120dp"
+                    android:layout_width="130dp"
                     android:layout_height="50dp"
                     android:layout_margin="@dimen/margin"
                     android:layout_marginBottom="23dp"
@@ -101,7 +101,7 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:layout_margin="@dimen/margin"
                     android:layout_marginEnd="32dp"
@@ -160,12 +160,12 @@
                 android:layout_height="200dp"
                 android:layout_margin="@dimen/margin"
                 android:autofillHints=""
-                android:background="@drawable/button_style"
                 android:ems="10"
+                android:background="@color/colorWhite"
                 android:gravity="start|top"
                 android:hint="@string/comment_hint"
                 android:inputType="textMultiLine"
-                android:padding="@dimen/padding" />
+                android:padding="16dp" />
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/anonSwitch"
@@ -181,7 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_fill"
                 android:text="@string/cancel" />
 
             <Button
@@ -189,7 +189,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_fill"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>
