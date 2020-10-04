@@ -35,14 +35,6 @@ class SignIn  : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-
-        //connected the sign up button to the create an account screen
-        signUpButton.setOnClickListener{
-            val intent = Intent(this, CreateAccount::class.java)
-            startActivity(intent)
-            finish()//kill the current activity
-        }
-
         //click listener for the login button
         loginButton.setOnClickListener{
             doLogin()
