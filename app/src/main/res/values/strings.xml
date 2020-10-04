@@ -101,6 +101,7 @@
     <string name="one_decimal">%.1f</string>
     <string name="create_account">Create Account</string>
     <string name="trouble_signing_in"> <u>Trouble signing in?</u></string>
+    <string name="recent_reviews">Recent Reviews</string>
 
 
 </resources>
