@@ -11,14 +11,12 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_write_review.*
-import models.Flat
 import models.Review
 import java.util.*
 
@@ -42,7 +40,6 @@ class EditReview : AppCompatActivity () {
     private lateinit var reviewReference: DatabaseReference
     private var name: String? = null
     private var userID = FirebaseAuth.getInstance().currentUser?.uid
-    private lateinit var flat: Flat
     private lateinit var review: Review
 
     /**
@@ -61,18 +58,9 @@ class EditReview : AppCompatActivity () {
         userReference = FirebaseDatabase.getInstance().getReference("users")
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
 
-     //   flat = (intent.getSerializableExtra("flat") as? Flat)!!
-
-        // ***** mEggie added in! ******
         review = (intent.getSerializableExtra("review") as? Review)!!
-       // val extras = getIntent().getExtras()
-
-       // setDisplay()
         setInput()
 
-
-        // what is this doing?
-        //flat.flatID
         val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.w("WriteReview", "loadItem:onCancelled")
@@ -102,31 +90,36 @@ class EditReview : AppCompatActivity () {
         }
     }
 
-    private fun setDisplay(){
-        val address = flat.address
-        val addressText: TextView = findViewById(R.id.write_review_address)
-        addressText.text = address!!.split(",")[0]
-    }
-
-
+    /**
+     * Function loads input from old review,
+     * then sets each variable for a Review
+     * to the new input entered.
+     *
+     */
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
         val commentBox: EditText = findViewById(R.id.comment1)
         commentBox.setText(review.comment)
+        comment = commentBox.text // makes it weird....
         val cleanBox: RatingBar = findViewById(R.id.cleanliness)
         cleanBox.rating = review.cleanliness.toFloat()
+        cleanliness = cleanBox
         val landBox: RatingBar = findViewById(R.id.landlord)
         landBox.rating = review.landlord.toFloat()
+        landlord = landBox
         val locationBox: RatingBar = findViewById(R.id.location)
         locationBox.rating = review.location.toFloat()
+        location = locationBox
         val valueBox: RatingBar = findViewById(R.id.value)
         valueBox.rating = review.value.toFloat()
+        value = valueBox
         val anonBox: SwitchCompat = findViewById(R.id.anonSwitch)
         anonBox.isChecked = review.anonymous
+        anon = anonBox
     }
 
     /**
-     * Saves the object (review) to firebase.
+     * Saves the updated object (review) to firebase.
      *
      */
     @SuppressLint("SimpleDateFormat")
@@ -137,13 +130,13 @@ class EditReview : AppCompatActivity () {
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
         // Creates reviewID
-        val reviewID = reviewReference.push().key
+        val reviewID = review.reviewID
         // Create a review object
         val rev = Review(
             reviewID,
             userID,
             flatID,
-            name.toString(),
+            review.name.toString(),
             cleanliness.rating + 0.1,
             landlord.rating + 0.1,
             location.rating + 0.1,

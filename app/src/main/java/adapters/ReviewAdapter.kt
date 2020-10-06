@@ -97,17 +97,9 @@ class ReviewAdapter(
                     R.id.report ->
                         true
                     R.id.edit -> {
-                        Toast.makeText(context,"Editing comment", Toast.LENGTH_SHORT).show();
                         val intent = Intent(context, EditReview::class.java)
-                       // val bundle = Bundle()
-                      //  bundle.putSerializable("review", exampleList[position])
-                       // intent.putExtras(bundle)
                         intent.putExtra("review", exampleList[position])
-                        //intent.putExtra("flat", Flat)
-                        // startActivity(context, intent, bundle)
                         context.startActivity(intent)
-                        Toast.makeText(context,"Editing comment2", Toast.LENGTH_SHORT).show();
-
                         true
                     }
                     R.id.delete_review -> {
