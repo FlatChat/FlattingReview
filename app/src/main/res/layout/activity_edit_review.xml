@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WriteReview">
+    tools:context=".EditReview">
 
     <ScrollView
         android:layout_width="0dp"
@@ -18,17 +18,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/write_review_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/margin"
-                android:padding="@dimen/padding"
-                android:text="@string/flat_address"
-                android:textColor="@color/colorBlack"
-                android:textSize="26sp" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout

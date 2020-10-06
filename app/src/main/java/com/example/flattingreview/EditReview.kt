@@ -61,16 +61,18 @@ class EditReview : AppCompatActivity () {
         userReference = FirebaseDatabase.getInstance().getReference("users")
         reviewReference = FirebaseDatabase.getInstance().getReference("reviews")
 
-        flat = intent.getSerializableExtra("flat") as Flat
+     //   flat = (intent.getSerializableExtra("flat") as? Flat)!!
 
         // ***** mEggie added in! ******
-        review = intent.getSerializableExtra("review") as Review
-        setDisplay()
+        review = (intent.getSerializableExtra("review") as? Review)!!
+       // val extras = getIntent().getExtras()
+
+       // setDisplay()
         setInput()
 
 
         // what is this doing?
-        flat.flatID
+        //flat.flatID
         val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Log.w("WriteReview", "loadItem:onCancelled")
@@ -89,13 +91,13 @@ class EditReview : AppCompatActivity () {
 
         submitButton.setOnClickListener {
             saveObject()
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
+            val intent = Intent(this, HomeScreen::class.java)
+            intent.putExtra("review", review)
             startActivity(intent)
         }
         cancel.setOnClickListener {
-            val intent = Intent(this, FlatScreen::class.java)
-            intent.putExtra("flat", flat)
+            val intent = Intent(this, HomeScreen::class.java)
+            intent.putExtra("review", review)
             startActivity(intent)
         }
     }
@@ -109,14 +111,18 @@ class EditReview : AppCompatActivity () {
 
     private fun setInput() {
         submitButton = findViewById(R.id.submit_button)
-        val comment = review.comment
         val commentBox: EditText = findViewById(R.id.comment1)
-        commentBox.setText(comment)
-        cleanliness = findViewById(R.id.cleanliness)
-        landlord = findViewById(R.id.landlord)
-        location = findViewById(R.id.location)
-        value = findViewById(R.id.value)
-        anon = findViewById(R.id.anonSwitch)
+        commentBox.setText(review.comment)
+        val cleanBox: RatingBar = findViewById(R.id.cleanliness)
+        cleanBox.rating = review.cleanliness.toFloat()
+        val landBox: RatingBar = findViewById(R.id.landlord)
+        landBox.rating = review.landlord.toFloat()
+        val locationBox: RatingBar = findViewById(R.id.location)
+        locationBox.rating = review.location.toFloat()
+        val valueBox: RatingBar = findViewById(R.id.value)
+        valueBox.rating = review.value.toFloat()
+        val anonBox: SwitchCompat = findViewById(R.id.anonSwitch)
+        anonBox.isChecked = review.anonymous
     }
 
     /**
@@ -126,7 +132,7 @@ class EditReview : AppCompatActivity () {
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.O)
     private fun saveObject() {
-        val flatID = flat.flatID
+        val flatID = review.flatID
         // When the review was created
         val sdf = android.icu.text.SimpleDateFormat("dd MMMM yyyy")
         val currentDate = sdf.format(Date())
