@@ -1,5 +1,6 @@
 package adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -22,8 +23,9 @@ import models.Flat
 class FeaturedFlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
-    private val ratingList: HashMap<String, ArrayList<Double>>,
-    private var clickListener: HomeScreen
+    private val ratingList: HashMap<String, Double>,
+    private var clickListener: HomeScreen,
+    private var layout: String
 ) : RecyclerView.Adapter<FeaturedFlatAdapter.FeaturedFlatViewHolder>() {
 
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
@@ -38,10 +40,22 @@ class FeaturedFlatAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeaturedFlatViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.flat_layout,
+            if(layout == "flat_layout"){
+                R.layout.flat_layout
+            } else {
+                R.layout.flat_layout_fill_width
+            },
             parent, false
         )
         return FeaturedFlatViewHolder(itemView)
+    }
+
+    /**
+     * Clears the current list so that duplicate reviews
+     * are not printed.
+     */
+    private fun clear() {
+        exampleList.removeAll(exampleList)
     }
 
 
@@ -57,16 +71,7 @@ class FeaturedFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        val array  = ratingList[currentItem.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(item in array) sum += item
-        }
-        if (array != null) {
-            holder.textView2.text = (sum / array.size).toString()
-        } else {
-            holder.textView2.text = "0"
-        }
+        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
         holder.initialize(currentItem, clickListener)
     }
 

@@ -1,6 +1,7 @@
 package adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,7 @@ import models.Flat
 class PopularFlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
-    private val ratingList: HashMap<String, ArrayList<Double>>,
+    private val ratingList: HashMap<String, Double>,
     private var clickListener: OnItemClickListener,
     private var layout: String
 ) : RecyclerView.Adapter<PopularFlatAdapter.PopularFlatViewHolder>() {
@@ -48,7 +49,6 @@ class PopularFlatAdapter(
         return PopularFlatViewHolder(itemView)
     }
 
-
     /**
      * This binds the data from the database to the textView's in the holder.
      *
@@ -61,16 +61,7 @@ class PopularFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        val array  = ratingList[currentItem.flatID]
-        var sum = 0.0
-        if(!array.isNullOrEmpty()){
-            for(item in array) sum += item
-        }
-        if (array != null) {
-            holder.textView2.text = (sum / array.size).toString()
-        } else {
-            holder.textView2.text = "0"
-        }
+        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
         holder.initialize(currentItem, clickListener)
     }
 
@@ -79,6 +70,7 @@ class PopularFlatAdapter(
      *
      */
     override fun getItemCount() = exampleList.size
+
 
     /**
      * Sets the text in the layout cardView.

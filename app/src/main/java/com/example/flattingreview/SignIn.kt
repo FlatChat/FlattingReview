@@ -35,14 +35,6 @@ class SignIn  : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-
-        //connected the sign up button to the create an account screen
-        signUpButton.setOnClickListener{
-            val intent = Intent(this, CreateAccount::class.java)
-            startActivity(intent)
-            finish()//kill the current activity
-        }
-
         //click listener for the login button
         loginButton.setOnClickListener{
             doLogin()
@@ -133,7 +125,7 @@ class SignIn  : AppCompatActivity() {
                Toast.makeText(baseContext, "Please verify your email address.",Toast.LENGTH_SHORT).show()
            }
         }else{
-           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
+//           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
         }
     }
 }

@@ -18,15 +18,17 @@
         <EditText
             android:id="@+id/search_bar_text"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_margin="@dimen/margin"
             android:autofillHints=""
+            android:drawableStart="@drawable/search"
             android:background="@drawable/rounded_edit_text"
             android:elevation="@dimen/elevation"
             android:ems="10"
             android:hint="@string/search_for_flat"
             android:inputType="textPersonName"
             android:padding="@dimen/padding"
+            android:drawablePadding="10dp"
             android:textColor="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView

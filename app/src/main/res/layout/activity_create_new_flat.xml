@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:layout="@layout/places_autocomplete_item_powered_by_google" />
+            <!--   This gives an error but still works???? -ryan     -->
     </androidx.cardview.widget.CardView>
 
 
@@ -162,14 +163,31 @@
                 android:layout_margin="@dimen/margin"
                 android:contentDescription="@string/upload_an_image" />
 
-            <Button
-                android:id="@+id/upload_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/upload_image"
-                android:background="@drawable/button_style"
-                android:padding="@dimen/padding"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/upload_image"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:background="@drawable/button_fill"
+                    android:padding="@dimen/padding"
+                    android:text="@string/upload_image" />
+
+                <Button
+                    android:id="@+id/camera_button"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin"
+                    android:background="@drawable/button_fill"
+                    android:padding="@dimen/padding"
+                    android:text="@string/camera" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <Button
@@ -178,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/create"
-            android:background="@drawable/button_style"
+            android:background="@drawable/button_fill"
             android:padding="@dimen/padding"/>
 
     </LinearLayout>

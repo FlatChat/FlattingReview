@@ -21,11 +21,9 @@ import com.example.flattingreview.WriteReview
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.review_layout.view.*
 import models.Flat
 import models.Review
-import java.lang.Exception
 import java.util.*
 
 /**
@@ -49,7 +47,7 @@ class ReviewAdapter(
      * Clears the current list so that duplicate reviews
      * are not printed.
      */
-    fun clear() {
+    private fun clear() {
         exampleList.removeAll(exampleList)
     }
 
@@ -105,10 +103,10 @@ class ReviewAdapter(
                     R.id.delete_review -> {
                         AlertDialog.Builder(context).also {
                             it.setTitle(context.getString(R.string.delete_confirmation))
-                            it.setPositiveButton(context.getString(R.string.yes)) { dialog, which ->
+                            it.setPositiveButton(context.getString(R.string.yes)) { _, _ ->
                                 deleteReview(position)
                                 clear()
-                                Toast.makeText(context,"Review Deleted", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context,"Review Deleted", Toast.LENGTH_SHORT).show()
                             }
                         }.create().show()
                         true
@@ -153,7 +151,7 @@ class ReviewAdapter(
      *
      * @param position the position of the review to be deleted.
      */
-    fun deleteReview(position: Int) {
+    private fun deleteReview(position: Int) {
         reviewReference.child(exampleList[position].reviewID!!).setValue(null)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -176,9 +174,4 @@ class ReviewAdapter(
         var textView3: TextView = itemView.date
         var buttonViewOption: TextView = itemView.textViewOptions
     }
-
-    interface OnItemClickListener {
-
-    }
-
 }
