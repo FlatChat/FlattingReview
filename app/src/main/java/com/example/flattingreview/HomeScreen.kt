@@ -182,10 +182,12 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         flatReference
             .child("flats")
             .orderByKey()
+            .limitToFirst(limit)
             .addValueEventListener(flatListener)
         reviewReference
             .child("reviews")
             .orderByKey()
+            .limitToFirst(limit)
             .addValueEventListener(reviewListener)
     }
 

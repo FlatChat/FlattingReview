@@ -74,7 +74,7 @@ class Settings : AppCompatActivity() {
                         name = ds.child("firstNameUsers").value as String
                     }
                 }
-                person_letter.text = name?.substring(0,1)
+                person_letter.text = name?.substring(0, 1)
             }
         }
         userReference.orderByKey().addValueEventListener(userListener)
@@ -98,6 +98,8 @@ class Settings : AppCompatActivity() {
     private fun logout() {
         auth.signOut()
         finish()
-        startActivity(Intent(this, SignIn::class.java)) //redirect user to sign in page
+        val intent = Intent(this, LandingPage::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 }
