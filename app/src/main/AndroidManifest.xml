@@ -14,7 +14,7 @@
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/new_icon"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/new_icon"
+        android:roundIcon="@drawable/flatchat_icon_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
@@ -41,6 +41,7 @@
             android:name=".CreateAccount"
             android:theme="@style/MaterialTheme" />
         <activity android:name=".WriteReview" />
+        <activity android:name=".EditReview" />
         <activity
             android:name=".SignIn"
             android:theme="@style/MaterialTheme" />

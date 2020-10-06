@@ -3,18 +3,26 @@ package adapters
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.example.flattingreview.EditReview
 import com.example.flattingreview.R
+import com.example.flattingreview.WriteReview
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.review_layout.view.*
+import models.Flat
 import models.Review
 import java.util.*
 
@@ -26,12 +34,13 @@ import java.util.*
 class ReviewAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Review>
+// add in exampleFlatList?//
 ) :
     RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
 
     private lateinit var reviewReference: DatabaseReference
     private val _result = MutableLiveData<Exception?>()
-
+    
     /**
      * Clears the current list so that duplicate reviews
      * are not printed.
@@ -82,8 +91,13 @@ class ReviewAdapter(
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.report ->
-
                         true
+                    R.id.edit -> {
+                        val intent = Intent(context, EditReview::class.java)
+                        intent.putExtra("review", exampleList[position])
+                        context.startActivity(intent)
+                        true
+                    }
                     R.id.delete_review -> {
                         AlertDialog.Builder(context).also {
                             it.setTitle(context.getString(R.string.delete_confirmation))
@@ -109,6 +123,26 @@ class ReviewAdapter(
      */
     override fun getItemCount() = exampleList.size
 
+    /**
+
+    fun reportReview(position: Int) {
+        reviewReference.child(exampleList[position].isReported).setValue("true")
+
+    }
+
+    fun editReview(review: Review) {
+        reviewReference.child(review.comment!!).setValue(review)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    _result.value = null
+                } else {
+                    _result.value = it.exception
+                }
+            }
+        notifyDataSetChanged()
+    }
+
+*/
 
     /**
      * Deletes a given review from the database.
@@ -124,6 +158,7 @@ class ReviewAdapter(
                     _result.value = it.exception
                 }
             }
+        notifyDataSetChanged()
     }
 
     /**

@@ -33,4 +33,5 @@ class Review(
     var anonymous: Boolean = false,
     var date: String? = null,
     var comment: String? = null
+    //var isReported: String = "false"
 ) : Serializable

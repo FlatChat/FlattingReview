@@ -74,7 +74,6 @@ class FlatScreen : AppCompatActivity() {
 
         // Bottom navigation
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottom_navigation)
-        bottomNavigation.selectedItemId = R.id.home_screen
         bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.account_screen -> {

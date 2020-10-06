@@ -67,8 +67,13 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         }
 
         show_all_reviews.setOnClickListener {
-            val intent = Intent(this, ShowAllReviews::class.java)
-            intent.putExtra("list", reviewList)
+            val tempArray = ArrayList<Review>()
+            for(rev in reviewList){
+                if(rev.comment != ""){
+                    tempArray.add(rev)
+                }
+            }
+            intent.putExtra("list", tempArray)
             startActivity(intent)
         }
 
@@ -182,10 +187,12 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
         flatReference
             .child("flats")
             .orderByKey()
+            .limitToFirst(limit)
             .addValueEventListener(flatListener)
         reviewReference
             .child("reviews")
             .orderByKey()
+            .limitToFirst(limit)
             .addValueEventListener(reviewListener)
     }
 

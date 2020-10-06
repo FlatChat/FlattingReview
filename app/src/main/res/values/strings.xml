@@ -35,8 +35,11 @@
     <string name="comment_hint">Write comment here</string>
     <string name="delreview">Delete Review</string>
     <string name="report_rev">Report</string>
+    <string name="edit_rev">Edit</string>
     <string name="delete_confirmation">Are you sure you want to delete?</string>
     <string name="yes">Yes</string>
+    <string name="report_confirmation">Do you want to report this comment?</string>
+
 
     <!-- Create account Strings -->
     <string name="sign_up_button"> Sign Up  </string>

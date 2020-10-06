@@ -1,11 +1,13 @@
 package com.example.flattingreview
 
 import adapters.ReviewAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import models.Flat
 import models.Review
@@ -20,7 +22,7 @@ class ViewReviews : AppCompatActivity() {
 
     private var reviewList: ArrayList<Review> = ArrayList()
     private lateinit var reviewReference: DatabaseReference
-//    private lateinit var recyclerView: RecyclerView
+
 
     /**
      * Sets the database reference and collects the path to which the reviews and read from.
@@ -43,7 +45,6 @@ class ViewReviews : AppCompatActivity() {
 
         val flat = intent.getSerializableExtra("flat") as Flat
         val flatID = flat.flatID
-
 
 
         val reviewListener: ValueEventListener = object : ValueEventListener {
@@ -70,6 +71,7 @@ class ViewReviews : AppCompatActivity() {
         reviewReference.orderByKey().addValueEventListener(reviewListener)
 
     }
+
 
     private fun createView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
