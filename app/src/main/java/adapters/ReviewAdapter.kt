@@ -40,8 +40,6 @@ class ReviewAdapter(
 
     private lateinit var reviewReference: DatabaseReference
     private val _result = MutableLiveData<Exception?>()
-    private var listener: OnItemClickListener? = null
-    private lateinit var review: Review
     
     /**
      * Clears the current list so that duplicate reviews
