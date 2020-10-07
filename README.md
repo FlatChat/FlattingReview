@@ -10,9 +10,6 @@ Our developer documentation for flatchat (documentation is continuously updated 
 ## Maintenance Documentation:
 * link to be inserted here
 
-## User Documentation:
-* link to be inserted here
-
 #### Codecov report: 
 <a href="https://codecov.io/gh/FlatChat/FlattingReview">
   <img src="https://codecov.io/gh/FlatChat/FlattingReview/branch/master/graph/badge.svg" />
