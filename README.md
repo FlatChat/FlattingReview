@@ -1,6 +1,7 @@
 # FlattingReview
 Welcome to flatchat, an Android application built using Kotlin allowing users to rate and review their flat.
 In order to contribute to this project, please create a new project on firebase to generate a google-services json file. 
+
 <a href="https://codecov.io/gh/FlatChat/FlattingReview">
   <img src="https://codecov.io/gh/FlatChat/FlattingReview/branch/master/graph/badge.svg" />
 </a>
