@@ -100,7 +100,7 @@ class EditReview : AppCompatActivity () {
         submitButton = findViewById(R.id.submit_button)
         val commentBox: EditText = findViewById(R.id.comment1)
         commentBox.setText(review.comment)
-        comment = commentBox.text // makes it weird....
+        comment = commentBox.text
         val cleanBox: RatingBar = findViewById(R.id.cleanliness)
         cleanBox.rating = review.cleanliness.toFloat()
         cleanliness = cleanBox

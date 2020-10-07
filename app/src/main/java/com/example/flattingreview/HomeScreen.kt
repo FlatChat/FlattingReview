@@ -3,6 +3,7 @@ package com.example.flattingreview
 import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
 import adapters.PopularFlatAdapter
+import adapters.ReviewAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -73,6 +74,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     tempArray.add(rev)
                 }
             }
+            val intent = Intent(this, ShowAllReviews::class.java)
             intent.putExtra("list", tempArray)
             startActivity(intent)
         }

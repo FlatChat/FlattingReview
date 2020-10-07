@@ -62,7 +62,6 @@ class WriteReview : AppCompatActivity() {
         setDisplay()
         setInput()
 
-        // what is this doing?
         flat.flatID
         val userListener: ValueEventListener = object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {

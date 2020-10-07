@@ -34,7 +34,6 @@ import java.util.*
 class ReviewAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Review>
-// add in exampleFlatList?//
 ) :
     RecyclerView.Adapter<ReviewAdapter.ExampleViewHolder>() {
 
@@ -122,27 +121,6 @@ class ReviewAdapter(
      *
      */
     override fun getItemCount() = exampleList.size
-
-    /**
-
-    fun reportReview(position: Int) {
-        reviewReference.child(exampleList[position].isReported).setValue("true")
-
-    }
-
-    fun editReview(review: Review) {
-        reviewReference.child(review.comment!!).setValue(review)
-            .addOnCompleteListener {
-                if (it.isSuccessful) {
-                    _result.value = null
-                } else {
-                    _result.value = it.exception
-                }
-            }
-        notifyDataSetChanged()
-    }
-
-*/
 
     /**
      * Deletes a given review from the database.
