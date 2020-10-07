@@ -2,12 +2,14 @@
 Welcome to flatchat, an Android application built using Kotlin allowing users to rate and review their flat.
 In order to contribute to this project, please create a new project on firebase to generate a google-services json file. 
 
+### Build
+Build this app from source using Android Studio.
 
-## Developer Documentation:
+### Developer Documentation:
 Our developer documentation for flatchat (documentation is continuously updated with the master branch):
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
-## Maintenance Documentation:
+### Maintenance Documentation:
 * link to be inserted here
 
 #### Codecov report: 
