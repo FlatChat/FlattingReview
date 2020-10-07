@@ -63,7 +63,7 @@ class DeleteAccount : AppCompatActivity() {
                                             Toast.LENGTH_SHORT
                                         ).show()
                                         auth.signOut()//sign out the user and make them login again
-                                        startActivity(Intent(this, SignIn::class.java))
+                                        startActivity(Intent(this, LandingPage::class.java))
                                         finish()//close the current activity
                                     }
                                 }
