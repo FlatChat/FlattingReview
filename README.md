@@ -17,6 +17,11 @@ Build this app from source using Android Studio.
 Our developer documentation for flatchat (documentation is continuously updated with the master branch):
 [![Documentation](https://github.com/FlatChat/FlattingReview/workflows/Documentation/badge.svg)](https://flatchat.github.io/FlattingReview/docs/app/index.html)
 
+### User Documentation:
+Our user documentation can be found here:
+https://docs.google.com/document/d/1tyYdZ8K69nfe8afXNFhKY07ZZBBERorr7uhoEe9MvQo/edit?usp=sharing
+
 ### Maintenance Documentation:
-* link to be inserted here
+Our maintenance documentation can be found here: 
+https://docs.google.com/document/d/1BU-Hy2Xqwd1T3QdZja2rqSLsP1EyAZ2Fcju_eSQDkG8/edit?usp=sharing
 
