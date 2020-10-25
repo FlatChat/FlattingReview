@@ -18,9 +18,10 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <activity android:name="onboarding.OnBoarding"></activity>
         <activity
             android:name=".LandingPage"
-            android:theme="@style/SplashTheme"/>
+            android:theme="@style/SplashTheme" />
         <activity android:name=".ShowAllReviews" />
         <activity android:name=".Settings" />
         <activity android:name=".ChangePassword" />
@@ -47,7 +48,7 @@
             android:theme="@style/MaterialTheme" />
         <activity
             android:name=".HomeScreen"
-            android:theme="@style/SplashTheme"/>
+            android:theme="@style/SplashTheme" />
         <activity android:name=".ViewReviews" />
         <activity android:name=".FlatScreen" />
         <activity android:name=".DeleteAccount" />

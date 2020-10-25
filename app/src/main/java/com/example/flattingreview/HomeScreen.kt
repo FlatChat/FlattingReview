@@ -3,7 +3,6 @@ package com.example.flattingreview
 import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
 import adapters.PopularFlatAdapter
-import adapters.ReviewAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -16,6 +15,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
+import onboarding.OnBoarding
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -111,7 +111,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
+                    val intent = Intent(this, OnBoarding::class.java)
                     startActivity(intent)
                     true
                 }

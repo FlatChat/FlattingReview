@@ -106,6 +106,15 @@
     <string name="trouble_signing_in"> <u>Trouble signing in?</u></string>
     <string name="recent_reviews">Recent Reviews</string>
     <string name="r">R</string>
+    <string name="lorem">Lorem</string>
+    <string name="delivery">Delivery</string>
+    <string name="payment">Payment</string>
+    <string name="address">Address</string>
+    <string name="next">Next</string>
+    <string name="bed">Bed</string>
+    <string name="map_icon">Map Icon</string>
+    <string name="back">Back</string>
+    <string name="finish">Finish</string>
 
 
 </resources>

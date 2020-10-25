@@ -184,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_fill"
+                android:background="@drawable/button_blue_outline"
                 android:text="@string/show_all_reviews" />
 
             <Button
@@ -192,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_fill"
+                android:background="@drawable/button_blue_outline"
                 android:text="@string/add_review" />
 
         </LinearLayout>

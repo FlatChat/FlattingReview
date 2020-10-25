@@ -149,7 +149,7 @@
                 android:layout_height="200dp"
                 android:layout_margin="@dimen/margin"
                 android:autofillHints=""
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_red_outline"
                 android:ems="10"
                 android:gravity="start|top"
                 android:hint="@string/comment_hint"
@@ -170,7 +170,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_red_outline"
                 android:text="@string/cancel" />
 
             <Button
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin"
-                android:background="@drawable/button_style"
+                android:background="@drawable/button_red_outline"
                 android:text="@string/submit" />
         </LinearLayout>
     </ScrollView>
