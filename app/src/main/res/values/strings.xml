@@ -115,6 +115,7 @@
     <string name="map_icon">Map Icon</string>
     <string name="back">Back</string>
     <string name="finish">Finish</string>
+    <string name="enter_the_address_in_the_search_bar_to_find_your_flat">Enter the address in the search bar to find your flat</string>
 
 
 </resources>

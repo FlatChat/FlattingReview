@@ -2,7 +2,6 @@ package onboarding
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -16,7 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class OnBoarding : AppCompatActivity() {
 
-    private val firstScreen = FirstScreen()
+    private val firstScreen = Address()
     private val secondScreen = SecondScreen()
     private val thirdScreen = ThirdScreen()
     private lateinit var nextButton: Button
