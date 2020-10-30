@@ -5,11 +5,11 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.example.flattingreview.HomeScreen
-import com.example.flattingreview.R
-import com.example.flattingreview.R.drawable
-import com.example.flattingreview.Search
-import com.example.flattingreview.Settings
+import com.flatchat.app.HomeScreen
+import com.flatchat.app.R
+import com.flatchat.app.R.drawable
+import com.flatchat.app.Search
+import com.flatchat.app.Settings
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
