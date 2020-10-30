@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flattingreview.R
-import com.example.flattingreview.Search
+import com.flatchat.app.R
+import com.flatchat.app.Search
 import kotlinx.android.synthetic.main.flat_search_layout.view.*
 import models.Flat
 

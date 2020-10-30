@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flattingreview">
+    package="com.flatchat.app">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,13 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <activity
-            android:name=".LandingPage"
+            android:name="com.flatchat.app.LandingPage"
             android:theme="@style/SplashTheme"/>
-        <activity android:name=".ShowAllReviews" />
-        <activity android:name=".Settings" />
-        <activity android:name=".ChangePassword" />
+        <activity android:name="com.flatchat.app.ShowAllReviews" />
+        <activity android:name="com.flatchat.app.Settings" />
+        <activity android:name="com.flatchat.app.ChangePassword" />
         <activity
-            android:name=".SplashScreen"
+            android:name="com.flatchat.app.SplashScreen"
             android:noHistory="true"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -34,23 +34,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ShowAllFlats" />
-        <activity android:name=".Search" />
-        <activity android:name=".CreateFlat" />
+        <activity android:name="com.flatchat.app.ShowAllFlats" />
+        <activity android:name="com.flatchat.app.Search" />
+        <activity android:name="com.flatchat.app.CreateFlat" />
         <activity
-            android:name=".CreateAccount"
+            android:name="com.flatchat.app.CreateAccount"
             android:theme="@style/MaterialTheme" />
-        <activity android:name=".WriteReview" />
-        <activity android:name=".EditReview" />
+        <activity android:name="com.flatchat.app.WriteReview" />
+        <activity android:name="com.flatchat.app.EditReview" />
         <activity
-            android:name=".SignIn"
+            android:name="com.flatchat.app.SignIn"
             android:theme="@style/MaterialTheme" />
         <activity
-            android:name=".HomeScreen"
+            android:name="com.flatchat.app.HomeScreen"
             android:theme="@style/SplashTheme"/>
-        <activity android:name=".ViewReviews" />
-        <activity android:name=".FlatScreen" />
-        <activity android:name=".DeleteAccount" />
+        <activity android:name="com.flatchat.app.ViewReviews" />
+        <activity android:name="com.flatchat.app.FlatScreen" />
+        <activity android:name="com.flatchat.app.DeleteAccount" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,8 +1,7 @@
 package models
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Tests the user model class.

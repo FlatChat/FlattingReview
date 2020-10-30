@@ -4,25 +4,19 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flattingreview.EditReview
-import com.example.flattingreview.R
-import com.example.flattingreview.WriteReview
-import com.google.firebase.database.DataSnapshot
+import com.flatchat.app.EditReview
+import com.flatchat.app.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.review_layout.view.*
-import models.Flat
 import models.Review
 import java.util.*
 

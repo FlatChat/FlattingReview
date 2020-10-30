@@ -1,6 +1,5 @@
 package adapters
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.flattingreview.HomeScreen
-import com.example.flattingreview.R
+import com.flatchat.app.HomeScreen
+import com.flatchat.app.R
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.flat_layout.view.*
 import models.Flat
