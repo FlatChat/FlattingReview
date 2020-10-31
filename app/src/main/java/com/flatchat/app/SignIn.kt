@@ -125,7 +125,7 @@ class SignIn  : AppCompatActivity() {
                Toast.makeText(baseContext, "Please verify your email address.",Toast.LENGTH_SHORT).show()
            }
         }else{
-//           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
+           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
         }
     }
 }

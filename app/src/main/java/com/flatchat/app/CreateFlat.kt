@@ -1,3 +1,5 @@
+@file:Suppress("PrivatePropertyName")
+
 package com.flatchat.app
 
 import android.Manifest
@@ -47,7 +49,6 @@ class CreateFlat : AppCompatActivity() {
     private lateinit var bedrooms: Editable
     private lateinit var bathrooms: Editable
     private lateinit var createButton: Button
-    private lateinit var image: Intent
     private val REQUEST_IMAGE_CAPTURE = 1
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 

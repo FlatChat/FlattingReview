@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context="onboarding.OnBoarding">
 
-    <Button
-        android:id="@+id/button_back"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_container_view"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/button_next"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fragment_container_view"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
