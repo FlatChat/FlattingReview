@@ -1,13 +1,21 @@
 package onboarding
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.flatchat.app.HomeScreen
 import com.flatchat.app.R
 import com.flatchat.app.Search
 import com.flatchat.app.Settings
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import models.Flat
+import java.io.ByteArrayOutputStream
 
 
 class OnBoarding : AppCompatActivity() {
@@ -15,10 +23,13 @@ class OnBoarding : AppCompatActivity() {
     private val firstScreen = Address()
     private val secondScreen = Details()
     private val thirdScreen = Image()
-    public companion object Flat {
+    private val forthScreen = Confirm()
+    companion object Flat {
         var address = ""
         var bathrooms = ""
         var bedrooms = ""
+        var imageBitmap: Bitmap? = null
+        var imageURI: Uri? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,25 +75,38 @@ class OnBoarding : AppCompatActivity() {
                 secondScreen).commit()
             2 -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view,
                 thirdScreen).commit()
+            3 -> supportFragmentManager.beginTransaction().replace(R.id.fragment_container_view,
+                forthScreen).commit()
         }
-//        if(position == 2){
-//            nextButton.text = getString(R.string.finish)
-//            nextButton.background = ContextCompat.getDrawable(this, drawable.button_fill)
-//            nextButton.setTextColor(getColor(R.color.colorWhite))
-//        } else {
-//            nextButton.text = getString(R.string.next)
-//            nextButton.background = ContextCompat.getDrawable(this, drawable.button_blue_outline)
-//            nextButton.setTextColor(getColor(R.color.colorPrimary))
-//        }
-//
-//        if(position == 0){
-//            backButton.text = getString(R.string.cancel)
-//            backButton.background = ContextCompat.getDrawable(this, drawable.button_fill)
-//            backButton.setTextColor(getColor(R.color.colorWhite))
-//        } else {
-//            backButton.text = getString(R.string.back)
-//            backButton.background = ContextCompat.getDrawable(this, drawable.button_blue_outline)
-//            backButton.setTextColor(getColor(R.color.colorPrimary))
-//        }
+    }
+
+    private fun writeNewFlat(){
+        val myRef = FirebaseDatabase.getInstance().getReference("flats")
+        val flatID = myRef.push().key
+        val imageID = "image$flatID"
+        val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
+//        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val flat = Flat(
+                flatID,
+                address,
+                bedrooms,
+                bathrooms,
+                0
+        )
+        myRef.child(flatID.toString()).setValue(flat)
+
+        val uploadTask = storageRef.putBytes(data)
+        val intent = Intent(this, HomeScreen::class.java)
+
+        uploadTask.addOnFailureListener {
+            Log.d("File Upload", "Failure")
+        }.addOnSuccessListener {
+            Log.d("File Upload", "Successful")
+        }
+        startActivity(intent)
     }
 }

@@ -103,6 +103,10 @@
     <string name="details">Details</string>
     <string name="image">Image</string>
     <string name="empty" />
+    <string name="are_all_these_details_correct">Are These Details Correct?</string>
+    <string name="address">Address:</string>
+    <string name="do_you_confirm_that_all_the_information_you_have_given_is_correct">Do you confirm that all the information you have given is correct?</string>
+    <string name="terms_and_conditions"><u>Terms and Conditions</u></string>
 
 
 </resources>
