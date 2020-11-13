@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -32,12 +33,16 @@ class SignIn  : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        //click listener for the login button
+        val loginButton = findViewById<Button>(R.id.login_button)
+        val cancelButton = findViewById<Button>(R.id.cancel_button)
+
         loginButton.setOnClickListener{
             doLogin()
+        }
+        cancelButton.setOnClickListener{
+            startActivity(Intent(this, LandingPage::class.java))
         }
         //click listener for the forgot password button
         forget_password_button.setOnClickListener {
@@ -124,8 +129,6 @@ class SignIn  : AppCompatActivity() {
            } else{
                Toast.makeText(baseContext, "Please verify your email address.",Toast.LENGTH_SHORT).show()
            }
-        }else{
-           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
         }
     }
 }

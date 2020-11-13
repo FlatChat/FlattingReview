@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.flatchat.app.R
+
 
 class Confirm : Fragment() {
 
@@ -23,15 +25,22 @@ class Confirm : Fragment() {
             false
         )
 
-        val bedrooms = view.findViewById<EditText>(R.id.bedrooms_text)
-        val bathrooms = view.findViewById<EditText>(R.id.bathrooms_text)
-        val address = view.findViewById<EditText>(R.id.address_text)
-        val image = view.findViewById<ImageView>(R.id.image_check)
+//        val shimmerContainer = view.findViewById(R.id.shimmer) as ShimmerFrameLayout
+//        shimmerContainer.duration = 1000
+//        shimmerContainer.startShimmerAnimation()
+//
+//        val bedrooms = view.findViewById<EditText>(R.id.bedrooms_text)
+//        val bathrooms = view.findViewById<EditText>(R.id.bathrooms_text)
+//        val address = view.findViewById<EditText>(R.id.address_text)
+//        val image = view.findViewById<ImageView>(R.id.image_check)
 
-        bedrooms.setText(OnBoarding.bedrooms)
-        bathrooms.setText(OnBoarding.bathrooms)
-        address.setText(OnBoarding.address)
-        image.setImageURI(OnBoarding.imageURI)
+//        bedrooms.setText(OnBoarding.bedrooms)
+//        bathrooms.setText(OnBoarding.bathrooms)
+//        address.setText(OnBoarding.address)
+//
+//        shimmerContainer.stopShimmerAnimation()
+//
+//        image.setImageURI(OnBoarding.imageURI)
 
 
         return view
