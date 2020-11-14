@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.flatchat.app.HomeScreen
 import com.flatchat.app.R
@@ -24,6 +26,9 @@ class Address : Fragment(){
     private lateinit var placesClient: PlacesClient
     private var placeFields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS)
 
+    /**
+     * The commented out code is for making my own design box, I'm halfway through the process.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +42,7 @@ class Address : Fragment(){
 
         val backButton = view.findViewById<Button>(R.id.button_back)
         val nextButton = view.findViewById<Button>(R.id.button_next)
-//        val searchBar = view.findViewById<AutoCompleteTextView>(R.id.search_bar)
+//      val searchBar = view.findViewById<AutoCompleteTextView>(R.id.search_bar)
 //
 //        searchBar.addTextChangedListener(object : TextWatcher {
 //
@@ -63,13 +68,28 @@ class Address : Fragment(){
         }
 
         nextButton?.setOnClickListener{
-            (activity as OnBoarding?)!!.setFragment(1)
+            if(OnBoarding.address != ""){
+                (activity as OnBoarding?)!!.setFragment(1)
+            } else {
+                incomplete()
+            }
+
         }
 
         initPlaces()
         setupPlacesAutoComplete()
 
         return view
+    }
+
+    private fun incomplete(){
+        val searchBar = view?.findViewById<CardView>(R.id.search_bar_container)
+        searchBar?.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
+    }
+
+    private fun complete(){
+        val searchBar = view?.findViewById<CardView>(R.id.search_bar_container)
+        searchBar?.background = ResourcesCompat.getDrawable(resources, R.drawable.button_rounded, null)
     }
 
     private fun initPlaces(){
@@ -127,6 +147,7 @@ class Address : Fragment(){
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
                 OnBoarding.address = p0.address.toString()
+                complete()
             }
 
             override fun onError(p0: Status) {

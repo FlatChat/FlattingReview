@@ -44,18 +44,18 @@ class Details : Fragment() {
     }
 
     private fun checkCollectPass(bedrooms: EditText, bathrooms: EditText){
-//        if(bedrooms.text.toString() == "" && bathrooms.text.toString() == ""){
-//            bedrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
-//            bathrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
-//        } else if(bathrooms.text.toString() == "") {
-//            bathrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
-//        } else if(bedrooms.text.toString() == "") {
-//            bedrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
-//        } else {
+        if(bedrooms.text.toString() == "" && bathrooms.text.toString() == ""){
+            bedrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
+            bathrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
+        } else if(bathrooms.text.toString() == "") {
+            bathrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
+        } else if(bedrooms.text.toString() == "") {
+            bedrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
+        } else {
             OnBoarding.bedrooms = bedrooms.text.toString()
             OnBoarding.bathrooms = bathrooms.text.toString()
             (activity as OnBoarding?)!!.setFragment(2)
-//        }
+        }
     }
 
 }
