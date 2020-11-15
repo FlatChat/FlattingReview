@@ -1,6 +1,6 @@
 package com.flatchat.app
 
-import adapters.PopularFlatAdapter
+import adapters.FlatAdapter
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +13,7 @@ import models.Flat
  * to be displayed.
  * @author Ryan
  */
-class ShowAllFlats : AppCompatActivity(),  PopularFlatAdapter.OnItemClickListener{
+class ShowAllFlats : AppCompatActivity(),  FlatAdapter.OnItemClickListener{
 
     private var layout = "flat_layout_fill_width"
 
@@ -28,7 +28,7 @@ class ShowAllFlats : AppCompatActivity(),  PopularFlatAdapter.OnItemClickListene
             intent.getSerializableExtra("ratingList") as HashMap<String, Double>
 
         show_all_flats.adapter =
-            PopularFlatAdapter(this, list, ratingList, this, layout)
+            FlatAdapter(this, list, ratingList, this, layout)
         show_all_flats.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         show_all_flats.setHasFixedSize(true)

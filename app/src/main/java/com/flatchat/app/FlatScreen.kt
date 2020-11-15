@@ -1,6 +1,7 @@
 package com.flatchat.app
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,8 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
+import newFlat.NewFlat
+import java.lang.Double.NaN
 
 /**
  * This is the screen for a particular flat selected
@@ -92,7 +95,7 @@ class FlatScreen : AppCompatActivity() {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }
@@ -116,10 +119,10 @@ class FlatScreen : AppCompatActivity() {
         val landlordBar: ProgressBar = findViewById(R.id.landlord_bar)
         val locationBar: ProgressBar = findViewById(R.id.location_bar)
         val valueBar: ProgressBar = findViewById(R.id.value_bar)
-        cleanlinessBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        landlordBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        locationBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        valueBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        cleanlinessBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        landlordBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        locationBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        valueBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
         val list = calculateRating()
         cleanlinessBar.progress = (list[0] * 10).toInt()
         landlordBar.progress = (list[1] * 10).toInt()
@@ -127,6 +130,9 @@ class FlatScreen : AppCompatActivity() {
         valueBar.progress = (list[3] * 10).toInt()
         flatImage = findViewById(R.id.flat_image)
         overallRating = "%.1f".format((list[0] + list[1] + list[2] + list[3]) / 4)
+        if(overallRating == NaN.toString()){
+            overallRating = "0.0"
+        }
         flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, reviewList.size)
         addressText.text = address!!.split(",")[0]
     }

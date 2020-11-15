@@ -4,12 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.util.Patterns
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.activity_account.*
 import models.Users
 
 /**
@@ -20,7 +21,6 @@ import models.Users
  */
 class CreateAccount : AppCompatActivity() {
 
-    //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
     private lateinit var firstNameUser: Editable
     private lateinit var lastNameUser: Editable
@@ -36,14 +36,19 @@ class CreateAccount : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_account)
-        // Initialize Firebase Auth
+        setContentView(R.layout.activity_account)
+
         auth = FirebaseAuth.getInstance()
         collectInput()
 
-        //set a listener for the sign up button to check if....
-        signUpButton.setOnClickListener {
+        val createAccountButton = findViewById<Button>(R.id.sign_up_button)
+        val cancelButton = findViewById<Button>(R.id.cancel_button)
+
+        createAccountButton.setOnClickListener {
             signUpUser()
+        }
+        cancelButton.setOnClickListener{
+            startActivity(Intent(this, LandingPage::class.java))
         }
     }
 

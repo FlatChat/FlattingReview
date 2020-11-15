@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.flatchat.app.R
 import com.flatchat.app.Search
-import kotlinx.android.synthetic.main.flat_search_layout.view.*
+import kotlinx.android.synthetic.main.layout_flat_search.view.*
 import models.Flat
 
 /**
@@ -40,7 +40,7 @@ class SearchAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.flat_search_layout,
+            R.layout.layout_flat_search,
             parent, false
         )
         return SearchViewHolder(itemView)

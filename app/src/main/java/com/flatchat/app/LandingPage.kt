@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.activity_landing_page.*
 
 class LandingPage : AppCompatActivity() {
 
-    //global variable for firebase authentication
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,8 +48,6 @@ class LandingPage : AppCompatActivity() {
             } else{
                 Toast.makeText(baseContext, "Please verify your email address.", Toast.LENGTH_SHORT).show()
             }
-        }else{
-//           Toast.makeText(baseContext, "Login failed.",Toast.LENGTH_SHORT).show()
         }
     }
 }

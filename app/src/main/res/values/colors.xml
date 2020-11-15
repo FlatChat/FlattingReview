@@ -5,4 +5,5 @@
     <color name="colorAccent">#67daff</color>
     <color name="colorBlack">#000000 </color>
     <color name="colorWhite">#FFFFFF </color>
+<!--    <color name="colorDisabledPrimary">#FF9BCFE6 </color>-->
 </resources>

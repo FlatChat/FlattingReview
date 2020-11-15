@@ -15,6 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/flat_layout_fill_width" />
+        tools:listitem="@layout/layout_flat_full_width" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

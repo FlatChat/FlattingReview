@@ -16,16 +16,16 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4ClassRunner::class)
 class CreateAccountTest{
-    /**
-     * A test to check that the visibility of the create account screen.
-     *
-     */
-    @Test
-    fun test_isActivityInView() {
-        val activityScenario=ActivityScenario.launch(CreateAccount::class.java)
-        onView(withId(R.id.create_account_id))
-            .check(matches(isDisplayed()))
-    }
+//    /**
+//     * A test to check that the visibility of the create account screen.
+//     *
+//     */
+//    @Test
+//    fun test_isActivityInView() {
+//        val activityScenario=ActivityScenario.launch(CreateAccount::class.java)
+//        onView(withId(R.id.create_account_id))
+//            .check(matches(isDisplayed()))
+//    }
     /**
      * A test to check that visibility of the buttons on the create account screen.
      *
@@ -33,7 +33,7 @@ class CreateAccountTest{
     @Test
     fun test_Visibility_of_SignUp_Button() {
         val activityScenario = ActivityScenario.launch(CreateAccount::class.java)
-        onView(withId(R.id.signUpButton))
+        onView(withId(R.id.sign_up_button))
             .check(matches(isDisplayed()))
     }
 

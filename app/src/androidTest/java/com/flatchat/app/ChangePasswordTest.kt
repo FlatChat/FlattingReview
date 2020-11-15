@@ -23,7 +23,7 @@ class ChangePasswordTest{
      */
     @Test
     fun test_isActivityInView() {
-        val activityScenario= ActivityScenario.launch(ChangePassword::class.java)
+        ActivityScenario.launch(ChangePassword::class.java)
         onView(withId(R.id.change_password_id)).check(matches(isDisplayed()))
     }
     /**
@@ -32,7 +32,7 @@ class ChangePasswordTest{
      */
     @Test
     fun test_Visibility_of_ChangePassword_Button() {
-        val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
+        ActivityScenario.launch(ChangePassword::class.java)
         onView(withId(R.id.changePasBut))
             .check(matches(isDisplayed()))
     }
@@ -43,7 +43,7 @@ class ChangePasswordTest{
      */
     @Test
     fun test_Check_Text_Fields() {
-        val activityScenario=ActivityScenario.launch(ChangePassword::class.java)
+        ActivityScenario.launch(ChangePassword::class.java)
         onView(withId(R.id.currentPassET))
             .check(matches(isDisplayed()))
         onView(withId(R.id.newPassET))

@@ -1,8 +1,7 @@
 package com.flatchat.app
 
-import adapters.FeaturedFlatAdapter
 import adapters.FeaturedReviewsAdapter
-import adapters.PopularFlatAdapter
+import adapters.FlatAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +14,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
+import newFlat.NewFlat
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -22,7 +22,7 @@ import models.Review
  * users can browse.
  * @author Ryan
  */
-class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
+class HomeScreen : AppCompatActivity(), FlatAdapter.OnItemClickListener {
 
     private var featuredFlat: ArrayList<Flat> = ArrayList()
     private var popularFlat: ArrayList<Flat> = ArrayList()
@@ -110,7 +110,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }
@@ -200,9 +200,9 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
     private fun createViewFlats() {
         popularFlat = popularFlat.reversed() as ArrayList<Flat>
         popularFlatRecycler.adapter =
-            PopularFlatAdapter(this, popularFlat, ratingList, this, layout)
+            FlatAdapter(this, popularFlat, ratingList, this, layout)
         featuredFlatRecycler.adapter =
-            FeaturedFlatAdapter(this, featuredFlat, ratingList, this, layout)
+            FlatAdapter(this, featuredFlat, ratingList, this, layout)
     }
 
     private fun calculateRating(flatList: ArrayList<Flat>) {

@@ -35,7 +35,7 @@
             android:id="@+id/search_view_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/flat_search_layout" />
+            tools:listitem="@layout/layout_flat_search" />
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
