@@ -7,9 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.flatchat.app.HomeScreen
 import com.flatchat.app.R
@@ -38,14 +36,19 @@ class Confirm : Fragment() {
         val image = view.findViewById<ImageView>(R.id.flat_image)
         val finishButton = view.findViewById<Button>(R.id.finish_button)
         val backButton = view.findViewById<Button>(R.id.button_back)
-//        val terms = view.findViewById<CheckBox>(R.id.terms_conditions_box)
+        val terms = view.findViewById<CheckBox>(R.id.terms_conditions_box)
 
         backButton?.setOnClickListener{
             (activity as NewFlat?)!!.setFragment(2)
         }
 
         finishButton?.setOnClickListener{
-            writeNewFlat()
+            if (terms.isChecked){
+                writeNewFlat()
+            } else {
+                Toast.makeText(activity, "Agree to the terms and conditions",
+                        Toast.LENGTH_SHORT).show()
+            }
         }
 
         address.text = NewFlat.address.split(",")[0]

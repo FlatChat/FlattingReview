@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
 import newFlat.NewFlat
+import java.lang.Double.NaN
 
 /**
  * This is the screen for a particular flat selected
@@ -129,6 +130,9 @@ class FlatScreen : AppCompatActivity() {
         valueBar.progress = (list[3] * 10).toInt()
         flatImage = findViewById(R.id.flat_image)
         overallRating = "%.1f".format((list[0] + list[1] + list[2] + list[3]) / 4)
+        if(overallRating == NaN.toString()){
+            overallRating = "0.0"
+        }
         flatRating.text = getString(R.string.reviews_for_flat_screen, overallRating, reviewList.size)
         addressText.text = address!!.split(",")[0]
     }

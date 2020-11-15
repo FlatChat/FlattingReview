@@ -18,13 +18,13 @@ import models.Flat
  *
  * @property exampleList list of Flat objects to display
  */
-class PopularFlatAdapter(
+class FlatAdapter(
     private val context: Context,
     private val exampleList: ArrayList<Flat>,
     private val ratingList: HashMap<String, Double>,
     private var clickListener: OnItemClickListener,
     private var layout: String
-) : RecyclerView.Adapter<PopularFlatAdapter.PopularFlatViewHolder>() {
+) : RecyclerView.Adapter<FlatAdapter.PopularFlatViewHolder>() {
 
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
@@ -60,7 +60,11 @@ class PopularFlatAdapter(
             storage.getReferenceFromUrl("gs://flattingreview.appspot.com/flats/image${currentItem.flatID}.jpg")
         Glide.with(context).load(gsReference).into(holder.imageView1)
         holder.textView1.text = currentItem.address!!.split(",")[0]
-        holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
+        if(ratingList[currentItem.flatID]?.isNaN()!!){
+            holder.textView2.text = 0.0.toString()
+        } else {
+            holder.textView2.text  = context.getString(R.string.one_decimal).format(ratingList[currentItem.flatID])
+        }
         holder.initialize(currentItem, clickListener)
     }
 
