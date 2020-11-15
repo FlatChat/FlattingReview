@@ -9,14 +9,13 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
-import onboarding.OnBoarding
+import newFlat.NewFlat
 
 /**
  * This is the screen for a particular flat selected
@@ -95,7 +94,7 @@ class FlatScreen : AppCompatActivity() {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, OnBoarding::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }

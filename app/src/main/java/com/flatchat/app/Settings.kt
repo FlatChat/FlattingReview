@@ -8,7 +8,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_settings.*
-import onboarding.OnBoarding
+import newFlat.NewFlat
 
 /**
  * A class designed to allow the user to logout and be redirected to the sign in screen. This class also
@@ -55,7 +55,7 @@ class Settings : AppCompatActivity() {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, OnBoarding::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }

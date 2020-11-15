@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
 
-        <activity android:name="onboarding.OnBoarding" />
+        <activity android:name="newFlat.NewFlat" />
         <activity
             android:name="com.flatchat.app.LandingPage"
             android:theme="@style/SplashTheme"/>

@@ -1,4 +1,4 @@
-package onboarding
+package newFlat
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import android.widget.EditText
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.flatchat.app.R
+import newFlat.NewFlat.Flat.bathrooms
 
 class Details : Fragment() {
 
@@ -32,7 +33,7 @@ class Details : Fragment() {
         bathrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.rounded_edit_text, null)
 
         backButton?.setOnClickListener{
-            (activity as OnBoarding?)!!.setFragment(0)
+            (activity as NewFlat?)!!.setFragment(0)
         }
 
         nextButton?.setOnClickListener{
@@ -51,9 +52,9 @@ class Details : Fragment() {
         } else if(bedrooms.text.toString() == "") {
             bedrooms.background = ResourcesCompat.getDrawable(resources, R.drawable.button_red_outline, null)
         } else {
-            OnBoarding.bedrooms = bedrooms.text.toString()
-            OnBoarding.bathrooms = bathrooms.text.toString()
-            (activity as OnBoarding?)!!.setFragment(2)
+            NewFlat.bedrooms = bedrooms.text.toString()
+            NewFlat.bathrooms = bathrooms.text.toString()
+            (activity as NewFlat?)!!.setFragment(2)
         }
     }
 

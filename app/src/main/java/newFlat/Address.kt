@@ -1,4 +1,4 @@
-package onboarding
+package newFlat
 
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +20,7 @@ import com.google.android.libraries.places.api.model.RectangularBounds
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import newFlat.NewFlat.Flat.address
 
 class Address : Fragment(){
 
@@ -68,8 +69,8 @@ class Address : Fragment(){
         }
 
         nextButton?.setOnClickListener{
-            if(OnBoarding.address != ""){
-                (activity as OnBoarding?)!!.setFragment(1)
+            if(address != ""){
+                (activity as NewFlat?)!!.setFragment(1)
             } else {
                 incomplete()
             }
@@ -146,7 +147,7 @@ class Address : Fragment(){
         )
         autocompleteFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
-                OnBoarding.address = p0.address.toString()
+                address = p0.address.toString()
                 complete()
             }
 

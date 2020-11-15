@@ -1,4 +1,4 @@
-package onboarding
+package newFlat
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,7 +12,7 @@ import com.flatchat.app.Settings
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class OnBoarding : AppCompatActivity() {
+class NewFlat : AppCompatActivity() {
 
     private val firstScreen = Address()
     private val secondScreen = Details()

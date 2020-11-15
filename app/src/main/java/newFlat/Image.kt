@@ -1,4 +1,4 @@
-package onboarding
+package newFlat
 
 import android.Manifest
 import android.app.Activity
@@ -51,11 +51,11 @@ class Image : Fragment() {
         imageFlat.setImageResource(R.drawable.image)
 
         backButton?.setOnClickListener{
-            (activity as OnBoarding?)!!.setFragment(1)
+            (activity as NewFlat?)!!.setFragment(1)
         }
 
         nextButton?.setOnClickListener{
-            (activity as OnBoarding?)!!.setFragment(3)
+            (activity as NewFlat?)!!.setFragment(3)
         }
 
         //BUTTON CLICK
@@ -134,14 +134,14 @@ class Image : Fragment() {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             if (data != null) {
                 imageFlat.setImageURI(data.data)
-                OnBoarding.imageURI = data.data
+                NewFlat.imageURI = data.data
             } else {
                 Toast.makeText(activity, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
             }
         } else if (requestCode == requestImageCapture && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imageFlat.setImageBitmap(imageBitmap)
-            OnBoarding.imageBitmap = imageBitmap
+            NewFlat.imageBitmap = imageBitmap
         } else {
             Toast.makeText(activity, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
         }

@@ -1,4 +1,4 @@
-package onboarding
+package newFlat
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -42,15 +41,15 @@ class Confirm : Fragment() {
 //        val terms = view.findViewById<CheckBox>(R.id.terms_conditions_box)
 
         backButton?.setOnClickListener{
-            (activity as OnBoarding?)!!.setFragment(2)
+            (activity as NewFlat?)!!.setFragment(2)
         }
 
         finishButton?.setOnClickListener{
             writeNewFlat()
         }
 
-        address.text = OnBoarding.address.split(",")[0]
-        image.setImageURI(OnBoarding.imageURI)
+        address.text = NewFlat.address.split(",")[0]
+        image.setImageURI(NewFlat.imageURI)
 
         return view
     }
@@ -61,13 +60,13 @@ class Confirm : Fragment() {
         val imageID = "image$flatID"
         val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
         val baos = ByteArrayOutputStream()
-        OnBoarding.imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        NewFlat.imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
         val flat = Flat(
             flatID,
-            OnBoarding.address,
-            OnBoarding.bedrooms,
-            OnBoarding.bathrooms,
+            NewFlat.address,
+            NewFlat.bedrooms,
+            NewFlat.bathrooms,
             0
         )
         myRef.child(flatID.toString()).setValue(flat)

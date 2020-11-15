@@ -15,7 +15,7 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_home_screen.*
 import models.Flat
 import models.Review
-import onboarding.OnBoarding
+import newFlat.NewFlat
 
 /**
  * The first screen the user will see when opening the app (after the splash screen). This screen
@@ -111,7 +111,7 @@ class HomeScreen : AppCompatActivity(), PopularFlatAdapter.OnItemClickListener {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, OnBoarding::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }

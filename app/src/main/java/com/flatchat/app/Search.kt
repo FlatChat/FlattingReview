@@ -14,7 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_search.*
 import models.Flat
-import onboarding.OnBoarding
+import newFlat.NewFlat
 
 /**
  * This is the search classes that receives queries from the user and relays them to firebase, to
@@ -59,7 +59,7 @@ class Search : AppCompatActivity(), SearchAdapter.OnItemClickListener {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, OnBoarding::class.java)
+                    val intent = Intent(this, NewFlat::class.java)
                     startActivity(intent)
                     true
                 }
