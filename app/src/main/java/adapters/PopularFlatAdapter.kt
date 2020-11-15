@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.flatchat.app.R
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.flat_layout.view.*
+import kotlinx.android.synthetic.main.layout_flat_fixed_width.view.*
 import models.Flat
 
 /**
@@ -39,9 +39,9 @@ class PopularFlatAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularFlatViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
             if(layout == "flat_layout"){
-                R.layout.flat_layout
+                R.layout.layout_flat_fixed_width
             } else {
-                R.layout.flat_layout_fill_width
+                R.layout.layout_flat_full_width
             },
             parent, false
         )

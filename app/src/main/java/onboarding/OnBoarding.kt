@@ -4,18 +4,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.flatchat.app.HomeScreen
 import com.flatchat.app.R
 import com.flatchat.app.Search
 import com.flatchat.app.Settings
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import models.Flat
-import java.io.ByteArrayOutputStream
 
 
 class OnBoarding : AppCompatActivity() {
@@ -80,33 +74,33 @@ class OnBoarding : AppCompatActivity() {
         }
     }
 
-    private fun writeNewFlat(){
-        val myRef = FirebaseDatabase.getInstance().getReference("flats")
-        val flatID = myRef.push().key
-        val imageID = "image$flatID"
-        val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
-//        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
-        val baos = ByteArrayOutputStream()
-        imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val data = baos.toByteArray()
-
-        val flat = Flat(
-                flatID,
-                address,
-                bedrooms,
-                bathrooms,
-                0
-        )
-        myRef.child(flatID.toString()).setValue(flat)
-
-        val uploadTask = storageRef.putBytes(data)
-        val intent = Intent(this, HomeScreen::class.java)
-
-        uploadTask.addOnFailureListener {
-            Log.d("File Upload", "Failure")
-        }.addOnSuccessListener {
-            Log.d("File Upload", "Successful")
-        }
-        startActivity(intent)
-    }
+//    private fun writeNewFlat(){
+//        val myRef = FirebaseDatabase.getInstance().getReference("flats")
+//        val flatID = myRef.push().key
+//        val imageID = "image$flatID"
+//        val storageRef = Firebase.storage.reference.child("flats/$imageID.jpg")
+////        val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+//        val baos = ByteArrayOutputStream()
+//        imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+//        val data = baos.toByteArray()
+//
+//        val flat = Flat(
+//                flatID,
+//                address,
+//                bedrooms,
+//                bathrooms,
+//                0
+//        )
+//        myRef.child(flatID.toString()).setValue(flat)
+//
+//        val uploadTask = storageRef.putBytes(data)
+//        val intent = Intent(this, HomeScreen::class.java)
+//
+//        uploadTask.addOnFailureListener {
+//            Log.d("File Upload", "Failure")
+//        }.addOnSuccessListener {
+//            Log.d("File Upload", "Successful")
+//        }
+//        startActivity(intent)
+//    }
 }

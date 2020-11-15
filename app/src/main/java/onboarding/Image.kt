@@ -21,7 +21,7 @@ import com.flatchat.app.R
 
 class Image : Fragment() {
 
-    private val REQUEST_IMAGE_CAPTURE = 1
+    private val requestImageCapture = 1
     private lateinit var imageFlat: ImageView
     companion object {
         //image pick code
@@ -44,7 +44,7 @@ class Image : Fragment() {
 
         val backButton = view.findViewById<Button>(R.id.button_back)
         val nextButton = view.findViewById<Button>(R.id.button_next)
-        imageFlat = view.findViewById<ImageView>(R.id.flat_image_upload)
+        imageFlat = view.findViewById(R.id.flat_image_upload)
         val uploadImage = view.findViewById<Button>(R.id.upload_image)
         val camera = view.findViewById<Button>(R.id.camera_button)
 
@@ -138,7 +138,7 @@ class Image : Fragment() {
             } else {
                 Toast.makeText(activity, "Error Uploading Photo", Toast.LENGTH_SHORT).show()
             }
-        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
+        } else if (requestCode == requestImageCapture && resultCode == AppCompatActivity.RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             imageFlat.setImageBitmap(imageBitmap)
             OnBoarding.imageBitmap = imageBitmap
@@ -150,7 +150,7 @@ class Image : Fragment() {
     private fun dispatchTakePictureIntent() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(activity?.packageManager!!)?.also {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                startActivityForResult(takePictureIntent, requestImageCapture)
             }
         }
     }

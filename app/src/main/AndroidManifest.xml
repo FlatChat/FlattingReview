@@ -3,8 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flatchat.app">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <package android:name="com.flatchat.app" />
+    </queries>
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -39,7 +43,6 @@
         </activity>
         <activity android:name="com.flatchat.app.ShowAllFlats" />
         <activity android:name="com.flatchat.app.Search" />
-        <activity android:name="com.flatchat.app.CreateFlat" />
         <activity
             android:name="com.flatchat.app.CreateAccount"
             android:theme="@style/MaterialTheme" />

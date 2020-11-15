@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:padding="8dp"
-                android:text="&#8942;"
+                android:text="@string/_8942"
                 android:textAppearance="?android:textAppearanceLarge"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

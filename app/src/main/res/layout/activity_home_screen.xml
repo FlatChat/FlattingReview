@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                tools:listitem="@layout/flat_layout" />
+                tools:listitem="@layout/layout_flat_fixed_width" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                tools:listitem="@layout/flat_layout" />
+                tools:listitem="@layout/layout_flat_fixed_width" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                tools:listitem="@layout/flat_layout" />
+                tools:listitem="@layout/layout_flat_fixed_width" />
 
             <Space
                 android:layout_width="match_parent"

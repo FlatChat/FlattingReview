@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/delete_review"
-        android:title="@string/delreview">
+        android:title="@string/delete_review">
 
     </item>
 

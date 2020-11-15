@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.flatchat.app.R
-import kotlinx.android.synthetic.main.featured_rev_layout.view.*
+import kotlinx.android.synthetic.main.layout_rev_fixed_width.view.*
 import models.Review
 import java.util.*
 
@@ -29,7 +29,7 @@ class FeaturedReviewsAdapter(private val exampleList: ArrayList<Review>) :
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FeatRevViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.featured_rev_layout,
+            R.layout.layout_rev_fixed_width,
             parent, false
         )
         return FeatRevViewHolder(itemView)

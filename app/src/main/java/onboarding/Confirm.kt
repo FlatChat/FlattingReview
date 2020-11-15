@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.content.res.ResourcesCompat
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.flatchat.app.HomeScreen
 import com.flatchat.app.R
@@ -37,7 +39,7 @@ class Confirm : Fragment() {
         val image = view.findViewById<ImageView>(R.id.flat_image)
         val finishButton = view.findViewById<Button>(R.id.finish_button)
         val backButton = view.findViewById<Button>(R.id.button_back)
-        val terms = view.findViewById<CheckBox>(R.id.terms_conditions_box)
+//        val terms = view.findViewById<CheckBox>(R.id.terms_conditions_box)
 
         backButton?.setOnClickListener{
             (activity as OnBoarding?)!!.setFragment(2)

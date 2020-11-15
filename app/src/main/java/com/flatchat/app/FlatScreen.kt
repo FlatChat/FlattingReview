@@ -1,6 +1,7 @@
 package com.flatchat.app
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,14 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_flat.*
 import models.Flat
 import models.Review
+import onboarding.OnBoarding
 
 /**
  * This is the screen for a particular flat selected
@@ -92,7 +95,7 @@ class FlatScreen : AppCompatActivity() {
                     true
                 }
                 R.id.add_flat_screen -> {
-                    val intent = Intent(this, CreateFlat::class.java)
+                    val intent = Intent(this, OnBoarding::class.java)
                     startActivity(intent)
                     true
                 }
@@ -116,10 +119,10 @@ class FlatScreen : AppCompatActivity() {
         val landlordBar: ProgressBar = findViewById(R.id.landlord_bar)
         val locationBar: ProgressBar = findViewById(R.id.location_bar)
         val valueBar: ProgressBar = findViewById(R.id.value_bar)
-        cleanlinessBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        landlordBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        locationBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
-        valueBar.progressDrawable.setColorFilter(Color.BLACK, android.graphics.PorterDuff.Mode.SRC_IN)
+        cleanlinessBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        landlordBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        locationBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
+        valueBar.progressTintList = ColorStateList.valueOf(Color.BLACK)
         val list = calculateRating()
         cleanlinessBar.progress = (list[0] * 10).toInt()
         landlordBar.progress = (list[1] * 10).toInt()

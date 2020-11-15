@@ -16,7 +16,8 @@ import com.flatchat.app.EditReview
 import com.flatchat.app.R
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.review_layout.view.*
+import kotlinx.android.synthetic.main.layout_rev_fixed_width.view.*
+import kotlinx.android.synthetic.main.layout_rev_full_width.view.*
 import models.Review
 import java.util.*
 
@@ -53,7 +54,7 @@ class ReviewAdapter(
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.review_layout,
+            R.layout.layout_rev_full_width,
             parent, false
         )
         return ExampleViewHolder(itemView)

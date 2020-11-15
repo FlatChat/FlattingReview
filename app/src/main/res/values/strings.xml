@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Flatchat</string>
 
     <!-- Home Screen -->
@@ -29,7 +29,7 @@
     <string name="overall_rating">4.65 (3 reviews)</string>
     <string name="comment">A great location. Nice and peaceful and a short walk from the center of uni. Well insulated but does get to hot.</string>
     <string name="comment_hint">Write comment here</string>
-    <string name="delreview">Delete Review</string>
+    <string name="delete_review">Delete Review</string>
     <string name="report_rev">Report</string>
     <string name="edit_rev">Edit</string>
     <string name="delete_confirmation">Are you sure you want to delete?</string>
@@ -79,7 +79,7 @@
     <string name="value">Value</string>
     <string name="location">Location</string>
     <string name="cleanliness">Cleanliness</string>
-    <string name="reviews_for_flat_screen">%s \t \t (%d reviews)</string>
+    <string name="reviews_for_flat_screen" tools:ignore="PluralsCandidate">%s \t \t (%d reviews)</string>
     <string name="email">Email</string>
     <string name="current_address_optional">Current Address (optional)</string>
     <!--
@@ -90,26 +90,20 @@
     <string name="camera">Camera</string>
     <string name="one_decimal">%.1f</string>
     <string name="create_account">Create Account</string>
-    <string name="trouble_signing_in"> <u>Trouble signing in?</u></string>
     <string name="recent_reviews">Recent Reviews</string>
     <string name="r">R</string>
-    <string name="lorem">Lorem</string>
-    <string name="payment">Payment</string>
     <string name="next">Next</string>
     <string name="map_icon">Map Icon</string>
     <string name="back">Back</string>
-    <string name="finish">Finish</string>
     <string name="enter_the_address_in_the_search_bar_to_find_your_flat">Enter the address in the search bar to find your flat</string>
     <string name="details">Details</string>
     <string name="image">Image</string>
     <string name="empty" />
     <string name="are_all_these_details_correct">Are These Details Correct?</string>
-    <string name="address">Address:</string>
-    <string name="do_you_confirm_that_all_the_information_you_have_given_is_correct">Do you confirm that all the information you have given is correct?</string>
     <string name="terms_and_conditions"><u>Terms and Conditions</u></string>
     <string name="_0_0_0_reviews">0.0 (0 reviews)</string>
     <string name="yes_finish">yes, finish</string>
     <string name="no_back">no, back</string>
-
-
+    <string name="sign_in">sign in</string>
+    <string name="_8942">⋮</string>
 </resources>
